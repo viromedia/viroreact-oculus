@@ -29,3 +29,4 @@ jobs:
             -scheme React \
             -sdk iphoneos \
             -configuration Release 
+            -UseModernBuildSystem=NO
