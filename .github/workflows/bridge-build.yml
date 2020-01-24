@@ -5,8 +5,8 @@ on: [push]
 
 jobs:
   bridge_build:
-  runs-on: macos-latest
-  steps:
-    - uses: actions/checkout@v1
-    - name: print
-      run: echo lol
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: print
+        run: echo lol
