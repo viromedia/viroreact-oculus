@@ -7,10 +7,7 @@ jobs:
   bridge_build:
     runs-on: macos-latest
     steps:
-      - name: Setup HomeBrew
-        run: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-      - name: Setup Node
-        run: brew install node
+      # Note, brew and node are already installed on github workflows.
       - name: Setup Watchman 
         run: brew install watchman 
       - uses: actions/checkout@v1
