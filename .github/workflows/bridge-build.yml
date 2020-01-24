@@ -6,7 +6,7 @@ on: [push]
 jobs:
 
   myBuild:
-  runs-on macos-laters
+  runs-on: macos-laters
   steps:
     - name: print
       run: echo lol
