@@ -10,6 +10,16 @@ jobs:
       # Note, brew and node are already installed on github workflows.
       - name: Setup Watchman 
         run: brew install watchman 
+      - name: Checking out latest bridge code....
       - uses: actions/checkout@v1
-      - name: print
+      - name: ViroReact Pods Install
+        run: pod install
+        working-directory: ./ios
+      - name: ViroReact Npm Install
+        run: npm install
+        working-directory: ./test  
+      - name: ViroExample Pods Install
+        run: npm install
+        working-directory: ./test/ios/ViroExample  
+      - name: Building React
         run: echo lol
