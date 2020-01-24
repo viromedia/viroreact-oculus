@@ -4,9 +4,9 @@ on: [push]
 
 
 jobs:
-
-  myBuild:
-  runs-on: macos-laters
+  bridge_build:
+  runs-on: macos-latest
   steps:
+    - uses: actions/checkout@v1
     - name: print
       run: echo lol
