@@ -1,0 +1,12 @@
+name: BridgeBuild
+
+on: [push]
+
+
+jobs:
+
+  myBuild:
+  runs-on macos-laters
+  steps:
+    - name: print
+      run: echo lol
