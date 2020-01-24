@@ -21,5 +21,11 @@ jobs:
       - name: ViroExample Pods Install
         run: npm install
         working-directory: ./test/ios/ViroExample  
-      - name: Building React
-        run: echo lol
+      - name: xcodebuild React framework
+        working-directory: ./test/ios/ViroExample
+        run: |
+          xcodebuild \
+            -workspace ViroExample/ViroExample.xcworkspace/ \
+            -scheme React \
+            -sdk iphoneos \
+            -configuration Release 
