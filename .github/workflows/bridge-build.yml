@@ -22,11 +22,22 @@ jobs:
         working-directory: ./test/ios/ViroExample  
         run: npm install
       - name: xcodebuild React framework
+        working-directory: ./test/node_modules/react-native/React
+        run: |
+          xcodebuild \
+            -project React.xcodeproj \
+            -scheme React \
+            -sdk iphoneos \
+            -configuration Debug 
+            -UseModernBuildSystem=NO
+             
+      - name: xcodebuild ViroReact IOS framework
         working-directory: ./test/ios
         run: |
           xcodebuild \
             -workspace ViroExample/ViroExample.xcworkspace/ \
-            -scheme React \
+            -scheme ViroReact \
             -sdk iphoneos \
-            -configuration Release 
-            -UseModernBuildSystem=NO
+            -configuration Debug 
+            -UseModernBuildSystem=NO             
+             
