@@ -7,11 +7,11 @@ jobs:
   bridge_build:
     runs-on: macos-latest
     steps:
+      - uses: actions/checkout@v1
+
       # Note, brew and node are already installed on github workflows.
       - name: Setup Watchman 
         run: brew install watchman 
-      - name: Checking out latest bridge code....
-      - uses: actions/checkout@v1
       - name: ViroReact Pods Install
         run: pod install
         working-directory: ./ios
