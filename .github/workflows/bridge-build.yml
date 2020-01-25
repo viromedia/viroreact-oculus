@@ -28,7 +28,8 @@ jobs:
             -project React.xcodeproj \
             -scheme React \
             -sdk iphoneos \
-            -configuration Debug 
+            -configuration Debug \
+            -UseModernBuildSystem=NO    
              
       - name: xcodebuild ViroReact IOS framework
         working-directory: ./test/ios
@@ -37,6 +38,6 @@ jobs:
             -workspace ViroExample/ViroExample.xcworkspace/ \
             -scheme ViroReact \
             -sdk iphoneos \
-            -configuration Debug 
+            -configuration Debug \
             -UseModernBuildSystem=NO             
              
