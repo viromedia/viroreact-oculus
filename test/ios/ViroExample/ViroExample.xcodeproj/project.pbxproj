@@ -32,7 +32,6 @@
 		13424D5620B4269E00C690CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BE0D4261DF9DCFE0032AB99 /* LaunchScreen.storyboard */; };
 		136B0AEA20AA2FB800391021 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDD9D8D1E09EBFF00A42870 /* libReact.a */; };
 		1385B2B520CA0A8200C3B6CE /* libViroReact_static_lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1385B2A120CA098C00C3B6CE /* libViroReact_static_lib.a */; };
-		1385B2DA20CA38E500C3B6CE /* Pods_ViroExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9963AEFBC35CAFD7D48A8D1B /* Pods_ViroExample.framework */; };
 		8A1C312D211240B300F92429 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A1C31272112407500F92429 /* libRNDeviceInfo.a */; };
 		8A1C312E211240BB00F92429 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A1C31272112407500F92429 /* libRNDeviceInfo.a */; };
 		8A1C312F211240C300F92429 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A1C31272112407500F92429 /* libRNDeviceInfo.a */; };
@@ -379,7 +378,6 @@
 		8BE0D4AF1DFA1EE70032AB99 /* libReact.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libReact.a; path = "../../node_modules/react-native/React/build/Debug-iphoneos/libReact.a"; sourceTree = "<group>"; };
 		8BE0D4B01DFA1EE70032AB99 /* libViroReact.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libViroReact.a; path = "../../../ios/build/Debug-iphoneos/libViroReact.a"; sourceTree = "<group>"; };
 		95BCD34C047577C6CABBCE9E /* Pods-ViroExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViroExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-ViroExample/Pods-ViroExample.release.xcconfig"; sourceTree = "<group>"; };
-		9963AEFBC35CAFD7D48A8D1B /* Pods_ViroExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ViroExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A12B834E3829DDDD1F3E9121 /* Pods-ViroExample_no_use_frameworks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViroExample_no_use_frameworks.release.xcconfig"; path = "Pods/Target Support Files/Pods-ViroExample_no_use_frameworks/Pods-ViroExample_no_use_frameworks.release.xcconfig"; sourceTree = "<group>"; };
 		A5ACE2A1225BEC7200F2AECB /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		A6DE3F7920B5E93B00B25FA3 /* Pods_ViroExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ViroExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -394,7 +392,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A1C312D211240B300F92429 /* libRNDeviceInfo.a in Frameworks */,
-				1385B2DA20CA38E500C3B6CE /* Pods_ViroExample.framework in Frameworks */,
 				1331B78020C9A97300D1C5F5 /* libReact.a in Frameworks */,
 				1385B2B520CA0A8200C3B6CE /* libViroReact_static_lib.a in Frameworks */,
 				1331B78220C9A97300D1C5F5 /* libRCTImage.a in Frameworks */,
@@ -661,7 +658,6 @@
 				8BDB54B21DFFEE8900179AEF /* libRCTText.a */,
 				8BDB54B01DFFEE7E00179AEF /* libRCTNetwork.a */,
 				8BDB54AE1DFFEE7300179AEF /* libRCTImage.a */,
-				9963AEFBC35CAFD7D48A8D1B /* Pods_ViroExample.framework */,
 				C445C0CE086C1E4ADC10B629 /* Pods_ViroExample_archive.framework */,
 				766F9F120676EE2ACDCD4956 /* libPods-ViroExample_no_use_frameworks.a */,
 			);
@@ -1252,7 +1248,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ViroExample_archive/Pods-ViroExample_archive-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ViroExample_archive/Pods-ViroExample_archive-resources.sh",
 				"${PODS_ROOT}/GVRSDK/Resources/CardboardSDK.bundle",
 				"${PODS_ROOT}/GVRSDK/Resources/GoogleKitCore.bundle",
 				"${PODS_ROOT}/GVRSDK/Resources/GoogleKitDialogs.bundle",
@@ -1269,7 +1265,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ViroExample_archive/Pods-ViroExample_archive-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ViroExample_archive/Pods-ViroExample_archive-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3601AE3592BC6F4BF38B7204 /* [CP] Embed Pods Frameworks */ = {
@@ -1278,7 +1274,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ViroExample_no_use_frameworks/Pods-ViroExample_no_use_frameworks-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ViroExample_no_use_frameworks/Pods-ViroExample_no_use_frameworks-frameworks.sh",
 				"${PODS_ROOT}/../../../../ios/dist/ViroRenderer/static_lib/ViroKit_static_lib.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1287,7 +1283,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ViroExample_no_use_frameworks/Pods-ViroExample_no_use_frameworks-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ViroExample_no_use_frameworks/Pods-ViroExample_no_use_frameworks-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3F40BDC48FB6296CC4E1E2E3 /* [CP] Copy Pods Resources */ = {
@@ -1296,7 +1292,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ViroExample/Pods-ViroExample-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ViroExample/Pods-ViroExample-resources.sh",
 				"${PODS_ROOT}/GVRSDK/Resources/CardboardSDK.bundle",
 				"${PODS_ROOT}/GVRSDK/Resources/GoogleKitCore.bundle",
 				"${PODS_ROOT}/GVRSDK/Resources/GoogleKitDialogs.bundle",
@@ -1313,7 +1309,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ViroExample/Pods-ViroExample-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ViroExample/Pods-ViroExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		56ECCCE0B85392C586D819BA /* [CP] Check Pods Manifest.lock */ = {
@@ -1340,7 +1336,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ViroExample/Pods-ViroExample-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ViroExample/Pods-ViroExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${PODS_ROOT}/../../../../ios/dist/ViroRenderer/ViroKit.framework",
@@ -1353,7 +1349,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ViroExample/Pods-ViroExample-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ViroExample/Pods-ViroExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8BDD9E001E44794F00A42870 /* Copy Ngrok Address to Build */ = {
@@ -1389,7 +1385,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ViroExample_archive/Pods-ViroExample_archive-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ViroExample_archive/Pods-ViroExample_archive-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${PODS_ROOT}/../../../../ios/dist/ViroRenderer/ViroKit.framework",
@@ -1402,7 +1398,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ViroExample_archive/Pods-ViroExample_archive-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ViroExample_archive/Pods-ViroExample_archive-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D57E7E8B81C1F880CA67DF7E /* [CP] Check Pods Manifest.lock */ = {
