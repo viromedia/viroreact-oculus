@@ -45,7 +45,7 @@ jobs:
       - name: Upload tgz Artifact
         uses: actions/upload-artifact@v1
         with: 
-          name: react-viro-test.tgz
+          name: react-viro-2.17.0.tgz
           path: ./react-viro-2.17.0.tgz
         
              
