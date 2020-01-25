@@ -41,4 +41,7 @@ jobs:
             -sdk iphoneos \
             -configuration Debug \
             -UseModernBuildSystem=NO             
+
+      - name: Prepare Release
+        run: ./prepare_release.sh
              
