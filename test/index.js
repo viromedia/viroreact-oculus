@@ -191,23 +191,7 @@ FlatListItemSeparator = () => {
     console.log("AR not supported: " + result);
   }
   render() {
-    if (this.state.navigatorType == UNSET) {
-      return this._getSceneSelectionButtons();
-    } else if (this.state.navigatorType == VR_NAVIGATOR_TYPE || this.state.navigatorType == VR_DEPRECATED_TYPE ) {
-      if (this.state.vrMode == UNSET) {
-        return this._getSelectionButtons();
-      } else {
-        return this._getVRNavigator();
-      }
-    } else if (this.state.navigatorType == AR_NAVIGATOR_TYPE) {
-        return this._getARNavigator();
-    } else if (this.state.navigatorType == SCENE_NAVIGATOR_TYPE ) {
-      //if (this.state.initial3DScene == UNSET) {
-      //  return this._getInitialSelectionButtons();
-      // } else {
-      return this._get3DSceneNavigator();
-      // }
-    }
+    return this._getVRNavigator();
   }
     _getSceneSelectionButtons() {
     return (
@@ -389,24 +373,11 @@ FlatListItemSeparator = () => {
   _getVRNavigator() {
     return (
       <View style={localStyles.viroContainer} >
-        {renderIf(this.state.navigatorType == VR_NAVIGATOR_TYPE,
-          <ViroVRSceneNavigator {...this.state.sharedProps}
-            initialScene={{scene: this.state.initialScene}}
-            vrModeEnabled={this.state.vrMode}
-            onExitViro={()=>{this.setState({navigatorType : UNSET, vrMode : UNSET})}}/>)}
-        {renderIf(this.state.navigatorType == VR_DEPRECATED_TYPE,
-          <ViroSceneNavigator {...this.state.sharedProps}
-            initialScene={{scene: this.state.initialScene}}
-            vrModeEnabled={this.state.vrMode}
-            onExitViro={()=>{this.setState({navigatorType : UNSET, vrMode : UNSET})}}/>)}
-
-        <View style={localStyles.exitButtonContainer}>
-          <TouchableHighlight style={localStyles.exitButton}
-            onPress={()=>{this.setState({navigatorType : UNSET, vrMode : UNSET})}}
-            underlayColor={'#00000000'} >
-            <Text style={localStyles.buttonText}>Exit</Text>
-          </TouchableHighlight>
-        </View>
+        <ViroVRSceneNavigator {...this.state.sharedProps}
+                    initialScene={{scene: require('./js/release_test/ViroBoxTest')}}
+                    vrModeEnabled={true}
+                    showMenu={true}
+                    onExitViro={()=>{this.setState({navigatorType : UNSET, vrMode : UNSET})}}/>
       </View>
     );
   }

@@ -941,39 +941,39 @@ public class VRTNode extends VRTComponent {
     }
 
     protected void setCanTouch(boolean canTouch){
-        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_TOUCH, canTouch);
+       // mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_TOUCH, canTouch);
     }
 
     protected void setCanScroll(boolean canScroll){
-        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_SCROLL, canScroll);
+       // mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_SCROLL, canScroll);
     }
 
     protected void setCanSwipe(boolean canSwipe){
-        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_SWIPE, canSwipe);
+       // mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_SWIPE, canSwipe);
     }
 
     protected void setCanDrag(boolean canDrag){
-        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_DRAG, canDrag);
+      //  mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_DRAG, canDrag);
     }
 
     protected void setCanFuse(boolean canFuse){
-        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_FUSE, canFuse);
+      //  mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_FUSE, canFuse);
     }
 
     protected void setCanPinch(boolean canPinch){
-        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_PINCH, canPinch);
+      //  mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_PINCH, canPinch);
     }
 
     protected void setCanRotate(boolean canRotate){
-        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_ROTATE, canRotate);
+       // mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_ROTATE, canRotate);
     }
 
     protected void setCanCameraHitTest(boolean canCameraHitTest){
-        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_CAMERA_AR_HIT_TEST, canCameraHitTest);
+      //  mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_CAMERA_AR_HIT_TEST, canCameraHitTest);
     }
 
     protected void setTimeToFuse(float durationInMillis){
-        mEventDelegateJni.setTimeToFuse(durationInMillis);
+      //  mEventDelegateJni.setTimeToFuse(durationInMillis);
     }
 
     public void setDragType(String dragType) {

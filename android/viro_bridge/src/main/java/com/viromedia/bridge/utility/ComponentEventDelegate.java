@@ -25,22 +25,14 @@ import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
-import com.viro.core.ARHitTestResult;
-import com.viro.core.ARPointCloud;
-import com.viro.core.internal.CameraCallback;
 import com.viro.core.EventDelegate;
 import com.viro.core.Node;
 import com.viro.core.ClickState;
-import com.viro.core.ControllerStatus;
-import com.viro.core.PinchState;
-import com.viro.core.RotateState;
-import com.viro.core.SwipeState;
-import com.viro.core.TouchState;
 import com.viromedia.bridge.component.VRTComponent;
-import com.viromedia.bridge.component.node.VRTARScene;
 import com.viromedia.bridge.component.node.VRTScene;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 
 /**
  * Represents all java-to-javascript calls that can be triggered from an EventDelegate.
@@ -49,6 +41,36 @@ public class ComponentEventDelegate implements EventDelegate.EventDelegateCallba
     private WeakReference<VRTComponent> weakComponent;
     public ComponentEventDelegate(VRTComponent component){
         weakComponent = new WeakReference<VRTComponent>(component);
+    }
+
+    @Override
+    public void onClick(ArrayList<EventDelegate.ButtonEvent> arrayList) {
+
+    }
+
+    @Override
+    public void onHover(ArrayList<EventDelegate.HoverEvent> arrayList) {
+
+    }
+
+    @Override
+    public void onThumbStickEvent(ArrayList<EventDelegate.ThumbStickEvent> arrayList) {
+
+    }
+
+    @Override
+    public void onWeightedTriggerEvent(ArrayList<EventDelegate.TriggerEvent> arrayList) {
+
+    }
+
+    @Override
+    public void onMove(ArrayList<EventDelegate.MoveEvent> arrayList) {
+
+    }
+
+    @Override
+    public void onControllerStatus(ArrayList<EventDelegate.ControllerStatus> arrayList) {
+
     }
 
     @Override
@@ -100,7 +122,7 @@ public class ComponentEventDelegate implements EventDelegate.EventDelegateCallba
                 ViroEvents.ON_CLICK,
                 event);
     }
-
+/*
     @Override
     public void onTouch(int source, Node node, TouchState touchState, float touchPadPos[]){
         VRTComponent component = weakComponent.get();
@@ -315,7 +337,7 @@ public class ComponentEventDelegate implements EventDelegate.EventDelegateCallba
                 ViroEvents.ON_CONTROLLER_STATUS,
                 event);
     }
-
+*/
     @Override
     public void onCameraTransformUpdate(float posX, float poxY, float posZ,
                                         float rotEulerX, float rotEulerY, float rotEulerZ,

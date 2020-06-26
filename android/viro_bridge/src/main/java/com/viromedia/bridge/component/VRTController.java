@@ -79,23 +79,23 @@ public class VRTController extends VRTComponent {
     }
 
     protected void setCanClick(boolean canClick){
-        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_CLICK, canClick);
+      //  mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_CLICK, canClick);
     }
 
     protected void setCanTouch(boolean canTouch){
-        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_TOUCH, canTouch);
+        //mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_TOUCH, canTouch);
     }
 
     protected void setCanSwipe(boolean canSwipe){
-        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_SWIPE, canSwipe);
+        //mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_SWIPE, canSwipe);
     }
 
     protected void setCanScroll(boolean canScroll){
-        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_SCROLL, canScroll);
+        //mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_SCROLL, canScroll);
     }
 
     protected void setCanFuse(boolean canFuse){
-        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_FUSE, canFuse);
+      //  mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_FUSE, canFuse);
     }
 
     protected void setCanGetControllerStatus(boolean canGetControllerStatus){
@@ -117,7 +117,7 @@ public class VRTController extends VRTComponent {
             return;
         }
         mNativeController.setControllerVisible(mIsControllerVisible);
-        mNativeController.setReticleVisible(mIsReticleVisible);
+      //  mNativeController.setReticleVisible(mIsReticleVisible);
     }
 
 }
