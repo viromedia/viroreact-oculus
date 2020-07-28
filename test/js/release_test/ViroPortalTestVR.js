@@ -39,6 +39,7 @@
    ViroPortal,
    ViroSphere,
    Viro3DObject,
+   ViroController,
  } from 'react-viro';
 
 var createReactClass = require('create-react-class');
@@ -65,6 +66,7 @@ var ViroPortalTest = createReactClass({
    render: function() {
       return (
         <ViroScene>
+        <ViroController forceRender={true}/>
 
                 <ViroCamera position={[0,0,0]} active={true} animation={{name:"sequentialAnimPortal",
                             loop:true,

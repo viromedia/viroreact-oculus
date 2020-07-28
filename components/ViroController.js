@@ -31,6 +31,9 @@ var ViroController = createReactClass({
     onControllerStatus: PropTypes.func,
     reticleVisibility: PropTypes.bool,
     controllerVisibility: PropTypes.bool,
+    lightReceivingBitMask : PropTypes.number,
+    stickyReticle: PropTypes.bool,
+    forceRender: PropTypes.bool,
   },
 
   _onMove: function(event: Event) {

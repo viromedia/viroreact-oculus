@@ -25,6 +25,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
+import com.viromedia.bridge.component.node.control.VRTVideoSurface;
 import com.viromedia.bridge.utility.ViroEvents;
 
 import java.util.Map;
@@ -80,9 +81,24 @@ public class VRTControllerManager extends VRTViroViewGroupManager<VRTController>
         view.setControllerStatusEnabled(canGetControllerStatus);
     }
 
+    @ReactProp(name = "lightReceivingBitMask", defaultInt = -1)
+    public void setLightReceivingBitMask(VRTController view, int bitMask) {
+        view.setLightReceivingBitMask(bitMask);
+    }
+
     @ReactProp(name = "reticleVisibility", defaultBoolean = VRTController.DEFAULT_RETICLE_VISIBILITY)
     public void setReticleVisibility(VRTController view, boolean reticleVisibility) {
         view.setReticleVisibility(reticleVisibility);
+    }
+
+    @ReactProp(name = "stickyReticle", defaultBoolean = true)
+    public void setStickyReticle(VRTController view, boolean sticky) {
+        view.setReticleSticky(sticky);
+    }
+
+    @ReactProp(name = "forceRender", defaultBoolean = true)
+    public void setForceRender(VRTController view, boolean forced) {
+        view.setForceRender(forced);
     }
 
     @Override

@@ -121,9 +121,7 @@ public class ComponentEventDelegate implements EventDelegate.EventDelegateCallba
         event.putInt("source", source);
         event.putInt("clickState", clickState.getTypeId());
         event.putArray("position", positionArray);
-
-   //     Log.e("Daniel"," onAnyClick : " + clickState + " src: " + node.getTag() + " this: " + this.toString());
-
+        
         component.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
                 component.getId(),
                 ViroEvents.ON_ANY_CLICK,
@@ -146,7 +144,6 @@ public class ComponentEventDelegate implements EventDelegate.EventDelegateCallba
                 positionArray.pushDouble(position.y);
                 positionArray.pushDouble(position.z);
             }
-            Log.e("Molly"," Component Delegate onClick Java fire " + event.deviceId);
 
             WritableMap eventOut = Arguments.createMap();
             eventOut.putInt("source", event.source);

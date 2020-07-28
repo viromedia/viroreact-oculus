@@ -21,8 +21,6 @@
 
 package com.viromedia.bridge.component;
 
-import android.util.Log;
-
 import com.facebook.react.bridge.ReactContext;
 import com.viro.core.Controller;
 import com.viro.core.EventDelegate;
@@ -42,6 +40,9 @@ public class VRTController extends VRTComponent {
     private Controller mNativeController = null;
     private boolean mIsReticleVisible = DEFAULT_RETICLE_VISIBILITY;
     private boolean mIsControllerVisible = DEFAULT_CONTROLLER_VISIBILITY;
+    private boolean mForcedRender = false;
+    private boolean mIsSticky = true;
+    private int mLightMask = -1;
     private EventDelegate mEventDelegateJni;
     private ComponentEventDelegate mComponentEventDelegate;
 
@@ -68,14 +69,6 @@ public class VRTController extends VRTComponent {
         mComponentEventDelegate = new ComponentEventDelegate(this);
         mEventDelegateJni.setEventDelegateCallback(mComponentEventDelegate);
         mNativeController.setEventDelegate(mEventDelegateJni);
-    }
-
-    public void setReticleVisibility(boolean reticleVisibility) {
-        mIsReticleVisible = reticleVisibility;
-    }
-
-    public void setControllerVisibility(boolean controllerVisibility) {
-        mIsControllerVisible = controllerVisibility;
     }
 
     protected void setClickEnabled(boolean enabled) {
@@ -106,10 +99,30 @@ public class VRTController extends VRTComponent {
         mNativeController.getControllerForwardVectorAsync(callback);
     }
 
+    public void setLightReceivingBitMask(int bitMask) {
+        mLightMask = bitMask;
+    }
+
+    public void setReticleSticky(boolean enabled) {
+        mIsSticky = enabled;
+    }
+
+    public void setForceRender(boolean enabled) {
+        mForcedRender = enabled;
+    }
+
     @Override
     public void onPropsSet() {
         super.onPropsSet();
         updateVisibility();
+    }
+
+    public void setReticleVisibility(boolean reticleVisibility) {
+        mIsReticleVisible = reticleVisibility;
+    }
+
+    public void setControllerVisibility(boolean controllerVisibility) {
+        mIsControllerVisible = controllerVisibility;
     }
 
     private void updateVisibility(){
@@ -117,7 +130,9 @@ public class VRTController extends VRTComponent {
             return;
         }
         mNativeController.setControllerVisible(mIsControllerVisible);
-      //  mNativeController.setReticleVisible(mIsReticleVisible);
+        mNativeController.setReticleVisible(mIsReticleVisible);
+        mNativeController.setLightReceivingBitMask(mLightMask);
+        mNativeController.setReticleStickyDepth(mIsSticky);
+        mNativeController.setForcedRender(mForcedRender);
     }
-
 }
