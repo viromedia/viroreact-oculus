@@ -21,6 +21,7 @@
 
 package com.viromedia.bridge.component.node;
 
+import android.util.Log;
 import android.view.View;
 
 import com.facebook.react.bridge.Arguments;
@@ -28,8 +29,10 @@ import com.facebook.react.bridge.JSApplicationCausedNativeException;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
+import com.viro.core.CameraListener;
 import com.viro.core.EventDelegate;
 import com.viro.core.internal.CameraCallback;
 import com.viro.core.Node;
@@ -40,8 +43,11 @@ import com.viro.core.Texture;
 import com.viro.core.Vector;
 import com.viro.core.VideoTexture;
 import com.viro.core.Renderer;
+import com.viromedia.bridge.component.VRTComponent;
 import com.viromedia.bridge.utility.Helper;
 import com.viromedia.bridge.utility.ViroEvents;
+
+import java.lang.ref.WeakReference;
 
 public class VRTScene extends VRTNode implements Scene.VisibilityListener {
     private static final String TAG = VRTScene.class.getSimpleName();
@@ -154,7 +160,54 @@ public class VRTScene extends VRTNode implements Scene.VisibilityListener {
     }
 
     public void setCanCameraTransformUpdate(boolean canCameraTransformUpdate) {
-        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_CAMERA_TRANSFORM_UPDATE, canCameraTransformUpdate);
+        if (mNativeRenderer == null) {
+            Log.e("Daniel"," Oh snap the renderer is FUCKED");
+            return;
+        }
+
+        if (!canCameraTransformUpdate) {
+            mNativeRenderer.setCameraListener(null);
+            return;
+        }
+
+        final WeakReference<VRTComponent> weakComponent = new WeakReference<VRTComponent>(this);
+        mNativeRenderer.setCameraListener(new CameraListener() {
+            @Override
+            public void onTransformUpdate(Vector pos, Vector rotEuler, Vector forward, Vector up) {
+                VRTComponent node = weakComponent.get();
+                if (node == null) {
+                    return;
+                }
+
+                // This applies to all scenes (AR and non-AR)
+                if (node instanceof VRTScene) {
+                    final VRTScene scene = (VRTScene) node;
+
+                    WritableMap event = Arguments.createMap();
+
+                    WritableArray cameraTransformArray = Arguments.createArray();
+                    cameraTransformArray.pushDouble(pos.x);
+                    cameraTransformArray.pushDouble(pos.y);
+                    cameraTransformArray.pushDouble(pos.z);
+                    cameraTransformArray.pushDouble(Math.toDegrees(rotEuler.x));
+                    cameraTransformArray.pushDouble(Math.toDegrees(rotEuler.y));
+                    cameraTransformArray.pushDouble(Math.toDegrees(rotEuler.z));
+                    cameraTransformArray.pushDouble(forward.x);
+                    cameraTransformArray.pushDouble(forward.y);
+                    cameraTransformArray.pushDouble(forward.z);
+                    cameraTransformArray.pushDouble(up.x);
+                    cameraTransformArray.pushDouble(up.y);
+                    cameraTransformArray.pushDouble(up.z);
+
+                    event.putArray("cameraTransform", cameraTransformArray);
+
+                    scene.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
+                            scene.getId(),
+                            ViroEvents.ON_CAMERA_TRANSFORM_UPDATE,
+                            event);
+                }
+            }
+        });
     }
 
     @Override

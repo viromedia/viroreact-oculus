@@ -60,7 +60,7 @@ var ViroHierarchyTest = createReactClass({
       <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
 
         <ViroSkyBox color="#ff69b4" />
-        <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+        <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
 
         <ViroNode  position={[0, 0, -50]}>
 

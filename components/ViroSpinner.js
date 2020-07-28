@@ -63,28 +63,12 @@ var ViroSpinner = createReactClass({
      */
     type: PropTypes.oneOf(['Dark','Light']),
     ignoreEventHandling: PropTypes.bool,
-    dragType: PropTypes.oneOf(["FixedDistance", "FixedDistanceOrigin", "FixedToWorld", "FixedToPlane"]),
-    dragPlane: PropTypes.shape({
-      planePoint : PropTypes.arrayOf(PropTypes.number),
-      planeNormal : PropTypes.arrayOf(PropTypes.number),
-      maxDistance : PropTypes.number
-    }),
-
 
     onHover: PropTypes.func,
+    onAnyHover: PropTypes.func,
     onClick: PropTypes.func,
-    onClickState: PropTypes.func,
-    onTouch: PropTypes.func,
-    onDrag: PropTypes.func,
-    onPinch: PropTypes.func,
-    onRotate: PropTypes.func,
-    onFuse: PropTypes.oneOfType([
-      PropTypes.shape({
-        callback: PropTypes.func.isRequired,
-        timeToFuse: PropTypes.number
-      }),
-      PropTypes.func
-    ]),
+    onAnyClick: PropTypes.func,
+    onAnyClicked: PropTypes.func,
     physicsBody: PropTypes.shape({
       type: PropTypes.oneOf(['Dynamic','Kinematic','Static']).isRequired,
       mass: PropTypes.number,
@@ -167,17 +151,13 @@ var ViroSpinner = createReactClass({
             visible={this.props.visible}
             renderingOrder={this.props.renderingOrder}
             onHover={this.props.onHover}
+            onAnyHover={this.props.onAnyHover}
             onClick={this.props.onClick}
-            onClickState={this.props.onClickState}
-            onTouch={this.props.onTouch}
-            onDrag={this.props.onDrag}
-            onPinch={this.props.onPinch}
-            onRotate={this.props.onRotate}
-            onFuse={this.props.onFuse}
+            onAnyClick={this.props.onAnyClick}
+            onAnyClicked={this.props.onAnyClicked}
             animation={this.props.animation}
             onAnimationStartViro={this._onAnimationStart}
             onAnimationFinishViro={this._onAnimationFinish}
-            dragType={this.props.dragType}
             ignoreEventHandling={this.props.ignoreEventHandling}
             onTransformUpdate={this.props.onTransformUpdate} ref={component => {this._component = component}}>
 

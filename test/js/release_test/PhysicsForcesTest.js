@@ -117,40 +117,40 @@ var PhysicsRayTest = createReactClass({
                   <ViroText fontSize={35}  style={styles.centeredText}
                     position={[0,2, 0]} width={4} height ={2} maxLines={3}
                     color={this.state.applyConstantForce === undefined ? '#ffffff' : '#0000ff'}
-                    text={"Apply Constant Force"} onClick={this.togglePhysicsBody(1)}/>
+                    text={"Apply Constant Force"} onAnyClicked={this.togglePhysicsBody(1)}/>
 
                   <ViroText fontSize={35}  style={styles.centeredText}
                       position={[0,1, 0]} width={4} height ={2} maxLines={3}
-                      text={"Apply ImpulseForce"} onClick={this.togglePhysicsBody(2)}/>
+                      text={"Apply ImpulseForce"} onAnyClicked={this.togglePhysicsBody(2)}/>
 
                   <ViroText fontSize={35}  style={styles.centeredText}
                       position={[0,0, 0]} width={4} height ={2} maxLines={3}
                       color={this.state.applyConstantTorque === undefined ? '#ffffff' : '#0000ff'}
-                      text={"Apply Constant Torque"} onClick={this.togglePhysicsBody(3)}/>
+                      text={"Apply Constant Torque"} onAnyClicked={this.togglePhysicsBody(3)}/>
 
                   <ViroText fontSize={35}  style={styles.centeredText}
                           position={[0,-2, 0]} width={4} height ={2} maxLines={3}
-                          text={"Reset"} onClick={this.togglePhysicsBody(0)}/>
+                          text={"Reset"} onAnyClicked={this.togglePhysicsBody(0)}/>
 
                   <ViroText fontSize={35}  style={styles.centeredText}
                       position={[4,2, 0]} width={4} height ={2} maxLines={3}
-                      text={"Apply Impulse Force At Point"} onClick={this.togglePhysicsBody(5)}/>
+                      text={"Apply Impulse Force At Point"} onAnyClicked={this.togglePhysicsBody(5)}/>
 
                   <ViroText fontSize={35}  style={styles.centeredText}
                       position={[4,1, 0]} width={4} height ={2} maxLines={3}
-                      text={"Apply Impulse Torque"} onClick={this.togglePhysicsBody(6)}/>
+                      text={"Apply Impulse Torque"} onAnyClicked={this.togglePhysicsBody(6)}/>
                   <ViroText fontSize={35}  style={styles.centeredText}
                       position={[4,0, 0]} width={4} height ={2} maxLines={3}
-                      text={"Toggle BodyType: " + this.state.bodyType} onClick={this.togglePhysicsBody(7)}/>
+                      text={"Toggle BodyType: " + this.state.bodyType} onAnyClicked={this.togglePhysicsBody(7)}/>
 
                   <ViroText fontSize={35}  style={styles.centeredText}
                             position={[4,-1, 0]} width={4} height ={2} maxLines={3}
                             color={this.state.applyConstantVelocity === undefined ? '#ffffff' : '#0000ff'}
-                            text={"Apply Const Velocity"} onClick={this.togglePhysicsBody(8)}/>
+                            text={"Apply Const Velocity"} onAnyClicked={this.togglePhysicsBody(8)}/>
 
                   <ViroText fontSize={35}  style={styles.centeredText}
                             position={[4,-2, 0]} width={4} height ={2} maxLines={3}
-                            text={"Apply Instantaneous Velocity"} onClick={this.togglePhysicsBody(9)}/>
+                            text={"Apply Instantaneous Velocity"} onAnyClicked={this.togglePhysicsBody(9)}/>
                 </ViroNode>
                 <ViroNode position={[0 , -9, -8.5]}>
                 <ViroBox

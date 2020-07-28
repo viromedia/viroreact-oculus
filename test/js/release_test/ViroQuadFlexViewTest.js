@@ -68,7 +68,7 @@ var createReactClass = require('create-react-class');
       <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
 
       <ViroOmniLight position={[0, 0, 0]} color="#ffffff" attenuationStartDistance={40} attenuationEndDistance={50}/>
-      <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+      <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
 
         <ViroNode position={[0,0,-3]}>
                   <ViroFlexView
@@ -92,11 +92,11 @@ var createReactClass = require('create-react-class');
                       height={this.state.newHeight} />
 
                  <ViroText style={styles.baseTextTwo} fontSize={this.state.fontSize}  position={[-2, 0, 0]} width={4} height ={2}
-                                text={"Toggle Height / Width" + this.state.newHeight} onClick={this._toggleWidthHeight}/>
+                                text={"Toggle Height / Width" + this.state.newHeight} onAnyClicked={this._toggleWidthHeight}/>
                  <ViroText style={styles.baseTextTwo} fontSize={this.state.fontSize}  position={[0, 0, 0]} width={4} height ={2}
-                                text={"Toggle Spinner theme: " + this.state.spinnerType} onClick={this._toggleSpinner}/>
+                                text={"Toggle Spinner theme: " + this.state.spinnerType} onAnyClicked={this._toggleSpinner}/>
                  <ViroText style={styles.baseTextTwo} fontSize={this.state.fontSize}  position={[2, 0, 0]} width={4} height ={2}
-                                text={"Toggle Grid Mirror: " + this.state.mirrored} onClick={this._toggleMirror}/>
+                                text={"Toggle Grid Mirror: " + this.state.mirrored} onAnyClicked={this._toggleMirror}/>
 
          </ViroNode>
       </ViroScene>

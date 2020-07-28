@@ -82,7 +82,7 @@ var ViroPivotTest = createReactClass({
       <ViroScene>
         <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
         <ViroOmniLight position={[0, 0, 0]} color="#ffffff" attenuationStartDistance={40} attenuationEndDistance={50}/>
-        <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+        <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
 
           <ViroBox width={2} height={2} length={2}
                    position={[0, 0, -6]}
@@ -93,10 +93,10 @@ var ViroPivotTest = createReactClass({
         <ViroNode position={[0,-4,-3]}>
           <ViroText style={styles.baseTextTwo} position={[-2, 1, 0]} width={2} height={2}
                     text={"Change Rotation Pivot [Current : " + this.state.rotationPivot + "]"}
-                    onClick={this._toggleRotationPivot}/>
+                    onAnyClicked={this._toggleRotationPivot}/>
           <ViroText style={styles.baseTextTwo} position={[0, 1, 0]} width={2} height={2}
                     text={"Change Scale Pivot [Current : " + this.state.scalePivot + "]"}
-                    onClick={this._toggleScalePivot}/>
+                    onAnyClicked={this._toggleScalePivot}/>
         </ViroNode>
      </ViroScene>
     );

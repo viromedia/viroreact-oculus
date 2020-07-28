@@ -41,8 +41,6 @@ const ReactViro = {
   get ViroPolygon(){ return require('./components/ViroPolygon'); },
   get ViroButton() { return require('./components/ViroButton'); },
   get ViroSound() { return require('./components/ViroSound'); },
-  get ViroSoundField() { return require('./components/ViroSoundField'); },
-  get ViroSpatialSound() { return require('./components/ViroSpatialSound'); },
   get ViroController() { return require('./components/ViroController'); },
   get ViroSpinner() { return require('./components/ViroSpinner'); },
   get ViroPolyline() { return require('./components/ViroPolyline'); },

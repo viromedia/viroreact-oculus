@@ -39,7 +39,7 @@ var ViroGeometryTest = createReactClass({
   render: function() {
     return (
         <ViroScene>
-            <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+            <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
             <ViroAmbientLight color="#FFFFFF" />
 
             <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>

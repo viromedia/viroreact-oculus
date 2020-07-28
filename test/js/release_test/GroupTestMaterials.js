@@ -103,7 +103,6 @@ var GroupTestMaterials = createReactClass({
             <ViroDirectionalLight direction={[0, 0, -1]} color={"#888888"} />
             <ViroDirectionalLight direction={[0, 0,  1]} color={"#FF0000"} />
 
-            <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
             <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
 
             <ViroNode position={[0.8, 0, -3.5]} >
@@ -174,10 +173,10 @@ var GroupTestMaterials = createReactClass({
             </ViroNode>
 
             <ViroText style={styles.baseTextTwo} position={[0.8 , -2, -3.5]} width={2} height ={2} fontFamily={'Arial'}
-                  text={"Toggle material: " + transformText} textLineBreakMode='Justify' onClick={this._toggleTransform}/>
+                  text={"Toggle material: " + transformText} textLineBreakMode='Justify' onAnyClicked={this._toggleTransform}/>
 
             <ViroText style={styles.baseTextTwo} position={[0.8 , -2.5, -3.5]} width={2} height ={2} fontFamily={'Arial'}
-              text={(this.state.createMaterials ? "Create" : "Delete") + " New Material"} textLineBreakMode='Justify' onClick={this._createOrDeleteMaterial}/>
+              text={(this.state.createMaterials ? "Create" : "Delete") + " New Material"} textLineBreakMode='Justify' onAnyClicked={this._createOrDeleteMaterial}/>
 
         </ViroScene>
     );

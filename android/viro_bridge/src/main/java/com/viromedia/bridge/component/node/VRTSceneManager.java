@@ -42,25 +42,16 @@ public abstract class VRTSceneManager<T extends VRTScene> extends VRTViroViewGro
         super(context);
     }
 
-    @ReactProp(name = "canClick", defaultBoolean = VRTNode.DEFAULT_CAN_CLICK)
-    public void setCanClick(VRTScene scene, boolean canClick) {
-        scene.setCanClick(canClick);
+    @ReactProp(name = "enabledClick", defaultBoolean = VRTNode.DEFAULT_ENABLED_CLICK)
+    public void setEnabledClick(VRTScene view, boolean clickEnabled) {
+        view.setClickEnabled(clickEnabled);
     }
 
-    @ReactProp(name = "canHover", defaultBoolean = VRTNode.DEFAULT_CAN_HOVER)
-    public void setCanHover(VRTScene scene, boolean canHover) {
-        scene.setCanHover(canHover);
+    @ReactProp(name = "enabledHover", defaultBoolean = VRTNode.DEFAULT_ENABLED_HOVER)
+    public void setEnabledHover(VRTScene view, boolean hoverEnabled) {
+        view.setHoverEnabled(hoverEnabled);
     }
 
-    @ReactProp(name = "canFuse", defaultBoolean = VRTNode.DEFAULT_CAN_FUSE)
-    public void setCanFuse(VRTScene scene, boolean canFuse) {
-        scene.setCanFuse(canFuse);
-    }
-
-    @ReactProp(name = "timeToFuse", defaultFloat = VRTNode.DEFAULT_TIME_TO_FUSE_MILLIS)
-    public void setTimeToFuse(VRTScene scene, float durationMillis) {
-        scene.setTimeToFuse(durationMillis);
-    }
     @ReactProp(name = "soundRoom")
     public void setSoundRoom(VRTScene scene, ReadableMap soundRoom) {
         scene.setSoundRoom(soundRoom);
@@ -78,11 +69,10 @@ public abstract class VRTSceneManager<T extends VRTScene> extends VRTViroViewGro
 
     @Override
     public Map getExportedCustomDirectEventTypeConstants() {
-        Map map = MapBuilder.of(ViroEvents.ON_FUSE, MapBuilder.of("registrationName", ViroEvents.ON_FUSE));
-        map.put(ViroEvents.ON_HOVER, MapBuilder.of("registrationName", ViroEvents.ON_HOVER));
+        Map map = MapBuilder.of(ViroEvents.ON_ANY_CLICK, MapBuilder.of("registrationName", ViroEvents.ON_ANY_CLICK));
+        map.put(ViroEvents.ON_ANY_HOVER, MapBuilder.of("registrationName", ViroEvents.ON_ANY_HOVER));
         map.put(ViroEvents.ON_CLICK, MapBuilder.of("registrationName", ViroEvents.ON_CLICK));
-        map.put(ViroEvents.ON_SWIPE, MapBuilder.of("registrationName", ViroEvents.ON_SWIPE));
-        map.put(ViroEvents.ON_SCROLL, MapBuilder.of("registrationName", ViroEvents.ON_SCROLL));
+        map.put(ViroEvents.ON_HOVER, MapBuilder.of("registrationName", ViroEvents.ON_HOVER));
         map.put(ViroEvents.ON_COLLIDED, MapBuilder.of("registrationName", ViroEvents.ON_COLLIDED));
         map.put(ViroEvents.ON_PLATFORM_UPDATE, MapBuilder.of("registrationName", ViroEvents.ON_PLATFORM_UPDATE));
         map.put(ViroEvents.ON_CAMERA_TRANSFORM_UPDATE, MapBuilder.of("registrationName", ViroEvents.ON_CAMERA_TRANSFORM_UPDATE));

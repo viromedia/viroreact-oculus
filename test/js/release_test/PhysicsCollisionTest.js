@@ -206,27 +206,27 @@ addToConsole(stringToAdd){
                  <ViroNode position={[-4 , -1, -3]} transformBehaviors={["billboard"]}>
                   <ViroText fontSize={35}  style={styles.centeredText}
                     position={[0,2, 0]} width={4} height ={2} maxLines={3}
-                    text={"ToggleType " + this.state.bodyTypeRayTest} onClick={this.togglePhysicsBody}
+                    text={"ToggleType " + this.state.bodyTypeRayTest} onAnyClicked={this.togglePhysicsBody}
                     />
 
                   <ViroText fontSize={35}  style={styles.centeredText}
                       position={[0,1, 0]} width={4} height ={2} maxLines={3}
-                      text={"FindClosests With Ray"} onClick={this.testRay(1)}
+                      text={"FindClosests With Ray"} onAnyClicked={this.testRay(1)}
                       />
 
                   <ViroText fontSize={35}  style={styles.centeredText}
                       position={[0,0, 0]} width={4} height ={2} maxLines={3}
-                      text={"Find All collisions with Ray"} onClick={this.testRay(2)}
+                      text={"Find All collisions with Ray"} onAnyClicked={this.testRay(2)}
                       />
 
                   <ViroText fontSize={35}  style={styles.centeredText}
                       position={[0,-1, 0]} width={4} height ={2} maxLines={3}
-                      text={"Find closests with Shape"} onClick={this.testRay(3)}
+                      text={"Find closests with Shape"} onAnyClicked={this.testRay(3)}
                       />
 
                   <ViroText fontSize={35}  style={styles.centeredText}
                       position={[0,-2, 0]} width={4} height ={2} maxLines={3}
-                      text={"Find All collisions with shape at point."} onClick={this.testRay(4)}
+                      text={"Find All collisions with shape at point."} onAnyClicked={this.testRay(4)}
                       />
                 </ViroNode>
 
@@ -279,17 +279,17 @@ addToConsole(stringToAdd){
                  <ViroText fontSize={35}  style={styles.centeredText}
                    position={[0,2, 0]} width={4} height ={2} maxLines={3}
                    color={this.state.dynamicStaticToggle ? '#0000ff' : '#ffffff'}
-                   text={"Test Dynamic-Static"} onClick={this.testCollision(1)}/>
+                   text={"Test Dynamic-Static"} onAnyClicked={this.testCollision(1)}/>
 
                  <ViroText fontSize={35}  style={styles.centeredText}
                      position={[0,1, 0]} width={4} height ={2} maxLines={3}
                      color={this.state.dynamicdynamicToggle ? '#0000ff' : '#ffffff'}
-                     text={"Test Dynamic-Dynamic"} onClick={this.testCollision(2)}/>
+                     text={"Test Dynamic-Dynamic"} onAnyClicked={this.testCollision(2)}/>
 
                  <ViroText fontSize={35}  style={styles.centeredText}
                      position={[0,0, 0]} width={4} height ={2} maxLines={3}
                      color={this.state.kinematicDynamicToggle ? '#0000ff' : '#ffffff'}
-                     text={"Test Kinematic-Dynamic"} onClick={this.testCollision(3)}/>
+                     text={"Test Kinematic-Dynamic"} onAnyClicked={this.testCollision(3)}/>
 
                 </ViroNode>
 

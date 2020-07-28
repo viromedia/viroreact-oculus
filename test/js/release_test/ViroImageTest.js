@@ -71,7 +71,7 @@ var ViroImageTest = createReactClass({
             <ViroScene>
             <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
 
-            <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+            <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
 
             <ViroImage
                width={this.state.widthAndHeight} height={this.state.widthAndHeight}
@@ -109,21 +109,21 @@ var ViroImageTest = createReactClass({
      <ViroNode position={[0,-0.5,-3]}>
          <ViroText style={styles.baseTextTwo}  position={[-2,0, 0]} width={2} height ={2}
                 text={"ToggleImageSource isUrlIamge: " + this.state.showUrlImage}
-                onClick={this._toggleImageSource}/>
+                onAnyClicked={this._toggleImageSource}/>
 
          <ViroText style={styles.baseTextTwo}  position={[0,0, 0]} width={2} height ={2}
                 text={"ToggleImageSize " + this.state.widthAndHeight}
-                onClick={this._toggleSize}/>
+                onAnyClicked={this._toggleSize}/>
 
          <ViroText style={styles.baseTextTwo}  position={[2,0, 0]} width={2} height ={2}
                 text={"Toggle Format " + this.state.format}
-                onClick={this._toggleFormat}/>
+                onAnyClicked={this._toggleFormat}/>
          <ViroText style={styles.baseTextTwo}  position={[-2,-1, 0]} width={2} height ={2}
                 text={"Toggle resizeMode " + this.state.resizeMode}
-                onClick={this._toggleResizeMode}/>
+                onAnyClicked={this._toggleResizeMode}/>
         <ViroText style={styles.baseTextTwo}  position={[0,-1, 0]} width={2} height ={2}
                 text={"Toggle clipMode " + this.state.clipMode}
-                onClick={this._toggleImageClipMode}/>
+                onAnyClicked={this._toggleImageClipMode}/>
 
       </ViroNode>
         );

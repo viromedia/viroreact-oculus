@@ -35,18 +35,9 @@ public class ViroEvents {
     public static final String ON_FINISH = "onFinishViro";
     public static final String ON_ANIMATION_START = "onAnimationStartViro";
     public static final String ON_ANIMATION_FINISH = "onAnimationFinishViro";
-    public static final String ON_HOVER = "onHoverViro";
-    public static final String ON_CLICK = "onClickViro";
-    public static final String ON_TOUCH = "onTouchViro";
-    public static final String ON_SWIPE = "onSwipeViro";
-    public static final String ON_SCROLL = "onScrollViro";
-    public static final String ON_DRAG = "onDragViro";
+
     public static final String ON_PLATFORM_UPDATE = "onPlatformUpdateViro";
-    public static final String ON_CONTROLLER_STATUS = "onControllerStatusViro";
     public static final String ON_EXIT_VIRO = "onExitViro";
-    public static final String ON_FUSE = "onFuseViro";
-    public static final String ON_PINCH = "onPinchViro";
-    public static final String ON_ROTATE = "onRotateViro";
     public static final String ON_BUFFER_START = "onBufferStartViro";
     public static final String ON_BUFFER_END = "onBufferEndViro";
     public static final String ON_COLLIDED = "onCollisionViro";
@@ -62,4 +53,15 @@ public class ViroEvents {
     public static final String ON_AR_POINT_CLOUD_UPDATE = "onARPointCloudUpdateViro";
     public static final String ON_CAMERA_TRANSFORM_UPDATE = "onCameraTransformUpdateViro";
 
+    public static final String ON_CLICK = "onClickViro";
+    public static final String ON_HOVER = "onHoverViro";
+    public static final String ON_MOVE = "onMoveViro"; //New
+    public static final String ON_THUMBSTICK = "onThumbstickViro"; //New
+    public static final String ON_TRIGGER = "onTriggerViro"; //New
+    public static final String ON_CONTROLLER_STATUS = "onControllerStatusViro";
+
+    public static final String ON_ANY_CLICK = "onAnyClickViro";
+    public static final String ON_ANY_HOVER = "onAnyHoverViro";
+
 }
+

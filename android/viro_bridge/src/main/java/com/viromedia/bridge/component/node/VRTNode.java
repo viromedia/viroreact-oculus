@@ -250,20 +250,12 @@ public class VRTNode extends VRTComponent {
     // Always place the children of views .01 in front of the parent. This helps with z-fighting
     // and ensures that the child is always in front of the parent for hit detection
     private static final float sZIncrementToAvoidZFighting = (float) 0.01;
-    protected final static boolean DEFAULT_CAN_HOVER = false;
-    protected final static boolean DEFAULT_CAN_CLICK = false;
-    protected final static boolean DEFAULT_CAN_TOUCH = false;
-    protected final static boolean DEFAULT_CAN_SCROLL = false;
-    protected final static boolean DEFAULT_CAN_SWIPE = false;
+    protected final static boolean DEFAULT_ENABLED_HOVER = false;
+    protected final static boolean DEFAULT_ENABLED_CLICK = false;
     public final static boolean DEFAULT_HIGH_ACCURACY_EVENTS = false;
-    protected final static boolean DEFAULT_CAN_DRAG = false;
-    protected final static boolean DEFAULT_CAN_FUSE = false;
-    protected final static boolean DEFAULT_CAN_PINCH = false;
-    protected final static boolean DEFAULT_CAN_ROTATE = false;
     protected final static boolean DEFAULT_CAN_CAMERA_HIT_TEST = false;
     protected final static boolean DEFAULT_CAN_AR_POINT_CLOUD_UPDATE = false;
     protected final static boolean DEFAULT_CAN_CAMERA_TRANSFORM_UPDATE = false;
-    protected final static float DEFAULT_TIME_TO_FUSE_MILLIS = 1000f;
     protected final static double TRANSFORM_DELEGATE_DISTANCE_FILTER = 0.01;
     protected final static boolean DEFAULT_IGNORE_EVENT_HANDLING = false;
 
@@ -932,76 +924,12 @@ public class VRTNode extends VRTComponent {
         setBottom(mOldBottom);
     }
 
-    protected void setCanHover(boolean canHover){
-        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_HOVER, canHover);
-    }
-
-    protected void setCanClick(boolean canClick){
+    protected void setClickEnabled(boolean canClick){
         mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_CLICK, canClick);
     }
 
-    protected void setCanTouch(boolean canTouch){
-       // mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_TOUCH, canTouch);
-    }
-
-    protected void setCanScroll(boolean canScroll){
-       // mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_SCROLL, canScroll);
-    }
-
-    protected void setCanSwipe(boolean canSwipe){
-       // mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_SWIPE, canSwipe);
-    }
-
-    protected void setCanDrag(boolean canDrag){
-      //  mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_DRAG, canDrag);
-    }
-
-    protected void setCanFuse(boolean canFuse){
-      //  mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_FUSE, canFuse);
-    }
-
-    protected void setCanPinch(boolean canPinch){
-      //  mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_PINCH, canPinch);
-    }
-
-    protected void setCanRotate(boolean canRotate){
-       // mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_ROTATE, canRotate);
-    }
-
-    protected void setCanCameraHitTest(boolean canCameraHitTest){
-      //  mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_CAMERA_AR_HIT_TEST, canCameraHitTest);
-    }
-
-    protected void setTimeToFuse(float durationInMillis){
-      //  mEventDelegateJni.setTimeToFuse(durationInMillis);
-    }
-
-    public void setDragType(String dragType) {
-        if (isTornDown()) {
-            return;
-        }
-
-        mNodeJni.setDragType(Node.DragType.valueFromString(dragType));
-    }
-
-    public void setDragPlane(ReadableMap map) {
-        if (isTornDown()) {
-            return;
-        }
-
-        if (map.hasKey("planePoint") && map.hasKey("planeNormal")) {
-            ReadableArray planePointArr = map.getArray("planePoint");
-            ReadableArray planeNormalArr = map.getArray("planeNormal");
-            mNodeJni.setDragPlanePoint(new Vector(
-                    planePointArr.getDouble(0), planePointArr.getDouble(1), planePointArr.getDouble(2)));
-            mNodeJni.setDragPlaneNormal(new Vector(
-                    planeNormalArr.getDouble(0), planeNormalArr.getDouble(1), planeNormalArr.getDouble(2)));
-        }
-
-        if (map.hasKey("maxDistance")) {
-            mNodeJni.setDragMaxDistance((float) map.getDouble("maxDistance"));
-        }
-
+    protected void setHoverEnabled(boolean canHover){
+        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_HOVER, canHover);
     }
 
     public void setPhysicsBody(ReadableMap map) {

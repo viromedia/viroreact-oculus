@@ -185,22 +185,22 @@ var ViroShadowGroupTest = createReactClass({
                  <ViroText fontSize={35}  style={styles.centeredText} lightReceivingBitMask={0} // 0 to avoid influencing the test
                    position={[0,0, 0]} width={6} height ={2} maxLines={2}
                    text={"Toggle Cast Shadow " + this.state.castshadowLights }
-                   onClick={this.toggleProperty(1)}
+                   onAnyClicked={this.toggleProperty(1)}
                    />
                   <ViroText fontSize={35}  style={styles.centeredText} lightReceivingBitMask={0}
                         position={[0,-1, 0]} width={6} height ={2} maxLines={2}
                         text={"Run animation " + this.state.runAnimation}
-                        onClick={this.toggleProperty(9)}
+                        onAnyClicked={this.toggleProperty(9)}
                   />
                   <ViroText fontSize={35}  style={styles.centeredText} lightReceivingBitMask={0}
                         position={[0,-2, 0]} width={6} height ={2} maxLines={2}
                         text={"Toggle control visibility " + this.state.isVisible}
-                        onClick={this.toggleProperty(10)}
+                        onAnyClicked={this.toggleProperty(10)}
                   />
                   <ViroText fontSize={35}  style={styles.centeredText} lightReceivingBitMask={0}
                         position={[0,-3, 0]} width={6} height ={2} maxLines={2}
                         text={"Toggle shadowBias " + this.state.shadowBias}
-                        onClick={this.toggleProperty(8)}
+                        onAnyClicked={this.toggleProperty(8)}
                   />
                   <ReleaseMenu position={[0 , -4, 0.2]} sceneNavigator={this.props.sceneNavigator}/>
 
@@ -249,7 +249,7 @@ var ViroShadowGroupTest = createReactClass({
                       width={1}
                       length={1}
                       visible={this.state.isVisible}
-                      onClick={this._elementClick(0)}
+                      onAnyClicked={this._elementClick(0)}
                       animation={{name:"testLoopMove",  loop:true, run:this.state.runAnimation}}  />
 
                   <ViroButton
@@ -261,7 +261,7 @@ var ViroShadowGroupTest = createReactClass({
                       hoverSource={LocalButtonImage}
                       clickSource={LocalButtonImage}
                       visible={this.state.isVisible}
-                      onClick={this._elementClick(1)}
+                      onAnyClicked={this._elementClick(1)}
                       animation={{name:"testLoopScale",  loop:true, run:this.state.runAnimation}}
                       />
 
@@ -275,7 +275,7 @@ var ViroShadowGroupTest = createReactClass({
                       width={3}
                       height={2}
                       visible={this.state.isVisible}
-                      onClick={this._elementClick(2)}
+                      onAnyClicked={this._elementClick(2)}
                       animation={{name:"testLoopMove",  loop:true, run:this.state.runAnimation}}
                   />
 
@@ -287,7 +287,7 @@ var ViroShadowGroupTest = createReactClass({
                       format="RGBA8" mipmap={true}
                       position={[-2, 0, 0]}
                       scale={[0.5, 0.5, 0.1]}
-                      onClick={this._elementClick(3)}
+                      onAnyClicked={this._elementClick(3)}
                       visible={this.state.isVisible}
                       source={{uri: "https://upload.wikimedia.org/wikipedia/commons/7/74/Earth_poster_large.jpg"}}
                       animation={{name:"testLoopRotate",  loop:true, run:this.state.runAnimation}}
@@ -297,7 +297,7 @@ var ViroShadowGroupTest = createReactClass({
                   <ViroNode
                     position={[-1, 0, 0]}
                     scale={[0.5, 0.5, 0.1]}
-                    onClick={this._elementClick(4)}
+                    onAnyClicked={this._elementClick(4)}
                     rotation={[0,0,0]}>
                     <ViroText
                         lightReceivingBitMask={allLights}
@@ -318,7 +318,7 @@ var ViroShadowGroupTest = createReactClass({
                       widthSegmentCount={5}
                       heightSegmentCount={5}
                       radius={1}
-                      onClick={this._elementClick(5)}
+                      onAnyClicked={this._elementClick(5)}
                       materials={["redColor"]}
                       visible={this.state.isVisible}
                       animation={{name:"testLoopScale",  loop:true, run:this.state.runAnimation}}
@@ -329,7 +329,7 @@ var ViroShadowGroupTest = createReactClass({
                       shadowCastingBitMask={allLights}
                       position={[1, 0, 0]}
                       scale={[0.3, 0.3, 0.1]}
-                      onClick={this._elementClick(6)}
+                      onAnyClicked={this._elementClick(6)}
                       animation={{name:"testLoopMove",  loop:true, run:this.state.runAnimation}}/>
 
 
@@ -340,7 +340,7 @@ var ViroShadowGroupTest = createReactClass({
                       scale={[0.5, 0.5, 0.1]}
                       materials={["redColor"]}
                       width={1}
-                      onClick={this._elementClick(7)}
+                      onAnyClicked={this._elementClick(7)}
                       visible={this.state.isVisible}
                       height={1}
                       animation={{name:"testLoopRotate",  loop:true, run:this.state.runAnimation}}
@@ -354,7 +354,7 @@ var ViroShadowGroupTest = createReactClass({
                       scale={[0.5 , 0.5, 0.1]}
                       style={styles.baseTextTwo}
                       visible={this.state.isVisible}
-                      onClick={this._elementClick(8)}
+                      onAnyClicked={this._elementClick(8)}
                       text="This is a Viro Text"
                       animation={{name:"testLoopMove",  loop:true, run:this.state.runAnimation}}
                   />
@@ -367,7 +367,7 @@ var ViroShadowGroupTest = createReactClass({
                       scale={[0.1, 0.1, 0.1]}
                       height={4} width={4}
                       visible={this.state.isVisible}
-                      onClick={this._elementClick(9)}
+                      onAnyClicked={this._elementClick(9)}
                       animation={{name:"testLoopScale",  loop:true, run:this.state.runAnimation}}
                       source={{"uri":"https://s3-us-west-2.amazonaws.com/viro/Climber1Top.mp4"}} />
 

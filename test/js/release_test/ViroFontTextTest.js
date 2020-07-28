@@ -43,7 +43,7 @@ var ViroFontTextTest = createReactClass({
       <ViroScene reticleEnabled={true} onPlatformUpdate={this._platformUpdate} >
       <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
         <ViroSkyBox color="#AA1460" />
-        <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+        <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
 
         <ViroNode position={[0, 0, -6]}>
            <ViroText fontSize={this.state.fontSize}

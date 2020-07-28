@@ -157,21 +157,21 @@ var createReactClass = require('create-react-class');
      return(
         <ViroNode position={[-0,1,-6]}>
           <ViroText fontSize={this.state.fontSize} style={styles.centeredText} position={[-2, 1, 0]} width={2} height ={2} fontFamily={'Arial'}
-              text={"Toggle Color Scene"} textLineBreakMode='Justify' onClick={this._toggleColorScene}/>
+              text={"Toggle Color Scene"} textLineBreakMode='Justify' onAnyClicked={this._toggleColorScene}/>
           <ViroText fontSize={this.state.fontSize} style={styles.centeredText} position={[0,1, 0]} width={2} height ={2} fontFamily={'Arial'}
-              text={"Toggle Spot / Omni Height " + this.state.lightPosHeight} textLineBreakMode='Justify' onClick={this._toggleSpotLightPosition}/>
+              text={"Toggle Spot / Omni Height " + this.state.lightPosHeight} textLineBreakMode='Justify' onAnyClicked={this._toggleSpotLightPosition}/>
           <ViroText fontSize={this.state.fontSize} style={styles.centeredText} position={[2, 1, 0]} width={2} height ={2} fontFamily={'Arial'}
-              text={"Toggle Spot lightAttenuation  " + this.state.lightAttenuationDistanceStart + " - " + (this.state.lightAttenuationDistanceStart + 3)} textLineBreakMode='justify' onClick={this._toggleSpotLightAttenuation}/>
+              text={"Toggle Spot lightAttenuation  " + this.state.lightAttenuationDistanceStart + " - " + (this.state.lightAttenuationDistanceStart + 3)} textLineBreakMode='justify' onAnyClicked={this._toggleSpotLightAttenuation}/>
           <ViroText fontSize={this.state.fontSize} style={styles.centeredText} position={[-2,0, 0]} width={2} height ={2} fontFamily={'Arial'}
-              text={"Toggle Spot Inner Angle " + this.state.lightInnerAngle} textLineBreakMode='Justify' onClick={this._toggleSpotLightInnerAngle}/>
+              text={"Toggle Spot Inner Angle " + this.state.lightInnerAngle} textLineBreakMode='Justify' onAnyClicked={this._toggleSpotLightInnerAngle}/>
           <ViroText fontSize={this.state.fontSize} style={styles.centeredText} position={[0, 0, 0]} width={2} height ={2} fontFamily={'Arial'}
-              text={"Toggle Spot Outer Angle " + this.state.lightOuterAngle} textLineBreakMode='Justify' onClick={this._toggleSpotLightOuterAngle}/>
+              text={"Toggle Spot Outer Angle " + this.state.lightOuterAngle} textLineBreakMode='Justify' onAnyClicked={this._toggleSpotLightOuterAngle}/>
           <ViroText fontSize={this.state.fontSize} style={styles.centeredText} position={[2, 0, 0]} width={2} height ={2} fontFamily={'Arial'}
-              text={"Toggle Ambient Light " + this.state.showAbientLight} textLineBreakMode='Justify' onClick={this._toggleAmbientLight}/>
+              text={"Toggle Ambient Light " + this.state.showAbientLight} textLineBreakMode='Justify' onAnyClicked={this._toggleAmbientLight}/>
           <ViroText fontSize={this.state.fontSize} style={styles.centeredText} position={[0, -1, 0]} width={1.5} height ={2} fontFamily={'Arial'}
-              text={"Toggle Color Spot & Omni light"} textLineBreakMode='Justify' onClick={this._toggleColorLights}/>
+              text={"Toggle Color Spot & Omni light"} textLineBreakMode='Justify' onAnyClicked={this._toggleColorLights}/>
           <ViroText fontSize={this.state.fontSize} style={styles.centeredText} position={[2, -1, 0]} width={2} height ={2} fontFamily={'Arial'}
-              text={"Toggle Directional Light " + this.state.showDirectionalLight} textLineBreakMode='Justify' onClick={this._toggleDirectionalLight}/>
+              text={"Toggle Directional Light " + this.state.showDirectionalLight} textLineBreakMode='Justify' onAnyClicked={this._toggleDirectionalLight}/>
         </ViroNode>
       );
    },
@@ -179,7 +179,7 @@ var createReactClass = require('create-react-class');
    render: function() {
      return (
       <ViroScene>
-      <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+      <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
 
       <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
 

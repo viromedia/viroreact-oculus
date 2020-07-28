@@ -31,12 +31,12 @@ import com.viromedia.bridge.utility.ComponentEventDelegate;
 
 public class VRTController extends VRTComponent {
     // React defaults
-    protected final static boolean DEFAULT_CAN_CLICK = false;
-    protected final static boolean DEFAULT_CAN_TOUCH = false;
-    protected final static boolean DEFAULT_CAN_SCROLL = false;
-    protected final static boolean DEFAULT_CAN_SWIPE = false;
-    protected final static boolean DEFAULT_CAN_FUSE = false;
-    protected final static boolean DEFAULT_CAN_GET_CONTROLLER_STATUS = false;
+    protected final static boolean DEFAULT_ENABLED_CLICK = false;
+    protected final static boolean DEFAULT_ENABLED_HOVER = false;
+    protected final static boolean DEFAULT_ENABLED_MOVE = false;
+    protected final static boolean DEFAULT_ENABLED_THUMBSTICK = false;
+    protected final static boolean DEFAULT_ENABLED_TRIGGER = false;
+    protected final static boolean DEFAULT_ENABLED_GET_CONTROLLER_STATUS = false;
     protected final static boolean DEFAULT_RETICLE_VISIBILITY = true;
     protected final static boolean DEFAULT_CONTROLLER_VISIBILITY = true;
     private Controller mNativeController = null;
@@ -78,31 +78,31 @@ public class VRTController extends VRTComponent {
         mIsControllerVisible = controllerVisibility;
     }
 
-    protected void setCanClick(boolean canClick){
-      //  mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_CLICK, canClick);
+    protected void setClickEnabled(boolean enabled) {
+        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_CLICK, enabled);
     }
 
-    protected void setCanTouch(boolean canTouch){
-        //mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_TOUCH, canTouch);
+    protected void setHoverEnabled(boolean enabled) {
+        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_HOVER, enabled);
     }
 
-    protected void setCanSwipe(boolean canSwipe){
-        //mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_SWIPE, canSwipe);
+    protected void setMoveEnabled(boolean enabled) {
+        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_MOVE, enabled);
     }
 
-    protected void setCanScroll(boolean canScroll){
-        //mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_SCROLL, canScroll);
+    protected void setThumbstickEnabled(boolean enabled) {
+        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_THUMBSTICK, enabled);
     }
 
-    protected void setCanFuse(boolean canFuse){
-      //  mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_FUSE, canFuse);
+    protected void setTriggerEnabled(boolean enabled) {
+        mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_TRIGGER, enabled);
     }
 
-    protected void setCanGetControllerStatus(boolean canGetControllerStatus){
+    protected void setControllerStatusEnabled(boolean canGetControllerStatus) {
         mEventDelegateJni.setEventEnabled(EventDelegate.EventAction.ON_CONTROLLER_STATUS, canGetControllerStatus);
     }
 
-    public void getForwardVectorAsync(Controller.ControllerJniCallback callback){
+    public void getForwardVectorAsync(Controller.ControllerJniCallback callback) {
         mNativeController.getControllerForwardVectorAsync(callback);
     }
 

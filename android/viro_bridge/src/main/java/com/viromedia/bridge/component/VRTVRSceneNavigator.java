@@ -23,6 +23,7 @@ package com.viromedia.bridge.component;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import com.facebook.react.bridge.ReactContext;
 import com.viro.core.ViroViewGVR;
@@ -116,6 +117,7 @@ public class VRTVRSceneNavigator extends VRT3DSceneNavigator {
     }
 
     protected ViroView createViroView(ReactContext reactContext) {
+        Log.e("Daniel"," is react context null? " + reactContext + " activity: " + reactContext.getCurrentActivity());
         switch (mPlatform) {
             case OVR_MOBILE:
                 return new ViroViewOVR(reactContext.getCurrentActivity(),

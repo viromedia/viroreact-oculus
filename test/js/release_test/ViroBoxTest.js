@@ -64,7 +64,7 @@ var ViroBoxTest = createReactClass({
       <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
       <ViroOmniLight position={[0, 0, 0]} color="#ffffff" attenuationStartDistance={40} attenuationEndDistance={50}/>
 
-      <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+      <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
 
         <ViroBox
             position={[-2, 2, -4]}
@@ -76,7 +76,7 @@ var ViroBoxTest = createReactClass({
             length={1*this.state.toggleWHL}
             opacity={.5}
             transformBehaviors={["billboard"]}
-            onHover={this._startAnimation1}
+            onAnyHover={this._startAnimation1}
           />
 
         <ViroBox
@@ -88,7 +88,7 @@ var ViroBoxTest = createReactClass({
             width={1*this.state.toggleWHL}
             length={1*this.state.toggleWHL}
             transformBehaviors={["billboardX"]}
-            onClick={this._startAnimation2}
+            onAnyClicked={this._startAnimation2}
             animation={{name:"loopRotate",
                         loop:true,
                         run:this.state.runAnimation2 }}
@@ -124,12 +124,12 @@ var ViroBoxTest = createReactClass({
                         run:this.state.runAnimation4 }}
           />
 
-      <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+      <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
       <ViroText fontSize={this.state.fontSize} style={styles.centeredText} position={[0,-4, -3]} width={2} height ={2} fontFamily={'Arial'}
-          text={"Toggle WHL: " + this.state.toggleWHL} textLineBreakMode='Justify' onClick={this._toggleWHL}/>
+          text={"Toggle WHL: " + this.state.toggleWHL} textLineBreakMode='Justify' onAnyClicked={this._toggleWHL}/>
 
       <ViroText fontSize={this.state.fontSize} style={styles.centeredText} position={[0,-5, -3]} width={2} height ={2} fontFamily={'Arial'}
-          text={"Toggle materials" } textLineBreakMode='Justify' onClick={this._toggleMaterials}/>
+          text={"Toggle materials" } textLineBreakMode='Justify' onAnyClicked={this._toggleMaterials}/>
 
      </ViroScene>
     );

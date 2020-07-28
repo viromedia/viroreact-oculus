@@ -71,7 +71,7 @@ var ViroPolylineTest = createReactClass({
         <ViroOrbitCamera focalPoint={[0, -.25, -2]} active={this.state.orbit}/>
         <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
         <ViroPolyline position={[0,0,-2]} points={this._getPoints()} closed={this.state.closed} thickness={this.state.thickness}
-          materials={this.state.materials ? "whitePolyline" : "redPolyline"} onClick={()=>{this.setState({orbit : !this.state.orbit})}}/>
+          materials={this.state.materials ? "whitePolyline" : "redPolyline"} onAnyClicked={()=>{this.setState({orbit : !this.state.orbit})}}/>
         {this._getTestControls()}
       </ViroScene>
     );
@@ -82,19 +82,19 @@ var ViroPolylineTest = createReactClass({
       <ViroNode position={[0,-0.5,-3]}>
         <ViroText style={styles.baseTextTwo}  position={[0, 0, 0]} width={2} height ={2}
                   text={"Toggle Points: " + (this.state.pointSet + 1)}
-                  onClick={this._nextPoints}/>
+                  onAnyClicked={this._nextPoints}/>
 
         <ViroText style={styles.baseTextTwo}  position={[0, -.5, 0]} width={2} height ={2}
                   text={"Toggle Material : " + (this.state.materials ? " whitePolyline" : "redPolyline")} textLineBreakMode='Justify'
-                  onClick={this._toggleMaterial}/>
+                  onAnyClicked={this._toggleMaterial}/>
 
         <ViroText style={styles.baseTextTwo}  position={[0, -1, 0]} width={2} height ={2}
                   text={"Toggle Thickness: " + this.state.thickness}
-                  onClick={this._toggleThickness}/>
+                  onAnyClicked={this._toggleThickness}/>
 
         <ViroText style={styles.baseTextTwo}  position={[2.1, -1, 0]} width={2} height ={2}
                   text={"Toggle Closed: " + this.state.closed}
-                  onClick={this._toggleClosed}/>
+                  onAnyClicked={this._toggleClosed}/>
       </ViroNode>
     );
   },

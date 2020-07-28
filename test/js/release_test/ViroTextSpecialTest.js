@@ -42,10 +42,10 @@ var ViroTextSpecialTest = createReactClass({
 
   render: function() {
     return (
-      <ViroScene reticleEnabled={true} onPlatformUpdate={this._platformUpdate} onClick={this._toggleCamera}>
+      <ViroScene reticleEnabled={true} onPlatformUpdate={this._platformUpdate} onAnyClicked={this._toggleCamera}>
       <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
         <ViroSkyBox color="#AA1460" />
-        <ViroImage source={require('./res/poi_dot.png')} position={[-2, -1, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+        <ViroImage source={require('./res/poi_dot.png')} position={[-2, -1, 0]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
 
         <ViroCamera
             position={[0, 0, 1]}

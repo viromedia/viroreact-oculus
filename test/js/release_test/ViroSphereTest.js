@@ -68,7 +68,7 @@ var createReactClass = require('create-react-class');
 
          <ViroNode position={[0,0,-4]}>
 
-         <ViroImage source={require('./res/poi_dot.png')} position={[0, -3, -2]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+         <ViroImage source={require('./res/poi_dot.png')} position={[0, -3, -2]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
 
            <ViroOmniLight
                              position={[0, 1, 2]}
@@ -87,13 +87,13 @@ var createReactClass = require('create-react-class');
                       materials={["redColor"]}
                       />
             <ViroText style={styles.baseTextTwo} fontSize={this.state.fontSize}  position={[-2, 0, 0]} width={4} height ={2}
-                text={"Toggle width Seg count: " + this.state.widthSegCount} onClick={this._toggleWidSegCount}/>
+                text={"Toggle width Seg count: " + this.state.widthSegCount} onAnyClicked={this._toggleWidSegCount}/>
             <ViroText style={styles.baseTextTwo} fontSize={this.state.fontSize}  position={[0, 0, 0]} width={4} height ={2}
-                text={"Toggle height Seg count: " + this.state.heightSegCount} onClick={this._toggleHeightSegCount}/>
+                text={"Toggle height Seg count: " + this.state.heightSegCount} onAnyClicked={this._toggleHeightSegCount}/>
             <ViroText style={styles.baseTextTwo} fontSize={this.state.fontSize}  position={[2, 0, 0]} width={4} height ={2}
-                text={"Toggle Radius: " + this.state.radius} onClick={this._toggleRadius}/>
+                text={"Toggle Radius: " + this.state.radius} onAnyClicked={this._toggleRadius}/>
             <ViroText style={styles.baseTextTwo} fontSize={this.state.fontSize}  position={[0, -1, 0]} width={4} height ={2}
-                text={"Toggle faces outward: " + this.state.facesOutward} onClick={this._toggleFacesOutwards}/>
+                text={"Toggle faces outward: " + this.state.facesOutward} onAnyClicked={this._toggleFacesOutwards}/>
        </ViroNode>
 
 

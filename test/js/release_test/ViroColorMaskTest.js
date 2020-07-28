@@ -50,7 +50,7 @@ var ViroColorMaskTest = createReactClass({
   render: function() {
     return (
         <ViroScene>
-            <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+            <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
             <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
 
             <ViroNode position={[0.8, 0, -3.5]} >
@@ -124,7 +124,7 @@ var ViroColorMaskTest = createReactClass({
                             radius={1}
                             materials="maskSphereBlue"/>
                 <ViroText position={[0, -3.85, 0]} fontSize={20} text="Toggle Occlusion" textAlign="Center"
-                          onClick={this._toggleOcclusion} />
+                          onAnyClicked={this._toggleOcclusion} />
 
             </ViroNode>
         </ViroScene>

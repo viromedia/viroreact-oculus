@@ -40,31 +40,31 @@ var SceneTest1 = createReactClass({
 
         <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
 
-        <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+        <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
 
            <ViroText style={styles.centeredText}  position={[0, 0, -4]} width={2} height ={2}
                  text={"Current: "+ this.props.title} />
 
            <ViroText style={styles.centeredText}  position={[-2, -1, -4]} width={1.5} height ={2}
-                 text={"Push Scene 1"} onClick={this.goToScene("scene1", false)} />
+                 text={"Push Scene 1"} onAnyClicked={this.goToScene("scene1", false)} />
 
            <ViroText style={styles.centeredText}  position={[0, -1, -4]} width={1.5} height ={2}
-                 text={"Push Scene 2"} onClick={this.goToScene("scene2", false)} />
+                 text={"Push Scene 2"} onAnyClicked={this.goToScene("scene2", false)} />
 
            <ViroText style={styles.centeredText}  position={[2,-1, -4]} width={1.5} height ={2}
-                 text={"Push Scene 3"} onClick={this.goToScene("scene3", false)} />
+                 text={"Push Scene 3"} onAnyClicked={this.goToScene("scene3", false)} />
 
            <ViroText style={styles.centeredText}  position={[-2, -2, -4]} width={1.5} height ={2}
-                 text={"Jump Scene 1"} onClick={this.goToScene("scene1", true)} />
+                 text={"Jump Scene 1"} onAnyClicked={this.goToScene("scene1", true)} />
 
            <ViroText style={styles.centeredText} position={[0, -2, -4]} width={1.5} height ={2}
-                 text={"Jump Scene 2"} onClick={this.goToScene("scene2", true)} />
+                 text={"Jump Scene 2"} onAnyClicked={this.goToScene("scene2", true)} />
 
            <ViroText style={styles.centeredText} position={[2,-2, -4]} width={1.5} height ={2}
-                 text={"Jump Scene 3"} onClick={this.goToScene("scene3", true)} />
+                 text={"Jump Scene 3"} onAnyClicked={this.goToScene("scene3", true)} />
 
                  <ViroText style={styles.centeredText} position={[0,-3, -4]} width={1.5} height ={2}
-                                  text={"Pop Scene"} onClick={this.popScene} />
+                                  text={"Pop Scene"} onAnyClicked={this.popScene} />
         </ViroScene>
     );
   },

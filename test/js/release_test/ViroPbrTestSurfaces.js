@@ -61,11 +61,11 @@ var ViroPbrTestSurfaces = createReactClass({
        <Viro360Image source={require('./res/ibl_newport_loft.hdr')} isHdr={true} />
        <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
        <ViroNode position={[0,-2, 0]}>
-       <ViroImage source={require('./res/poi_dot.png')} position={[0, -4, -2]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+       <ViroImage source={require('./res/poi_dot.png')} position={[0, -4, -2]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
        <ViroText style={styles.baseTextTwo} fontSize={this.state.fontSize}  position={[-1, 0, -2]} width={4} height ={2}
-       text={"Toggle Environment light: " + this.state.envLight} onClick={this._toggleEnvLight}/>
+       text={"Toggle Environment light: " + this.state.envLight} onAnyClicked={this._toggleEnvLight}/>
               <ViroText style={styles.baseTextTwo} fontSize={this.state.fontSize}  position={[1, 0, -2]} width={4} height ={2}
-              text={"Toggle Material Map: " + this.state.envLight} onClick={this._toggleMatMap}/>
+              text={"Toggle Material Map: " + this.state.envLight} onAnyClicked={this._toggleMatMap}/>
               <ViroNode position={[0,0,-3 ]}>
 
               <Viro3DObject source={require('./res/cylinder_pbr.vrx')}

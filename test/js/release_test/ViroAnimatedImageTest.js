@@ -56,17 +56,17 @@ var ViroAnimatedImageTest = createReactClass({
 
 
         <ViroText position={[0, -0, -2]} text={this._getLoopingText()}
-          style={styles.baseTextTwo} onClick={this._toggleLooping} />
+          style={styles.baseTextTwo} onAnyClicked={this._toggleLooping} />
         <ViroText position={[0, -0.3, -2]} text={"Toggle clipMode " + this.state.clipMode}
-          style={styles.baseTextTwo} onClick={this._toggleImageClipMode}/>
+          style={styles.baseTextTwo} onAnyClicked={this._toggleImageClipMode}/>
         <ViroText position={[0, -0.6, -2]} text={"IsVideoPlaying: " + !this.state.videoPaused}
-          style={styles.baseTextTwo} onClick={this._togglePauseVideo} />
+          style={styles.baseTextTwo} onAnyClicked={this._togglePauseVideo} />
         <ViroText position={[1.2, 0,  -2]} text={"OnLoadCallback: " + this.state.lastLoadText}
           style={styles.baseTextTwo} />
         <ViroText position={[1.2, -0.3, -2]} text="Change Source"
-          style={styles.baseTextTwo} onClick={this._changeVideoSource} />
+          style={styles.baseTextTwo} onAnyClicked={this._changeVideoSource} />
         <ViroText position={[1.2, -0.6, -2]} text={"Toggle resizeMode " + this.state.resizeMode}
-          style={styles.baseTextTwo} onClick={this._toggleResizeMode}/>
+          style={styles.baseTextTwo} onAnyClicked={this._toggleResizeMode}/>
           </ViroScene>
     );
   },

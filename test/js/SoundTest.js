@@ -32,7 +32,6 @@ import {
   ViroAnimatedComponent,
   ViroQuad,
   ViroSkyBox,
-  ViroSpatialSound,
   ViroSound,
 } from 'react-viro';
 
@@ -88,7 +87,6 @@ var SoundTest = createReactClass({
 
         <ViroAnimatedComponent animation="testLoopRotate" run={true} loop={true} >
           <ViroNode>
-            <ViroSpatialSound source={this._getSource()} loop={true} position={this.state.position} />
           </ViroNode>
         </ViroAnimatedComponent>
 

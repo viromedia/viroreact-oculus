@@ -96,20 +96,17 @@ var ViroTextTest = createReactClass({
       <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
 
         <ViroSkyBox color="#ff69b4" />
-
-        <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
-
         <ViroNode  position={[0,0,-6]}>
 
-        <ViroFlexView style={styles.containerVertical} width={2} height={0.8} materials="redColorText" position={[-4,2,0]} onClick={this._toggleFontSize}>
+        <ViroFlexView style={styles.containerVertical} width={2} height={0.8} materials="redColorText" position={[-4,2,0]} onAnyClicked={this._toggleFontSize}>
           <ViroText fontSize={this.state.fontSize} style={newStyle}  text={ "Toggle Font Size: " + this.state.fontSize} />
         </ViroFlexView>
 
-        <ViroFlexView style={styles.containerVertical} width={2} height={0.8} materials="redColorText" position={[-4,1,0]} onClick={this._toggleColor}>
+        <ViroFlexView style={styles.containerVertical} width={2} height={0.8} materials="redColorText" position={[-4,1,0]} onAnyClicked={this._toggleColor}>
           <ViroText fontSize={this.state.fontSize} style={newStyle}  text="Toogle Font Color!" />
         </ViroFlexView>
 
-        <ViroFlexView style={styles.containerVertical} width={2} height={0.8} materials="redColorText" position={[-4,0,0]} onClick={this._toggleTextValue}>
+        <ViroFlexView style={styles.containerVertical} width={2} height={0.8} materials="redColorText" position={[-4,0,0]} onAnyClicked={this._toggleTextValue}>
           <ViroText fontSize={this.state.fontSize} style={newStyle}  text="Toggle text value" />
         </ViroFlexView>
 

@@ -65,7 +65,7 @@ var Viro360ImageTest = createReactClass({
      <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
      <ViroOmniLight position={[0, 0, 0]} color="#ffffff" attenuationStartDistance={40} attenuationEndDistance={50}/>
 
-     <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+     <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
 
      <Viro360Image
       rotation={[0,this.state.rotationY,0]}
@@ -79,11 +79,11 @@ var Viro360ImageTest = createReactClass({
 
      <ViroText style={styles.elementText}  position={[-1,-3, -5]} width={2} height ={2}
                     text={"Toggle Format: " + this.state.format}
-                    onClick={this._toggleFormat}/>
+                    onAnyClicked={this._toggleFormat}/>
      <ViroText style={styles.elementText}  position={[1,-3, -5]} width={2} height ={2}
                          text={"Toggle Rotation: " + this.state.rotationY}
-                         onClick={this._toggleRotation}/>
-     <ViroImage source={require('./res/poi_dot.png')}  position={[0, -4, -3]} transformBehaviors={["billboard"]} onClick={this._showOther} />
+                         onAnyClicked={this._toggleRotation}/>
+     <ViroImage source={require('./res/poi_dot.png')}  position={[0, -4, -3]} transformBehaviors={["billboard"]} onAnyClicked={this._showOther} />
      <ViroText text="Viro360Image" position={[0, -5, -3]} transformBehaviors={["billboard"]} />
      </ViroScene>
 

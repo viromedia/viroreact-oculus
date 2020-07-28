@@ -30,7 +30,7 @@ import {
   ViroSpinner,
   ViroOmniLight,
   ViroAnimations,
-  ViroDirectionalLight
+  ViroDirectionalLight,
 } from 'react-viro';
 
 var createReactClass = require('create-react-class');
@@ -99,8 +99,10 @@ var GroupTestBasicBillboard = createReactClass({
     return (
                 <ViroScene>
                 <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
-
-                <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+                <ViroOmniLight position={[0, 0, 0]}
+                               color={"#FFFFFF"}
+                               attenuationStartDistance={30}
+                               attenuationEndDistance={40}/>
 
                 <ViroNode position={[0.8, 0, -3.5]}  animation={{name:"testLoopMove",
                               loop:true,
@@ -198,13 +200,8 @@ var GroupTestBasicBillboard = createReactClass({
                 </ViroNode>
 
                 <ViroText style={styles.baseTextTwo} position={[0.8 , -2, -3.5]} width={2} height ={2} fontFamily={'Arial'}
-                      text={"Toggle billboard: " + transformText} textLineBreakMode='Justify' onClick={this._toggleTransform}/>
+                      text={"Toggle billboard: " + transformText} textLineBreakMode='Justify' onAnyClicked={this._toggleTransform}/>
 
-                   <ViroOmniLight
-                                     position={[0, 0, 0]}
-                                     color={"#ffffff"}
-                                     attenuationStartDistance={30}
-                                     attenuationEndDistance={40}/>
 
             </ViroScene>
 

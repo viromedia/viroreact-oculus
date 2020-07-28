@@ -70,9 +70,8 @@ var ViroChromaKeyTest = createReactClass({
                    source={require("./res/alphachica.mp4")} transformBehaviors={["billboard"]}
                    loop={true} muted={false} volume={1.0}
                    materials={[chromaKeyMaterial]} />
-        <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
         <ViroText position={[0, -1, -1]} text={this._getToggleText()}
-                  style={styles.baseTextTwo} onClick={this._toggleFilter} />
+                  style={styles.baseTextTwo} onAnyClicked={this._toggleFilter} />
       </ViroScene>
     );
   },

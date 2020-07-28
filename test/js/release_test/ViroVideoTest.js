@@ -51,21 +51,21 @@ var ViroVideoTest = createReactClass({
           attenuationStartDistance={40} attenuationEndDistance={50} />
  {this._getViroVideo()}
 
- <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+ <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
 
 
 <ViroText position={polarToCartesian([2, -10, 0])} text={this._getLoopingText()}
-          style={styles.baseTextTwo} onClick={this._toggleLooping} transformBehaviors={["billboard"]}/>
+          style={styles.baseTextTwo} onAnyClicked={this._toggleLooping} transformBehaviors={["billboard"]}/>
         <ViroText position={polarToCartesian([2, -10, -5])} text="Restart"
-          style={styles.baseTextTwo} onClick={this._restartVideo} transformBehaviors={["billboard"]}/>
+          style={styles.baseTextTwo} onAnyClicked={this._restartVideo} transformBehaviors={["billboard"]}/>
         <ViroText position={polarToCartesian([2, -10, -10])} text={"IsVideoPlaying: " + !this.state.videoPaused}
-          style={styles.baseTextTwo} onClick={this._togglePauseVideo} transformBehaviors={["billboard"]}/>
+          style={styles.baseTextTwo} onAnyClicked={this._togglePauseVideo} transformBehaviors={["billboard"]}/>
         <ViroText position={polarToCartesian([2, -10, -15])} text={this._getMuteText()}
-          style={styles.baseTextTwo} onClick={this._muteVideo} transformBehaviors={["billboard"]}/>
+          style={styles.baseTextTwo} onAnyClicked={this._muteVideo} transformBehaviors={["billboard"]}/>
         <ViroText position={polarToCartesian([2, -10, -20])} text="Change Source"
-          style={styles.baseTextTwo} onClick={this._changeVideoSource} transformBehaviors={["billboard"]}/>
+          style={styles.baseTextTwo} onAnyClicked={this._changeVideoSource} transformBehaviors={["billboard"]}/>
         <ViroText position={polarToCartesian([2, 15, 0])} text={"Change Volume from: " + this.state.volume}
-          style={styles.baseTextTwo} onClick={this._changeVolume} transformBehaviors={["billboard"]}/>
+          style={styles.baseTextTwo} onAnyClicked={this._changeVolume} transformBehaviors={["billboard"]}/>
           </ViroScene>
     );
   },

@@ -77,7 +77,7 @@ var ViroAnimationTest = createReactClass({
      <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
 
      <ViroOmniLight position={[0, 0, 0]} color="#ffffff" attenuationStartDistance={40} attenuationEndDistance={50}/>
-     <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+     <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
 
      <Viro3DObject source={require('./res/object_basketball.vrx')}
                    resources={[require('./res/object_basketball_diffuse.png'),
@@ -192,31 +192,31 @@ var ViroAnimationTest = createReactClass({
       <ViroNode position={[0,-3,-3]}>
               <ViroText style={styles.baseTextTwo}  position={[-2,-1, 0]} width={2} height ={2}
                     text={"Interruptible: "+ this.state.interruptible}
-                    onClick={this._toggleInterruptible}/>
+                    onAnyClicked={this._toggleInterruptible}/>
 
                <ViroText style={styles.baseTextTwo}  position={[-2,1, 0]} width={2} height ={2}
                       text={"isPlaying: " + this.state.playAnim}
-                      onClick={this._togglePlay}/>
+                      onAnyClicked={this._togglePlay}/>
 
                <ViroText style={styles.baseTextTwo}  position={[0,1, 0]} width={2} height ={2}
                       text={"Toggle Speed: " + this.state.durationSlowDown + "X slower"}
-                      onClick={this._toggleSpeed}/>
+                      onAnyClicked={this._toggleSpeed}/>
 
                <ViroText style={styles.baseTextTwo}  position={[2,1, 0]} width={2} height ={2}
                       text={"IsLooping: " + this.state.animLoop}
-                      onClick={this._toggleLoop}/>
+                      onAnyClicked={this._toggleLoop}/>
 
                <ViroText style={styles.baseTextTwo}  position={[-2,0, 0]} width={2} height ={2}
                       text={"Animation Type: " + currentAnim}
-                      onClick={this._toggleAnimationType}/>
+                      onAnyClicked={this._toggleAnimationType}/>
 
                <ViroText style={styles.baseTextTwo}  position={[0,0, 0]} width={2} height ={2}
                       text={"AnimComponent Delay: " + this.state.animationComponentDelay}
-                      onClick={this._toggleDelayComponent}/>
+                      onAnyClicked={this._toggleDelayComponent}/>
 
                <ViroText style={styles.baseTextTwo}  position={[2,0, 0]} width={2} height ={2}
                       text={"Animation Delay: " + this.state.animationDelay}
-                      onClick={this._toggleDelayAnimation}/>
+                      onAnyClicked={this._toggleDelayAnimation}/>
             </ViroNode>
      </ViroScene>
 

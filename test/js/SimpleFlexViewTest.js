@@ -32,7 +32,6 @@ import {
   ViroAnimatedComponent,
   ViroQuad,
   ViroSkyBox,
-  ViroSpatialSound,
 } from 'react-viro';
 
 var createReactClass = require('create-react-class');
@@ -87,7 +86,6 @@ var FlexViewTest = createReactClass({
 
         <ViroAnimatedComponent animation="testLoopRotate" run={true} loop={true} >
           <ViroNode>
-            <ViroSpatialSound source={{uri : "http://www.kozco.com/tech/32.mp3"}} loop={true} position={this.state.position} />
           </ViroNode>
         </ViroAnimatedComponent>
 
@@ -133,11 +131,7 @@ var FlexViewTest = createReactClass({
     }
   },
   _getAdditionalSounds(component) {
-    if (this.state.state == 1) {
-      return (<ViroSpatialSound source={{uri : "http://www.kozco.com/tech/32.mp3"}} loop={true} position={this.state.position} />);
-    } else {
-      return;
-    }
+    return
   },
   /*
   <Viro360Image source={{uri: "http://cdn3-www.dogtime.com/assets/uploads/gallery/pembroke-welsh-corgi-dog-breed-pictures/prance-8.jpg"}} rotation={[-30,90,0]} />

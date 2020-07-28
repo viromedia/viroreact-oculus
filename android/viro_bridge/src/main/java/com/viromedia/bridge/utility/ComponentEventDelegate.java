@@ -21,6 +21,8 @@
 
 package com.viromedia.bridge.utility;
 
+import android.util.Log;
+
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
@@ -28,6 +30,8 @@ import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.viro.core.EventDelegate;
 import com.viro.core.Node;
 import com.viro.core.ClickState;
+import com.viro.core.Quaternion;
+import com.viro.core.Vector;
 import com.viromedia.bridge.component.VRTComponent;
 import com.viromedia.bridge.component.node.VRTScene;
 
@@ -41,36 +45,6 @@ public class ComponentEventDelegate implements EventDelegate.EventDelegateCallba
     private WeakReference<VRTComponent> weakComponent;
     public ComponentEventDelegate(VRTComponent component){
         weakComponent = new WeakReference<VRTComponent>(component);
-    }
-
-    @Override
-    public void onClick(ArrayList<EventDelegate.ButtonEvent> arrayList) {
-
-    }
-
-    @Override
-    public void onHover(ArrayList<EventDelegate.HoverEvent> arrayList) {
-
-    }
-
-    @Override
-    public void onThumbStickEvent(ArrayList<EventDelegate.ThumbStickEvent> arrayList) {
-
-    }
-
-    @Override
-    public void onWeightedTriggerEvent(ArrayList<EventDelegate.TriggerEvent> arrayList) {
-
-    }
-
-    @Override
-    public void onMove(ArrayList<EventDelegate.MoveEvent> arrayList) {
-
-    }
-
-    @Override
-    public void onControllerStatus(ArrayList<EventDelegate.ControllerStatus> arrayList) {
-
     }
 
     @Override
@@ -91,11 +65,42 @@ public class ComponentEventDelegate implements EventDelegate.EventDelegateCallba
         event.putInt("source", source);
         event.putBoolean("isHovering", isHovering);
         event.putArray("position", positionArray);
+        Log.e("Molly"," onAnyHover : " + isHovering + " src: " + node.getTag() + " this: " + this.toString());
+
+        component.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
+                component.getId(),
+                ViroEvents.ON_ANY_HOVER,
+                event);
+    }
+
+    @Override
+    public void onHover(ArrayList<EventDelegate.HoverEvent> arrayList) {
+        VRTComponent component = weakComponent.get();
+        if (component == null){
+            return;
+        }
+
+        WritableMap eventsOut = Arguments.createMap();
+        for (EventDelegate.HoverEvent event : arrayList) {
+            WritableArray positionArray = Arguments.createArray();
+            Vector position = event.intersecPos;
+            if (position != null) {
+                positionArray.pushDouble(position.x);
+                positionArray.pushDouble(position.y);
+                positionArray.pushDouble(position.z);
+            }
+
+            WritableMap eventOut = Arguments.createMap();
+            eventOut.putInt("source", event.source);
+            eventOut.putBoolean("isHovering", event.isHovering);
+            eventOut.putArray("intersecPos", positionArray);
+            eventsOut.putMap(String.valueOf(event.deviceId), eventOut);
+        }
 
         component.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
                 component.getId(),
                 ViroEvents.ON_HOVER,
-                event);
+                eventsOut);
     }
 
     @Override
@@ -117,263 +122,165 @@ public class ComponentEventDelegate implements EventDelegate.EventDelegateCallba
         event.putInt("clickState", clickState.getTypeId());
         event.putArray("position", positionArray);
 
+   //     Log.e("Daniel"," onAnyClick : " + clickState + " src: " + node.getTag() + " this: " + this.toString());
+
+        component.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
+                component.getId(),
+                ViroEvents.ON_ANY_CLICK,
+                event);
+    }
+
+    @Override
+    public void onClick(ArrayList<EventDelegate.ButtonEvent> arrayList) {
+        VRTComponent component = weakComponent.get();
+        if (component == null){
+            return;
+        }
+
+        WritableMap eventsOut = Arguments.createMap();
+        for (EventDelegate.ButtonEvent event : arrayList) {
+            WritableArray positionArray = Arguments.createArray();
+            Vector position = event.intersecPos;
+            if (position != null) {
+                positionArray.pushDouble(position.x);
+                positionArray.pushDouble(position.y);
+                positionArray.pushDouble(position.z);
+            }
+            Log.e("Molly"," Component Delegate onClick Java fire " + event.deviceId);
+
+            WritableMap eventOut = Arguments.createMap();
+            eventOut.putInt("source", event.source);
+            eventOut.putInt("clickState", event.state.getTypeId());
+            eventOut.putArray("intersecPos", positionArray);
+            eventsOut.putMap(String.valueOf(event.deviceId), eventOut);
+        }
+
         component.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
                 component.getId(),
                 ViroEvents.ON_CLICK,
-                event);
+                eventsOut);
     }
-/*
+
     @Override
-    public void onTouch(int source, Node node, TouchState touchState, float touchPadPos[]){
+    public void onThumbStickEvent(ArrayList<EventDelegate.ThumbStickEvent> arrayList) {
+        Log.e("Molly"," Component Delegate onThumbStickEvent Java fire");
+
         VRTComponent component = weakComponent.get();
         if (component == null){
             return;
         }
 
-        WritableMap event = Arguments.createMap();
-        event.putInt("source", source);
-        event.putInt("touchState", touchState.getTypeId());
+        WritableMap eventsOut = Arguments.createMap();
+        for (EventDelegate.ThumbStickEvent event : arrayList) {
+            WritableArray positionArray = Arguments.createArray();
+            Vector position = event.axisLocation;
+            if (position != null) {
+                positionArray.pushDouble(position.x);
+                positionArray.pushDouble(position.y);
+                positionArray.pushDouble(position.z);
+            }
 
-        WritableArray touchPos = Arguments.createArray();
-        touchPos.pushDouble(touchPadPos[0]);
-        touchPos.pushDouble(touchPadPos[1]);
-        event.putArray("touchPos", touchPos);
+            WritableMap eventOut = Arguments.createMap();
+            eventOut.putInt("source", event.source);
+            eventOut.putBoolean("isPressed", event.isPressed);
+            eventOut.putArray("axisLocation", positionArray);
+            Log.e("Startrek", "Startrek deviceId thumbstick: " + event.deviceId);
+            eventsOut.putMap(String.valueOf(event.deviceId), eventOut);
+        }
 
         component.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
                 component.getId(),
-                ViroEvents.ON_TOUCH,
-                event);
+                ViroEvents.ON_THUMBSTICK,
+                eventsOut);
     }
 
     @Override
-    public void onSwipe(int source, Node target, SwipeState swipeState) {
-        VRTComponent node = weakComponent.get();
-        if (node == null){
-            return;
-        }
+    public void onWeightedTriggerEvent(ArrayList<EventDelegate.TriggerEvent> arrayList) {
+        Log.e("Molly"," Component Delegate onWeightedTriggerEvent Java fire");
 
-        WritableMap event = Arguments.createMap();
-        event.putInt("source", source);
-        event.putInt("swipeState", swipeState.getTypeId());
-        node.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
-                node.getId(),
-                ViroEvents.ON_SWIPE,
-                event);
-    }
-
-    @Override
-    public void onScroll(int source, Node node, float x, float y) {
         VRTComponent component = weakComponent.get();
         if (component == null){
             return;
         }
 
-        WritableMap event = Arguments.createMap();
-        event.putInt("source", source);
-        WritableArray scrollPos = Arguments.createArray();
-        scrollPos.pushDouble(x);
-        scrollPos.pushDouble(y);
+        WritableMap eventsOut = Arguments.createMap();
+        for (EventDelegate.TriggerEvent event : arrayList) {
+            WritableMap eventOut = Arguments.createMap();
+            eventOut.putInt("source", event.source);
+            eventOut.putDouble("weight", event.weight);
+            eventsOut.putMap(String.valueOf(event.deviceId), eventOut);
+            Log.e("Startrek", "Startrek deviceId onWeightedTriggerEvent: " + event.deviceId);
 
-        event.putArray("scrollPos", scrollPos);
+        }
+
         component.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
                 component.getId(),
-                ViroEvents.ON_SCROLL,
-                event);
+                ViroEvents.ON_TRIGGER,
+                eventsOut);
     }
 
     @Override
-    public void onDrag(int source, Node target, float x, float y, float z) {
-        VRTComponent node = weakComponent.get();
-        if (node == null){
+    public void onMove(ArrayList<EventDelegate.MoveEvent> arrayList) {
+        //Log.e("Molly"," Component Delegate onMove Java fire");
+
+        VRTComponent component = weakComponent.get();
+        if (component == null){
             return;
         }
 
-        WritableMap event = Arguments.createMap();
-        event.putInt("source", source);
-        WritableArray dragToPos = Arguments.createArray();
-        dragToPos.pushDouble(x);
-        dragToPos.pushDouble(y);
-        dragToPos.pushDouble(z);
-        event.putArray("dragToPos", dragToPos);
+        WritableMap eventsOut = Arguments.createMap();
+        for (EventDelegate.MoveEvent event : arrayList) {
+            WritableArray positionArray = Arguments.createArray();
+            Vector position = event.pos;
+            if (position != null) {
+                positionArray.pushDouble(position.x);
+                positionArray.pushDouble(position.y);
+                positionArray.pushDouble(position.z);
+            }
 
-        node.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
-                node.getId(),
-                ViroEvents.ON_DRAG,
-                event);
+            WritableArray rotationArray = Arguments.createArray();
+            Quaternion rotation = event.rot;
+            if (rotation != null) {
+                rotationArray.pushDouble(rotation.x);
+                rotationArray.pushDouble(rotation.y);
+                rotationArray.pushDouble(rotation.z);
+                rotationArray.pushDouble(rotation.w);
+            }
+
+            WritableMap eventOut = Arguments.createMap();
+            eventOut.putInt("source", event.source);
+            eventOut.putArray("position", positionArray);
+            eventOut.putArray("rotation", rotationArray);
+            eventsOut.putMap(String.valueOf(event.deviceId), eventOut);
+        }
+
+        component.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
+                component.getId(),
+                ViroEvents.ON_MOVE,
+                eventsOut);
     }
 
     @Override
-    public void onFuse(int source, Node target) {
-        VRTComponent node = weakComponent.get();
-        if (node == null){
+    public void onControllerStatus(ArrayList<EventDelegate.ControllerStatus> arrayList) {
+        Log.e("Molly"," Component Delegate onControllerStatus Java fire");
+
+        VRTComponent component = weakComponent.get();
+        if (component == null){
             return;
         }
 
-        WritableMap event = Arguments.createMap();
-        event.putInt("source", source);
-        node.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
-                node.getId(),
-                ViroEvents.ON_FUSE,
-                event);
-    }
-
-    @Override
-    public void onPinch(int source, Node target, float scaleFactor, PinchState pinchState) {
-        VRTComponent node = weakComponent.get();
-        if (node == null){
-            return;
+        WritableMap eventsOut = Arguments.createMap();
+        for (EventDelegate.ControllerStatus event : arrayList) {
+            WritableMap eventOut = Arguments.createMap();
+            eventOut.putBoolean("isConnected", event.isConnected);
+            eventOut.putBoolean("is6Dof", event.is6Dof);
+            eventOut.putInt("batteryPercentage", event.batteryPercentage);
+            eventsOut.putMap(String.valueOf(event.deviceId), eventOut);
         }
 
-        WritableMap event = Arguments.createMap();
-        event.putInt("source", source);
-        event.putDouble("scaleFactor", scaleFactor);
-        event.putInt("pinchState", pinchState.getTypeId());
-
-        node.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
-                node.getId(),
-                ViroEvents.ON_PINCH,
-                event);
-    }
-
-    @Override
-    public void onCameraARHitTest(ARHitTestResult results[]) {
-
-        VRTComponent node = weakComponent.get();
-
-        if (node == null){
-            return;
-        }
-        if( node instanceof VRTScene) {
-            final VRTScene scene = (VRTScene) node;
-            final ARHitTestResult arResults[] = results;
-            scene.getCameraPositionAsync(new CameraCallback() {
-                @Override
-                public void onGetCameraOrientation(float posX, float poxY, float posZ,
-                                                   float rotEulerX, float rotEulerY, float rotEulerZ,
-                                                   float forwardX, float forwardY, float forwardZ,
-                                                   float upX, float upY, float upZ) {
-                    WritableArray cameraOrientationArray = Arguments.createArray();
-                    cameraOrientationArray.pushDouble(posX);
-                    cameraOrientationArray.pushDouble(poxY);
-                    cameraOrientationArray.pushDouble(posZ);
-                    cameraOrientationArray.pushDouble(Math.toDegrees(rotEulerX));
-                    cameraOrientationArray.pushDouble(Math.toDegrees(rotEulerY));
-                    cameraOrientationArray.pushDouble(Math.toDegrees(rotEulerZ));
-                    cameraOrientationArray.pushDouble(forwardX);
-                    cameraOrientationArray.pushDouble(forwardY);
-                    cameraOrientationArray.pushDouble(forwardZ);
-                    cameraOrientationArray.pushDouble(upX);
-                    cameraOrientationArray.pushDouble(upY);
-                    cameraOrientationArray.pushDouble(upZ);
-
-                    WritableArray hitTestResultsArray = Arguments.createArray();
-                    for (ARHitTestResult result : arResults) {
-                        hitTestResultsArray.pushMap(ARUtils.mapFromARHitTestResult(result));
-                    }
-                    WritableMap event = Arguments.createMap();
-                    event.putArray("hitTestResults", hitTestResultsArray);
-
-                    event.putArray("cameraOrientation", cameraOrientationArray);
-
-                    scene.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
-                            scene.getId(),
-                            ViroEvents.ON_CAMERA_AR_HIT_TEST_VIRO,
-                            event);
-                }
-            });
-        }
-    }
-
-    @Override
-    public void onARPointCloudUpdate(ARPointCloud arPointCloud) {
-        VRTComponent node = weakComponent.get();
-        if (node == null) {
-            return;
-        }
-
-        if (node instanceof VRTARScene) {
-            final VRTARScene arScene = (VRTARScene) node;
-
-            WritableMap event = Arguments.createMap();
-            event.putMap("pointCloud", ARUtils.mapFromARPointCloud(arPointCloud));
-
-            arScene.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
-                    arScene.getId(),
-                    ViroEvents.ON_AR_POINT_CLOUD_UPDATE,
-                    event);
-        }
-    }
-
-    @Override
-    public void onRotate(int source, Node target, float rotationRadians, RotateState rotateState) {
-        VRTComponent node = weakComponent.get();
-        if (node == null){
-            return;
-        }
-
-        WritableMap event = Arguments.createMap();
-        event.putInt("source", source);
-        event.putDouble("rotationFactor", Math.toDegrees(rotationRadians));
-        event.putInt("rotateState", rotateState.getTypeId());
-
-        node.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
-                node.getId(),
-                ViroEvents.ON_ROTATE,
-                event);
-    }
-
-    @Override
-    public void onControllerStatus(int source, ControllerStatus controllerStatus) {
-        VRTComponent node = weakComponent.get();
-        if (node == null){
-            return;
-        }
-
-        WritableMap event = Arguments.createMap();
-        event.putInt("source", source);
-        event.putInt("controllerStatus", controllerStatus.getTypeId());
-        node.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
-                node.getId(),
+        component.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
+                component.getId(),
                 ViroEvents.ON_CONTROLLER_STATUS,
-                event);
-    }
-*/
-    @Override
-    public void onCameraTransformUpdate(float posX, float poxY, float posZ,
-                                        float rotEulerX, float rotEulerY, float rotEulerZ,
-                                        float forwardX, float forwardY, float forwardZ,
-                                        float upX, float upY, float upZ) {
-        VRTComponent node = weakComponent.get();
-        if (node == null) {
-            return;
-        }
-
-        // This applies to all scenes (AR and non-AR)
-        if (node instanceof VRTScene) {
-            final VRTScene scene = (VRTScene) node;
-
-            WritableMap event = Arguments.createMap();
-
-            WritableArray cameraTransformArray = Arguments.createArray();
-            cameraTransformArray.pushDouble(posX);
-            cameraTransformArray.pushDouble(poxY);
-            cameraTransformArray.pushDouble(posZ);
-            cameraTransformArray.pushDouble(Math.toDegrees(rotEulerX));
-            cameraTransformArray.pushDouble(Math.toDegrees(rotEulerY));
-            cameraTransformArray.pushDouble(Math.toDegrees(rotEulerZ));
-            cameraTransformArray.pushDouble(forwardX);
-            cameraTransformArray.pushDouble(forwardY);
-            cameraTransformArray.pushDouble(forwardZ);
-            cameraTransformArray.pushDouble(upX);
-            cameraTransformArray.pushDouble(upY);
-            cameraTransformArray.pushDouble(upZ);
-
-            event.putArray("cameraTransform", cameraTransformArray);
-
-            scene.getReactContext().getJSModule(RCTEventEmitter.class).receiveEvent(
-                    scene.getId(),
-                    ViroEvents.ON_CAMERA_TRANSFORM_UPDATE,
-                    event);
-        }
+                eventsOut);
     }
 }

@@ -32,8 +32,6 @@ import {
   ViroAnimations,
   ViroQuad,
   ViroSkyBox,
-  ViroSpatialSound,
-  ViroSoundField,
   ViroSound,ViroText,
 } from 'react-viro';
 
@@ -97,16 +95,14 @@ var ViroSoundTest = createReactClass({
 
   render: function() {
     return (
-      <ViroScene reticleEnabled={true} onClick={this._onClick} soundRoom={this._getSoundRoomMaterial()} >
+      <ViroScene reticleEnabled={true} onAnyClicked={this._onAnyClicked} soundRoom={this._getSoundRoomMaterial()} >
         <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
         <ViroCamera position={[0, 0, this.state.cameraPos]} active={true}/>
-        <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+        <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
 
         <ViroSkyBox color="#AA1460" />
         {this._getSoundControls()}
         {this._testNormalSound()}
-        {this._testSpatialSound()}
-        {this._testSoundField()}
       </ViroScene>
     );
   },
@@ -131,26 +127,26 @@ var ViroSoundTest = createReactClass({
        <ViroNode position={[0,0,-4]}>
 
        <ViroText style={styles.centeredText} position={[0, 2, 0]} width={3} height ={2} fontSize={30}
-                 text={"Toggle SoundType: " + soundType} textLineBreakMode='Justify' onClick={this._toggleSoundType}/>
+                 text={"Toggle SoundType: " + soundType} textLineBreakMode='Justify' onAnyClicked={this._toggleSoundType}/>
 
        <ViroText style={styles.centeredText} position={[-2, 1, 0]} width={2} height ={2}
-        text={"isPlaying: " + this.state.isPlaying} textLineBreakMode='Justify' onClick={this._togglePlay}/>
+        text={"isPlaying: " + this.state.isPlaying} textLineBreakMode='Justify' onAnyClicked={this._togglePlay}/>
 
        <ViroText style={styles.centeredText} position={[0, 1, 0]} width={2} height ={2}
-        text={"Loop: " + this.state.looping} textLineBreakMode='Justify' onClick={this._toggleLoop}/>
+        text={"Loop: " + this.state.looping} textLineBreakMode='Justify' onAnyClicked={this._toggleLoop}/>
 
        <ViroText style={styles.centeredText} position={[2, 1, 0]} width={2} height ={2}
-        text={"Mute: " + this.state.mute} textLineBreakMode='Justify' onClick={this._toggleMute}/>
+        text={"Mute: " + this.state.mute} textLineBreakMode='Justify' onAnyClicked={this._toggleMute}/>
 
        <ViroText style={styles.centeredText} position={[-2, 0, 0]} text={"Change Volume from: " + this.state.volume}
-        width={2} height ={2}  onClick={this._toggleVolume} />
+        width={2} height ={2}  onAnyClicked={this._toggleVolume} />
 
        <ViroText style={styles.centeredText} position={[0, 0, 0]} width={2} height ={2}
-        text={"Source: " + stringSource} textLineBreakMode='Justify' onClick={this._toggleSource}/>
+        text={"Source: " + stringSource} textLineBreakMode='Justify' onAnyClicked={this._toggleSource}/>
 
         <ViroText style={styles.centeredText} position={[2, 0, 0]} width={2} height ={2}
                 text={this.state.preloadedSound ? "Sound is Preloaded" : "Sound is NOT Preloaded"}
-                textLineBreakMode='Justify' onClick={this._preloadSound}/>
+                textLineBreakMode='Justify' onAnyClicked={this._preloadSound}/>
 
         </ViroNode>
 
@@ -240,30 +236,12 @@ var ViroSoundTest = createReactClass({
     }
   },
 
-  _getSpatialControls() {
-    return(
-        <ViroNode position={[0,0,-4]}>
-         <ViroText style={styles.centeredText}  position={[-2, -1.25, 0]} width={1.5} height={2}
-                text={"Toggle Atenuation distance: " + this.state.minDistance + " - " + this.state.maxDistance}
-                onClick={this._toggleAttenuationDistance}/>
-
-         <ViroText style={styles.centeredText}  position={[0, -2, 0]} width={1.5} height={2}
-                text={"Toggle Sound Z: " + this.state.soundDistance}
-                onClick={this._toggleSoundDistance}/>
-
-        <ViroText style={styles.centeredText} position={[0, -2.75, 0]} width={1.5} height={2}
-               text={"Toggle Camera Z: " + this.state.cameraPos}
-               onClick={this._toggleCameraPosition}/>
-        </ViroNode>
-        );
-  },
-
   _getSoundFieldControls() {
     var room = this._getSoundRoom();
     return(
         <ViroNode position={[0,0,-4]}>
          <ViroText style={styles.centeredText} position={[0, -3, 0]} width={1.5} height ={2}
-                text={"Toggle Room: " + room}  onClick={this._toggleRoomMaterial}/>
+                text={"Toggle Room: " + room}  onAnyClicked={this._toggleRoomMaterial}/>
         </ViroNode>
         );
   },
@@ -385,55 +363,9 @@ var ViroSoundTest = createReactClass({
     }
   },
 
-  _testSpatialSound() {
-    if (this.state.soundType == 2) {
-        return(
-               <ViroNode>
-                    {this._getSpatialControls()}
-                    <ViroSpatialSound
-                        rolloffModel="logarithmic"
-                        paused={!this.state.isPlaying}
-                        muted={this.state.mute}
-                        minDistance={this.state.minDistance}
-                        maxDistance={this.state.maxDistance}
-                        position={[0,0,this.state.soundDistance]}
-                        source={this._getSource()}
-                        loop={this.state.looping}
-                        volume={this.state.volume}
-                        onFinish={this.onFinishSpatial}/>
-                </ViroNode>
-        );
-    }
-  },
-
-  _testSoundField() {
-    if (this.state.soundType == 3) {
-        return(
-          <ViroNode>
-            {this._getSoundFieldControls()}
-            <ViroSoundField
-                paused={!this.state.isPlaying}
-                muted={this.state.mute}
-                source={this._getSource()}
-                loop={this.state.looping}
-                volume={this.state.volume}
-                onFinish={this.onFinishSound}/>
-          </ViroNode>
-        );
-    }
-  },
-
   _getSurface(component) {
     if (this.state.showSurface) {
       return (<ViroQuad style={{flex:1}} materials={"redColor"} />)
-    }
-  },
-
-  _getAdditionalSounds(component) {
-    if (this.state.state == 1 || true) {
-      return;
-    } else {
-      return (<ViroSpatialSound source={{uri : "http://www.jetcityorange.com/musical-notes/G4-392.0.mp3"}} loop={true} position={this.state.position} />);
     }
   },
 
@@ -455,11 +387,6 @@ var ViroSoundTest = createReactClass({
 
   onFinishSound() {
     console.log("ViroSoundTest OnFinished playing normal sound");
-  },
-
-
-  onFinishSpatial() {
-    console.log("ViroSoundTest OnFinished playing Spatial sound");
   },
   /*
   <Viro360Image source={{uri: "http://cdn3-www.dogtime.com/assets/uploads/gallery/pembroke-welsh-corgi-dog-breed-pictures/prance-8.jpg"}} rotation={[-30,90,0]} />

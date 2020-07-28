@@ -63,7 +63,7 @@ var Viro3DObjectTest = createReactClass({
       <ViroOmniLight position={[0, 0, 0]} color="#ffffff" attenuationStartDistance={40} attenuationEndDistance={50}/>
 
       <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]}
-                 onClick={this._showNext} />
+                 onAnyClicked={this._showNext} />
 
 
          <Viro3DObject ref={(obj)=>{this.destroyer = obj}}
@@ -73,7 +73,7 @@ var Viro3DObjectTest = createReactClass({
                        rotation={[0, 45, 0]}
                        scale={[.1, .1, .1]}
                        type="OBJ"
-                       onHover={this._startAnimation1}
+                       onAnyHover={this._startAnimation1}
                        onLoadEnd={this._getDestroyerBounds}
                        animation={{name:"loopRotate",
                                    run:this.state.runAnimation1 }}
@@ -103,7 +103,7 @@ var Viro3DObjectTest = createReactClass({
                        rotation={[0,0,0]}
                        scale={[.3,.3,.3]}
                        type="OBJ"
-                       onClick={this._startAnimation2}
+                       onAnyClicked={this._startAnimation2}
                        onLoadStart={this._startAnimation3}
                        animation={{name:"loopRotate",
                                    run:this.state.runAnimation2 }}
@@ -133,14 +133,14 @@ var Viro3DObjectTest = createReactClass({
         />
 
         <ViroText position={[.7,0,-2]} text={this._getBallBoundingBoxText()}
-          style={styles.elementText} onClick={this._startStopRecording} transformBehaviors={["billboard"]}/>
+          style={styles.elementText} onAnyClicked={this._startStopRecording} transformBehaviors={["billboard"]}/>
 
         <ViroText position={[-.7,0,-2]} text={this._getEarthBoundingBoxText()}
-          style={styles.elementText} onClick={this._startStopRecording} transformBehaviors={["billboard"]}/>
+          style={styles.elementText} onAnyClicked={this._startStopRecording} transformBehaviors={["billboard"]}/>
 
-       <ViroImage source={require('./res/icon_left_w.png')} position={[-2, -4, -3]} scale={[1, 1, 1]} transformBehaviors={["billboard"]} onClick={this._showPrevious} />
+       <ViroImage source={require('./res/icon_left_w.png')} position={[-2, -4, -3]} scale={[1, 1, 1]} transformBehaviors={["billboard"]} onAnyClicked={this._showPrevious} />
        <ViroText text="Viro3DObject" position={[0, -5, -3]} transformBehaviors={["billboard"]} />
-       <ViroImage source={require('./res/icon_right_w.png')} position={[2, -4, -3]} scale={[1, 1, 1]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+       <ViroImage source={require('./res/icon_right_w.png')} position={[2, -4, -3]} scale={[1, 1, 1]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
 
      </ViroScene>
 

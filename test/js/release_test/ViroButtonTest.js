@@ -45,12 +45,12 @@
 var createReactClass = require('create-react-class');
 
 var button_local = require("../res/card_main.png");
-var buttonHover_local = require("../res/card_petite_ansu.png");
-var buttonClick_local = require("../res/card_main.png");
+var buttonAnyHover_local = require("../res/card_petite_ansu.png");
+var buttonAnyClicked_local = require("../res/card_main.png");
 
 var button_uri = {uri:"https://s3-us-west-2.amazonaws.com/viro/Explorer/360_horseshoe.jpg"};
-var buttonHover_uri = {uri:"http://storage.googleapis.com/ix_choosemuse/uploads/2016/02/Muse%20Android.jpeg"};
-var buttonClick_uri = {uri:"https://s3-us-west-2.amazonaws.com/viro/Explorer/360_horseshoe.jpg"};
+var buttonAnyHover_uri = {uri:"http://storage.googleapis.com/ix_choosemuse/uploads/2016/02/Muse%20Android.jpeg"};
+var buttonAnyClicked_uri = {uri:"https://s3-us-west-2.amazonaws.com/viro/Explorer/360_horseshoe.jpg"};
 
 var ReleaseMenu = require("./ReleaseMenu.js");
 
@@ -65,8 +65,8 @@ var ViroButtonTest = createReactClass({
 
    render: function() {
      var buttonSource = this.state.showUrlImage ? button_uri : button_local;
-     var buttonHover = this.state.showUrlImage ? buttonHover_uri : buttonHover_local;
-     var buttonClick = this.state.showUrlImage ? buttonClick_uri : buttonClick_local;
+     var buttonAnyHover = this.state.showUrlImage ? buttonAnyHover_uri : buttonAnyHover_local;
+     var buttonAnyClicked = this.state.showUrlImage ? buttonAnyClicked_uri : buttonAnyClicked_local;
       return (
             <ViroScene>
             <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
@@ -77,10 +77,10 @@ var ViroButtonTest = createReactClass({
                     position={[0,0.5,-4]}
                     scale={[0.5, 0.5, 0.5]}
                     source={buttonSource}
-                    hoverSource={buttonHover}
-                    clickSource={buttonClick}
-                    onClick={this._onHover}
-                    onHover={this._onHover}/>
+                    hoverSource={buttonAnyHover}
+                    clickSource={buttonAnyClicked}
+                    onAnyClicked={this._onAnyHover}
+                    onAnyHover={this._onAnyHover}/>
 
                     {this._getTestControls()}
             </ViroScene>
@@ -95,17 +95,17 @@ var ViroButtonTest = createReactClass({
         <ViroNode position={[0,-0.5,-2]}>
          <ViroText style={styles.baseTextTwo} position={[-1,0, 0]}
          width={1} height={2} text={"Toggle ImageSource isUrlIamge: " + this.state.showUrlImage}
-                onClick={this._toggleImageSource}/>
+                onAnyClicked={this._toggleImageSource}/>
 
          <ViroText style={styles.baseTextTwo} position={[0,0, 0]} width={1} height={2}
                 text={"Toggle ImageSize: " + this.state.widthAndHeight}
-                onClick={this._toggleSize}/>
+                onAnyClicked={this._toggleSize}/>
 
          <ViroText style={styles.baseTextTwo} position={[1,0, 0]} width={1} height={2}
                 text={"Toggle Format " + this.state.format}
-                onClick={this._toggleFormat}/>
+                onAnyClicked={this._toggleFormat}/>
 
-        <ViroImage source={require('./res/poi_dot.png')} position={[0, -3, -2]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+        <ViroImage source={require('./res/poi_dot.png')} position={[0, -3, -2]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
 
          </ViroNode>
         );
@@ -115,8 +115,8 @@ var ViroButtonTest = createReactClass({
       this.props.sceneNavigator.replace({scene:require('./ViroQuadFlexViewTest')});
    },
 
-   _onHover(source, isHovering){
-      console.log("onHover");
+   _onAnyHover(source, isHovering){
+      console.log("onAnyHover");
    },
 
    _toggleImageSource() {

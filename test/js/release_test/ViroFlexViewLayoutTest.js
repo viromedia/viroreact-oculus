@@ -66,7 +66,7 @@ var createReactClass = require('create-react-class');
         {this._chooseFlexLayout()}
         <ViroText style={styles.baseTextTwo}  position={[0,-3, -3]} width={2} height={2}
                  text={"Change flexbox Layout"}
-                 onClick={this._toggleFlexboxLayout}/>
+                 onAnyClicked={this._toggleFlexboxLayout}/>
       </ViroScene>
 
      );

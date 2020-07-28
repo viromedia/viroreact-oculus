@@ -98,15 +98,15 @@ var PhysicsScaleTest = createReactClass({
                 <ViroNode position={[1 , -2, -3]} transformBehaviors={["billboard"]}>
                   <ViroText fontSize={25}  style={styles.centeredText}
                     position={[-2, 0, 0]} width={4} height ={2} maxLines={3}
-                    text={"Toggle Scale"} onClick={this.togglePhysicsBody(1)}/>
+                    text={"Toggle Scale"} onAnyClicked={this.togglePhysicsBody(1)}/>
 
                   <ViroText fontSize={25}  style={styles.centeredText}
                       position={[0,0, 0]} width={4} height ={2} maxLines={3}
-                      text={"Toggle Rotation"} onClick={this.togglePhysicsBody(2)}/>
+                      text={"Toggle Rotation"} onAnyClicked={this.togglePhysicsBody(2)}/>
 
                   <ViroText fontSize={25}  style={styles.centeredText}
                       position={[2,0, 0]} width={4} height ={2} maxLines={3}
-                      text={"Toggle Translation "} onClick={this.togglePhysicsBody(3)}/>
+                      text={"Toggle Translation "} onAnyClicked={this.togglePhysicsBody(3)}/>
                 </ViroNode>
 
 

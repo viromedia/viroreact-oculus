@@ -160,7 +160,7 @@ var LeakTest1 = createReactClass({
             fontFamily={'Arial'}
             text={"Push Leak Scene 2"}
             textLineBreakMode='Justify'
-            onClick={this._pushNextScene}
+            onAnyClicked={this._pushNextScene}
           />
       </ViroScene>
     );

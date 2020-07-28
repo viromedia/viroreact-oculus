@@ -59,7 +59,7 @@ var ViroCameraHUDTest = createReactClass({
 
   render: function() {
     return (
-     <ViroScene onClick={this._toggleCamera} ref="cameraScene">
+     <ViroScene onAnyClicked={this._toggleCamera} ref="cameraScene">
      <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
      <ViroAmbientLight color="#ffffff"/>
      <ViroOmniLight position={[0, 0, -5]} color="#ffffff" attenuationStartDistance={40} attenuationEndDistance={50}/>
@@ -105,7 +105,7 @@ var ViroCameraHUDTest = createReactClass({
       </ViroCamera>
 
       <ViroText style={styles.centeredText} position={[-2, -1, -4]} text={"Active Camera:" + this.state.activeCamera}
-             width={2} height={2}  onClick={this._toggleCamera} />
+             width={2} height={2}  onAnyClicked={this._toggleCamera} />
 
      </ViroScene>
 

@@ -33,6 +33,8 @@ import {
   ViroAnimations,
   ViroDirectionalLight,
   ViroController,
+  ViroPolyline,
+  ViroAnimatedImage
 } from 'react-viro';
 
 let polarToCartesian = ViroUtils.polarToCartesian;
@@ -44,280 +46,417 @@ var createReactClass = require('create-react-class');
 var GroupTestBasicEvents = createReactClass({
   getInitialState() {
     return {
-        reticleVisibility:true,
-        transformFlag: 1,
-        transformBehaviors:["billboard"],
-        showImage:true
+        showImage:true,
+        consoleText:"Test text here? \n Line 2? \n Line 3? \n Line 4? \n Line 5?",
+        currentEvent:"None",
+        testController:false,
+        isRightController:true,
+        currentController:"1"
     };
   },
-  onHover(objectTag) {
-    return (isHovering, source)  => {
-      console.log("GroupTest: " + objectTag + " isHovering" + isHovering+ " onHover: " + source);
-    }
-  },
   onClick(objectTag) {
-    return (source) => {
-      console.log("GroupTest: " + objectTag + " onClick source:" + source);
-    }
-  },
-  onClickState(objectTag) {
-    return (state, source) => {
-      console.log("GroupTest: " + objectTag + " source " + source+ " onClickState: " + state);
-    }
-  },
-  onTouch(objectTag){
-    return (touchState, touchPos, source) => {
-      console.log("GroupTest:" + objectTag + " onTouch touchState " + touchState + ",  touchpos: " + touchPos[0] +"," + touchPos[1] + " source: " + source);
-    }
-  },
-  onScroll(objectTag){
-    return (scrollPos, source) => {
-        console.log("GroupTest:" + objectTag + " onScroll scrollPos " + scrollPos[0] + "," + scrollPos[1] + " source:" + source);
-    }
-  },
-  onSwipe(objectTag){
-    return (swipeState, source) => {
-        console.log("GroupTest:" + objectTag + " onSwipe swipeState" + swipeState + " source: " + source);
-    }
-  },
-  onDrag(objectTag){
-    return (dragtoPos, source) => {
-      console.log("GroupTest:" + objectTag + " onDrag dragtoPos" +
-      dragtoPos[0] +","+ dragtoPos[1]+","+ dragtoPos[2] + " source: " + source);
-    }
-  },
-  onFuse(objectTag){
-    return (source) => {
-       console.log("GroupTest:" + objectTag + " onFuse");
-    }
-  },
-  _getImage() {
-    if (this.state.showImage) {
-      return (
-        <ViroImage position={[0.0, 2, -3.5]}
-          transformBehaviors={["billboard"]}
-          source={{uri: "https://images.sftcdn.net/images/t_optimized,f_auto/p/50d2f4ce-96d1-11e6-8a53-00163ed833e7/3980672443/google-earth-screenshot.jpg"}}
-          onFuse={()=>{this.setState({showImage : false})}} />
-      );
-    } else {
-      return;
-    }
+    return (events)  => {
+        if (this.state.currentEvent != "onClick") {
+          return;
+        }
+        if ((!this.state.testController && objectTag == "ViroController") ||
+            (this.state.testController && objectTag != "ViroController")) {
+          return;
+        }
+
+       this.setState({consoleText:"GroupTest JS onClick " + objectTag
+                           + " source: " + events[this.state.currentController].source  + " , "
+                           + "clickState: " + events[this.state.currentController].clickState  + " , "
+                           + "intersecPos: " + events[this.state.currentController].intersecPos
+                         });
+        }
   },
 
-  toggleReticle(){
-    this.setState({reticleVisibility:!this.state.reticleVisibility});
-  },
+  onAnyClick(objectTag) {
+      return (clickstate, position, source) => {
+        if (this.state.currentEvent != "onAnyClick") {
+          return;
+        }
+        if ((!this.state.testController && objectTag == "ViroController") ||
+            (this.state.testController && objectTag != "ViroController")) {
+          return;
+        }
+         this.setState({consoleText:"GroupTest onAnyClickState: " + objectTag + " , " + source + " position " + position+ " onClickState: " + clickstate});
+      }
+    },
+
+    onAnyClicked(objectTag) {
+      return (position, source) => {
+        if (this.state.currentEvent != "onAnyClicked") {
+          return;
+        }
+        if ((!this.state.testController && objectTag == "ViroController") ||
+            (this.state.testController && objectTag != "ViroController")) {
+          return;
+        }
+        this.setState({consoleText:"GroupTest onAnyClicked: " + objectTag + " , " + source + " onClick position:" + position});
+      }
+    },
+
+    onHover(objectTag) {
+       return (events)  => {
+         if (this.state.currentEvent != "onHover") {
+           return;
+         }
+         if ((!this.state.testController && objectTag == "ViroController") ||
+             (this.state.testController && objectTag != "ViroController")) {
+           return;
+         }
+         this.setState({consoleText:"GroupTest JS _onHover " + objectTag
+                                    + ", source: " + events[this.state.currentController].source  + " , "
+                                    + "isHovering: " + events[this.state.currentController].isHovering  + " , "
+                                    + "intersecPos: " + events[this.state.currentController].intersecPos
+                                  });
+       }
+     },
+
+     onAnyHover(objectTag) {
+       return (isHovering, position, source)  => {
+         if (this.state.currentEvent != "onAnyHover") {
+           return;
+         }
+         if ((!this.state.testController && objectTag == "ViroController") ||
+             (this.state.testController && objectTag != "ViroController")) {
+           return;
+         }
+         this.setState({consoleText:"GroupTest onAnyHover: " + objectTag + " , " + source + " isHovering" + isHovering+ " position: " + position});
+       }
+     },
+
+     onThumbstick(objectTag) {
+       return (events)  => {
+         if (this.state.currentEvent != "onThumbstick") {
+           return;
+         }
+
+         if ((!this.state.testController && objectTag == "ViroController") ||
+             (this.state.testController && objectTag != "ViroController")) {
+           return;
+         }
+
+        this.setState({consoleText:"GroupTest JS _onThumbstick "
+            + "source: " + events[this.state.currentController].source  + " , "
+            + "isPressed: " + events[this.state.currentController].isPressed  + " , "
+            + "axisLocation: " + events[this.state.currentController].axisLocation
+          });
+       }
+     },
+
+     onMove(objectTag) {
+       return (events)  => {
+         if (this.state.currentEvent != "onMove") {
+           return;
+         }
+         if ((!this.state.testController && objectTag == "ViroController") ||
+             (this.state.testController && objectTag != "ViroController")) {
+           return;
+         }
+          this.setState({consoleText:"GroupTest JS _onMove "
+                      + "source: " + events[this.state.currentController].source  + " , "
+                      + "pos: " + events[this.state.currentController].position  + " , "
+                      + "rot: " + events[this.state.currentController].rotation
+                    });
+       }
+     },
+
+     onTrigger(objectTag) {
+       return (events)  => {
+         if (this.state.currentEvent != "onTrigger") {
+           return;
+         }
+         if ((!this.state.testController && objectTag == "ViroController") ||
+             (this.state.testController && objectTag != "ViroController")) {
+           return;
+         }
+         this.setState({consoleText:"GroupTest JS _onTrigger "
+                  + "source: " + events[this.state.currentController].source  + " , "
+                  + "weight: " + events[this.state.currentController].weight
+                });
+       }
+     },
+
+     onControllerStatus(objectTag) {
+        return (events)  => {
+          if (this.state.currentEvent != "onControllerStatus") {
+            return;
+          }
+          if ((!this.state.testController && objectTag == "ViroController") ||
+              (this.state.testController && objectTag != "ViroController")) {
+            return;
+          }
+        this.setState({consoleText:"GroupTest JS _onControllerStatus "
+              + "isConnected: " + events[this.state.currentController].isConnected  + " , "
+              + "is6Dof: " + events[this.state.currentController].is6Dof  + " , "
+              + "batteryPercentage: " + events[this.state.currentController].batteryPercentage
+            });
+        }
+     },
 
   render: function() {
     return (
-            <ViroScene onHover={this.onHover("ViroScene")}
-                       onClick={this.onClick("ViroScene")}
-                       onClickState={this.onClickState("ViroScene")}
-                       onTouch={this.onTouch("ViroScene")}
-                       onScroll={this.onScroll("ViroScene")}
-                       onFuse={this.onFuse("ViroScene")}
-                       onSwipe={this.onSwipe("ViroScene")}>
+      <ViroScene onClick={this.onClick("ViroScene")}
+                 onAnyClick={this.onAnyClick("ViroScene")}
+                 onAnyClicked={this.onAnyClicked("ViroScene")}
+                 onHover={this.onHover("ViroScene")}
+                 onAnyHover={this.onAnyHover("ViroScene")}>
+        <ViroController
+                  onClick={this.onClick("ViroController")}
+                  onAnyClick={this.onAnyClick("ViroController")}
+                  onAnyClicked={this.onAnyClicked("ViroController")}
+                  onHover={this.onHover("ViroController")}
+                  onAnyHover={this.onAnyHover("ViroController")}
+                  onThumbstick={this.onThumbstick("ViroController")}
+                  onMove={this.onMove("ViroController")}
+                  onTrigger={this.onTrigger("ViroController")}
+                  onControllerStatus={this.onControllerStatus("ViroController")} />
+        <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
+        <ViroOmniLight position={[0, 0, 0]}
+                       color={"#FFFFFF"}
+                       attenuationStartDistance={30}
+                       attenuationEndDistance={40}/>
 
-              <ViroController
-                    onClick={this.onClick("ViroController")}
-                    onClickState={this.onClickState("ViroController")}
-                    onTouch={this.onTouch("ViroController")}
-                    onScroll={this.onScroll("ViroController")}
-                    onFuse={this.onFuse("ViroController")}
-                    onSwipe={this.onSwipe("ViroController")}
-                    reticleVisibility={this.state.reticleVisibility} />
+        <ViroNode position={[0, 0, -3.5]}>
+            <Viro3DObject source={require('../res/heart.obj')}
+                          scale={[1.8, 1.8, 1.8]}
+                          position={[-3.2, 2.5, -4.5]}
+                          materials={["heart"]}
+                          type="OBJ"
+                          onClick={this.onClick("Viro3DObject")}
+                          onAnyClick={this.onAnyClick("Viro3DObject")}
+                          onAnyClicked={this.onAnyClicked("Viro3DObject")}
+                          onHover={this.onHover("Viro3DObject")}
+                          onAnyHover={this.onAnyHover("Viro3DObject")}/>
 
-              <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
-              <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
+            <ViroBox
+                position={[-1, 1, 0]}
+                scale={[0.4 , 0.4 , 0.4]}
+                materials={["redColor","blue","redColor","blue","redColor","blue"]}
+                height={1}
+                width={1}
+                length={1}
+                onClick={this.onClick("ViroBox")}
+                           onAnyClick={this.onAnyClick("ViroBox")}
+                           onAnyClicked={this.onAnyClicked("ViroBox")}
+                           onHover={this.onHover("ViroBox")}
+                           onAnyHover={this.onAnyHover("ViroBox")}/>
 
-              {this._getImage()}
+            <ViroButton
+                position={[0, 1, 0]}
+                scale={[0.08, 0.08, 0.1]}
+                source={LocalButtonImage}
+                hoverSource={LocalButtonImage}
+                clickSource={LocalButtonImage}
+                onClick={this.onClick("ViroButton")}
+                           onAnyClick={this.onAnyClick("ViroButton")}
+                           onAnyClicked={this.onAnyClicked("ViroButton")}
+                           onHover={this.onHover("ViroButton")}
+                           onAnyHover={this.onAnyHover("ViroButton")}/>
 
-              <ViroOmniLight position={[0, 0, 0]}
-                             color={"#FFFFFF"}
-                             attenuationStartDistance={30}
-                             attenuationEndDistance={40}/>
+            <ViroFlexView
+                position={[1, 1, 0]}
+                scale={[0.2, 0.2, 0.1]}
+                materials={["redColor"]}
+                width={3}
+                height={2}
+                onClick={this.onClick("ViroFlexView")}
+                onAnyClick={this.onAnyClick("ViroFlexView")}
+                onAnyClicked={this.onAnyClicked("ViroFlexView")}
+                onHover={this.onHover("ViroFlexView")}
+                onAnyHover={this.onAnyHover("ViroFlexView")}/>
 
-              <ViroNode position={[0.8, 0, -3.5]}>
-                  <Viro3DObject source={require('../res/heart.obj')}
-                                scale={[1.8, 1.8, 1.8]}
-                                position={[-3.2, 2.5, -4.5]}
-                                materials={["heart"]}
-                                type="OBJ"
-                                onHover={this.onHover("3dObject")}
-                                onClick={this.onClick("3dObject")}
-                                onFuse={{callback:this.onFuse("3dObject"), timeToFuse:1000}}
-                                onClickState={this.onClickState("3dObject")}
-                                onTouch={this.onTouch("3dObject")}
-                                onScroll={this.onScroll("3dObject")}
-                                onSwipe={this.onSwipe("3dObject")}/>
+          <ViroPolyline
+                position={[2, 1, 0]}
+                points={[[0,0,0], [-.5, 0, 0], [0, 0.5, 0], [0.5, 0, 0]]}
+                closed={true}
+                thickness={.05}
+                onClick={this.onClick("ViroPolyline")}
+                onAnyClick={this.onAnyClick("ViroPolyline")}
+                onAnyClicked={this.onAnyClicked("ViroPolyline")}
+                onHover={this.onHover("ViroPolyline")}
+                onAnyHover={this.onAnyHover("ViroPolyline")}/>
 
-                  <ViroBox
-                      position={[-1, 1, 0]}
-                      scale={[0.4 , 0.4 , 0.4]}
-                      materials={["redColor","blue","redColor","blue","redColor","blue"]}
-                      height={1}
-                      width={1}
-                      length={1}
-                      onHover={this.onHover("ViroBox")}
-                      onClick={this.onClick("ViroBox")}
-                      onFuse={{callback:this.onFuse("ViroBox"), timeToFuse:1000}}
-                      onClickState={this.onClickState("ViroBox")}
-                      onTouch={this.onTouch("ViroBox")}
-                      onScroll={this.onScroll("ViroBox")}
-                      onSwipe={this.onSwipe("ViroBox")}/>
 
-                  <ViroButton
-                      position={[0, 1, 0]}
-                      scale={[0.08, 0.08, 0.1]}
-                      source={LocalButtonImage}
-                      hoverSource={LocalButtonImage}
-                      clickSource={LocalButtonImage}
-                      onHover={this.onHover("ViroButton")}
-                      onClick={this.onClick("ViroButton")}
-                      onFuse={this.onFuse("ViroButton")}
-                      onClickState={this.onClickState("ViroButton")}
-                      onTouch={this.onTouch("ViroButton")}
-                      onScroll={this.onScroll("ViroButton")}
-                      onSwipe={this.onSwipe("ViroButton")}/>
+            <ViroImage
+                width={1} height={1}
+                format="RGBA8" mipmap={true}
+                position={[-2, 0, 0]}
+                scale={[0.5, 0.5, 0.1]}
+                source={{uri: "https://upload.wikimedia.org/wikipedia/commons/7/74/Earth_poster_large.jpg"}}
+                onClick={this.onClick("ViroImage")}
+                           onAnyClick={this.onAnyClick("ViroImage")}
+                           onAnyClicked={this.onAnyClicked("ViroImage")}
+                           onHover={this.onHover("ViroImage")}
+                           onAnyHover={this.onAnyHover("ViroImage")}/>
 
-                  <ViroFlexView
-                      position={[1, 1, 0]}
-                      scale={[0.2, 0.2, 0.1]}
-                      materials={["redColor"]}
-                      width={3}
-                      height={2}
-                      onHover={this.onHover("ViroFlexView")}
-                      onClick={this.onClick("ViroFlexView")}
-                      onFuse={this.onFuse("ViroFlexView")}
-                      onClickState={this.onClickState("ViroFlexView")}
-                      onTouch={this.onTouch("ViroFlexView")}
-                      onScroll={this.onScroll("ViroFlexView")}
-                      onSwipe={this.onSwipe("ViroFlexView")}/>
+            <ViroNode
+                position={[-1, 0, 0]}
+                scale={[0.5, 0.5, 0.1]}
+                rotation={[0,0,0]}
+                onClick={this.onClick("ViroNode")}
+                           onAnyClick={this.onAnyClick("ViroNode")}
+                           onAnyClicked={this.onAnyClicked("ViroNode")}
+                           onHover={this.onHover("ViroNode")}
+                           onAnyHover={this.onAnyHover("ViroNode")}>
 
-                  <ViroImage
-                      width={1} height={1}
-                      format="RGBA8" mipmap={true}
-                      position={[-2, 0, 0]}
-                      scale={[0.5, 0.5, 0.1]}
-                      source={{uri: "https://upload.wikimedia.org/wikipedia/commons/7/74/Earth_poster_large.jpg"}}
-                      onHover={this.onHover("ViroImage")}
-                      onClick={this.onClick("ViroImage")}
-                      onClickState={this.onClickState("ViroImage")}
-                      onFuse={{callback:this.onFuse("ViroImage"), timeToFuse:1000}}
-                      onTouch={this.onTouch("ViroImage")}
-                      onScroll={this.onScroll("ViroImage")}
-                      onSwipe={this.onSwipe("ViroImage")}/>
+                <ViroText
+                  style={styles.baseTextTwo}
+                  text="This is a text in a ViroNode"/>
+            </ViroNode>
 
-                  <ViroNode
-                      position={[-1, 0, 0]}
-                      scale={[0.5, 0.5, 0.1]}
-                      rotation={[0,0,0]}
-                      onHover={this.onHover("ViroNode")}
-                      onClick={this.onClick("ViroNode")}
-                      onFuse={{callback:this.onFuse("ViroImage"), timeToFuse:1000}}
-                      onClickState={this.onClickState("ViroNode")}
-                      onTouch={this.onTouch("ViroNode")}
-                      onScroll={this.onScroll("ViroNode")}
-                      onSwipe={this.onSwipe("ViroNode")}>
+            <ViroSphere
+                position={[0, 0, 0]}
+                scale={[0.3, 0.3, 0.3]}
+                widthSegmentCount={5}
+                heightSegmentCount={5}
+                radius={1}
+                materials={["redColor"]}
+                onClick={this.onClick("ViroSphere")}
+                           onAnyClick={this.onAnyClick("ViroSphere")}
+                           onAnyClicked={this.onAnyClicked("ViroSphere")}
+                           onHover={this.onHover("ViroSphere")}
+                           onAnyHover={this.onAnyHover("ViroSphere")}
+                />
 
-                      <ViroText
-                        style={styles.baseTextTwo}
-                        text="This is a text in a ViroNode"/>
-                  </ViroNode>
+            <ViroSpinner
+                position={[1, 0, 0]}
+                scale={[0.3, 0.3, 0.1]}
+                onClick={this.onClick("ViroSpinner")}
+                           onAnyClick={this.onAnyClick("ViroSpinner")}
+                           onAnyClicked={this.onAnyClicked("ViroSpinner")}
+                           onHover={this.onHover("ViroSpinner")}
+                           onAnyHover={this.onAnyHover("ViroSpinner")}/>
 
-                  <ViroSphere
-                      position={[0, 0, 0]}
-                      scale={[0.3, 0.3, 0.3]}
-                      widthSegmentCount={5}
-                      heightSegmentCount={5}
-                      radius={1}
-                      materials={["redColor"]}
-                      onHover={this.onHover("ViroSphere")}
-                      onFuse={this.onFuse("ViroSphere")}
-                      onClick={this.onClick("ViroSphere")}
-                      onClickState={this.onClickState("ViroSphere")}
-                      onTouch={this.onTouch("ViroSphere")}
-                      onScroll={this.onScroll("ViroSphere")}
-                      onSwipe={this.onSwipe("ViroSphere")}
-                      />
+        <ViroAnimatedImage
+                  position={[2, 0, 0]}
+                             width={1.0} height={0.95} scale={[1, 1, 1]}
+                             paused={false}
+                             source={require("./res/testingGifplz2.gif")}
+                             loop={true}
+                             placeholderSource={require("./res/grid_bg.jpg")}
+                             onClick={this.onClick("ViroAnimatedImage")}
+                                        onAnyClick={this.onAnyClick("ViroAnimatedImage")}
+                                        onAnyClicked={this.onAnyClicked("ViroAnimatedImage")}
+                                        onHover={this.onHover("ViroAnimatedImage")}
+                                        onAnyHover={this.onAnyHover("ViroAnimatedImage")} />
 
-                  <ViroSpinner
-                      position={[1, 0, 0]}
-                      scale={[0.3, 0.3, 0.1]}
-                      onHover={this.onHover("ViroSpinner")}
-                      onClick={this.onClick("ViroSpinner")}
-                      onClickState={this.onClickState("ViroSpinner")}
-                      onTouch={this.onTouch("ViroSpinner")}
-                      onFuse={this.onFuse("ViroSpinner")}
-                      onScroll={this.onScroll("ViroSpinner")}
-                      onSwipe={this.onSwipe("ViroSpinner")}/>
+            <ViroQuad
+                position={[-2, -1, 0]}
+                scale={[0.5, 0.5, 0.1]}
+                materials={["redColor"]}
+                width={1}
+                height={1}
+                onClick={this.onClick("ViroQuad")}
+                           onAnyClick={this.onAnyClick("ViroQuad")}
+                           onAnyClicked={this.onAnyClicked("ViroQuad")}
+                           onHover={this.onHover("ViroQuad")}
+                           onAnyHover={this.onAnyHover("ViroQuad")}/>
 
-                  <ViroQuad
-                      position={[-2, -1, 0]}
-                      scale={[0.5, 0.5, 0.1]}
-                      materials={["redColor"]}
-                      width={1}
-                      height={1}
-                         onHover={this.onHover("ViroQuad")}
-                         onClick={this.onClick("ViroQuad")}
-                         onFuse={{callback:this.onFuse("ViroQuad"), timeToFuse:1000}}
-                         onClickState={this.onClickState("ViroQuad")}
-                         onTouch={this.onTouch("ViroQuad")}
-                         onScroll={this.onScroll("ViroQuad")}
-                         onSwipe={this.onSwipe("ViroQuad")}/>
+            <ViroText
+                position={[-1, -1, 0]}
+                scale={[0.5 , 0.5, 0.1]}
+                style={styles.baseTextTwo}
+                text="This is a Viro Text"
+                onClick={this.onClick("ViroText")}
+                           onAnyClick={this.onAnyClick("ViroText")}
+                           onAnyClicked={this.onAnyClicked("ViroText")}
+                           onHover={this.onHover("ViroText")}
+                           onAnyHover={this.onAnyHover("ViroText")}/>
 
-                  <ViroText
-                      position={[-1, -1, 0]}
-                      scale={[0.5 , 0.5, 0.1]}
-                      style={styles.baseTextTwo}
-                      text="This is a Viro Text"
-                      onHover={this.onHover("ViroText")}
-                      onFuse={this.onFuse("ViroText")}
-                      onClick={this.onClick("ViroText")}
-                      onClickState={this.onClickState("ViroText")}
-                      onTouch={this.onTouch("ViroText")}
-                      onScroll={this.onScroll("ViroText")}
-                      onSwipe={this.onSwipe("ViroText")}/>
+            <ViroVideo
+                position={[0 , -1,0]}
+                scale={[0.1, 0.1, 0.1]}
+                height={4} width={4}
+                onClick={this.onClick("ViroVideo")}
+                           onAnyClick={this.onAnyClick("ViroVideo")}
+                           onAnyClicked={this.onAnyClicked("ViroVideo")}
+                           onHover={this.onHover("ViroVideo")}
+                           onAnyHover={this.onAnyHover("ViroVideo")}
+                source={{"uri":"https://s3-us-west-2.amazonaws.com/viro/Climber1Top.mp4"}} />
 
-                  <ViroVideo
-                      position={[0 , -1,0]}
-                      scale={[0.1, 0.1, 0.1]}
-                      height={4} width={4}
-                      onHover={this.onHover("ViroVideo")}
-                      onFuse={this.onFuse("ViroVideo")}
-                      onClick={this.onClick("ViroVideo")}
-                      onClickState={this.onClickState("ViroVideo")}
-                      onTouch={this.onTouch("ViroVideo")}
-                      onScroll={this.onScroll("ViroVideo")}
-                      onSwipe={this.onSwipe("ViroVideo")}
-                      source={{"uri":"https://s3-us-west-2.amazonaws.com/viro/Climber1Top.mp4"}} />
+            <ViroText
+                    position={[-0.5, -1.5, 0]}
+                    scale={[0.5 , 0.5, 0.1]}
+                    width={3}
+                    style={styles.baseTextTwo}
+                    onAnyClicked={this._toggleEvent()}
+                    text={"Toggle Text here to: " + this.state.currentEvent}/>
+            <ViroText
+                    position={[0.8, -1.5, 0]}
+                    scale={[0.5 , 0.5, 0.1]}
+                    width={3}
+                    style={styles.baseTextTwo}
+                    onAnyClicked={this._toggleController()}
+                    text={"Test Controller: " + this.state.testController}/>
+            <ViroText
+                    position={[2.0, -1.5, 0]}
+                    scale={[0.5 , 0.5, 0.1]}
+                    width={3}
+                    style={styles.baseTextTwo}
+                    onAnyClicked={this._toggleControllerType()}
+                    text={"Is Right Controller: " + this.state.isRightController}/>
 
-                  <ViroText
-                          position={[0, -2, 0]}
-                          scale={[0.5 , 0.5, 0.1]}
-                          style={styles.baseTextTwo}
-                          text="Toggle Reticle Visibility"
-                          onClick={this.toggleReticle}/>
+            <ViroText
+                    position={[0, -2.2, 0]}
+                    scale={[0.5 , 0.5, 0.1]}
+                    width={3}
+                    style={styles.baseTextTwo}
+                    text={this.state.consoleText}/>
 
-              </ViroNode>
-            </ViroScene>
+        </ViroNode>
+      </ViroScene>
 
     );
+  },
+  _toggleController() {
+    return() => {
+       this.setState({testController:!this.state.testController});
+    }
+  },
+
+  _toggleControllerType() {
+    return() => {
+
+      var isRight = !this.state.isRightController;
+      var currentMap = isRight ? "1": "0";
+      this.setState({isRightController:isRight,
+                      currentController:currentMap});
+    }
+  },
+
+  _toggleEvent() {
+    return() => {
+      if (this.state.currentEvent == "None") {
+         this.setState({currentEvent:"onClick"});
+      } else if (this.state.currentEvent == "onClick") {
+         this.setState({currentEvent:"onAnyClick"});
+      } else if (this.state.currentEvent == "onAnyClick") {
+         this.setState({currentEvent:"onAnyClicked"});
+      } else if (this.state.currentEvent == "onAnyClicked") {
+         this.setState({currentEvent:"onHover"});
+      } else if (this.state.currentEvent == "onHover") {
+         this.setState({currentEvent:"onAnyHover"});
+      } else if (this.state.currentEvent == "onAnyHover") {
+         this.setState({currentEvent:"onThumbstick"});
+      } else if (this.state.currentEvent == "onThumbstick") {
+         this.setState({currentEvent:"onMove"});
+      } else if (this.state.currentEvent == "onMove") {
+         this.setState({currentEvent:"onTrigger"});
+      } else if (this.state.currentEvent == "onTrigger") {
+         this.setState({currentEvent:"onControllerStatus"});
+      } else if (this.state.currentEvent == "onControllerStatus") {
+         this.setState({currentEvent:"None"});
+      }
+    }
   },
 
   _showNext() {
     this.props.sceneNavigator.replace({scene:require('./GroupTestDragEvents')});
   },
-
-  _toggleTransform() {
-    var newtransformflag = this.state.transformFlag + 1;
-    if (newtransformflag > 5) {
-        newtransformflag = 0;
-    }
-    this.setState({
-            transformFlag:newtransformflag
-    });
-  }
 });
 
 var styles = StyleSheet.create({
@@ -357,6 +496,10 @@ ViroMaterials.createMaterials({
       lightingModel: "Constant",
       diffuseTexture: require('../res/heart_d.jpg'),
     },
+
+  geometryRed: {
+    diffuseColor: "#FF0000FF",
+  },
  });
 
 module.exports = GroupTestBasicEvents;

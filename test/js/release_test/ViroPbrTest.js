@@ -58,13 +58,13 @@ var ViroPbrTest = createReactClass({
        <Viro360Image source={require('./res/ibl_newport_loft.hdr')} isHdr={true} />
        {this.getEnvLight()}
        <ViroNode position={[0,-2, 0]}>
-       <ViroImage source={require('./res/poi_dot.png')} position={[0, -4, -2]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+       <ViroImage source={require('./res/poi_dot.png')} position={[0, -4, -2]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
           <ViroText style={styles.baseTextTwo} fontSize={this.state.fontSize}  position={[-2, -1, -2]} width={4} height ={2}
-              text={"Toggle metalness: " + this.state.metalness} onClick={this._toggleMetalness}/>
+              text={"Toggle metalness: " + this.state.metalness} onAnyClicked={this._toggleMetalness}/>
           <ViroText style={styles.baseTextTwo} fontSize={this.state.fontSize}  position={[1, -1, -2]} width={4} height ={2}
-              text={"Toggle roughness: " + this.state.roughness} onClick={this._toggleRoughness}/>
+              text={"Toggle roughness: " + this.state.roughness} onAnyClicked={this._toggleRoughness}/>
           <ViroText style={styles.baseTextTwo} fontSize={this.state.fontSize}  position={[0, 0, -2]} width={4} height ={2}
-              text={"Toggle Environment light: " + this.state.envLight} onClick={this._toggleEnvLight}/>
+              text={"Toggle Environment light: " + this.state.envLight} onAnyClicked={this._toggleEnvLight}/>
               <ViroNode position={[0,0,-3 ]}>
               <ViroSphere
                   position={[0, 0, 0]}

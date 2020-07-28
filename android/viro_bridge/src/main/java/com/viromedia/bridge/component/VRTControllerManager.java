@@ -45,58 +45,57 @@ public class VRTControllerManager extends VRTViroViewGroupManager<VRTController>
         return new VRTController(reactContext);
     }
 
-    @ReactProp(name = "reticleVisibility", defaultBoolean = VRTController.DEFAULT_RETICLE_VISIBILITY)
-    public void setReticleVisibility(VRTController view, boolean reticleVisibility) {
-        view.setReticleVisibility(reticleVisibility);
-    }
-
     @ReactProp(name = "controllerVisibility", defaultBoolean = VRTController.DEFAULT_CONTROLLER_VISIBILITY)
     public void setControllerVisibility(VRTController view, boolean controllerVisibility) {
         view.setControllerVisibility(controllerVisibility);
     }
 
-    @ReactProp(name = "canClick", defaultBoolean = VRTController.DEFAULT_CAN_CLICK)
-    public void setCanClick(VRTController view, boolean canClick) {
-        view.setCanClick(canClick);
+    @ReactProp(name = "enabledClick", defaultBoolean = VRTController.DEFAULT_ENABLED_CLICK)
+    public void setEnabledClick(VRTController view, boolean clickEnabled) {
+        view.setClickEnabled(clickEnabled);
     }
 
-    @ReactProp(name = "canTouch", defaultBoolean = VRTController.DEFAULT_CAN_TOUCH)
-    public void setCanTouch(VRTController view, boolean canTouch) {
-        view.setCanTouch(canTouch);
+    @ReactProp(name = "enabledHover", defaultBoolean = VRTController.DEFAULT_ENABLED_HOVER)
+    public void setEnabledHover(VRTController view, boolean hoverEnabled) {
+        view.setHoverEnabled(hoverEnabled);
     }
 
-    @ReactProp(name = "canSwipe", defaultBoolean = VRTController.DEFAULT_CAN_SWIPE)
-    public void setCanSwipe(VRTController view, boolean canSwipe) {
-        view.setCanSwipe(canSwipe);
+    @ReactProp(name = "enabledMove", defaultBoolean = VRTController.DEFAULT_ENABLED_MOVE)
+    public void setEnabledMove(VRTController view, boolean moveEnabled) {
+        view.setMoveEnabled(moveEnabled);
     }
 
-    @ReactProp(name = "canScroll", defaultBoolean = VRTController.DEFAULT_CAN_SCROLL)
-    public void setCanScroll(VRTController view, boolean canScroll) {
-        view.setCanScroll(canScroll);
+    @ReactProp(name = "enabledThumbstick", defaultBoolean = VRTController.DEFAULT_ENABLED_THUMBSTICK)
+    public void setEnabledThumbstick(VRTController view, boolean thumstickEnabled) {
+        view.setThumbstickEnabled(thumstickEnabled);
     }
 
-    @ReactProp(name = "canFuse", defaultBoolean = VRTController.DEFAULT_CAN_FUSE)
-    public void setCanFuse(VRTController view, boolean canFuse) {
-        view.setCanFuse(canFuse);
+    @ReactProp(name = "enabledTrigger", defaultBoolean = VRTController.DEFAULT_ENABLED_TRIGGER)
+    public void setEnabledTrigger(VRTController view, boolean triggerEnabled) {
+        view.setTriggerEnabled(triggerEnabled);
     }
 
-    @ReactProp(name = "canGetControllerStatus", defaultBoolean = VRTController.DEFAULT_CAN_GET_CONTROLLER_STATUS)
-    public void setCanGetControllerStatus(VRTController view, boolean canGetControllerStatus) {
-        view.setCanGetControllerStatus(canGetControllerStatus);
+    @ReactProp(name = "enabledControllerStatus", defaultBoolean = VRTController.DEFAULT_ENABLED_GET_CONTROLLER_STATUS)
+    public void setEnabledControllerStatus(VRTController view, boolean canGetControllerStatus) {
+        view.setControllerStatusEnabled(canGetControllerStatus);
+    }
+
+    @ReactProp(name = "reticleVisibility", defaultBoolean = VRTController.DEFAULT_RETICLE_VISIBILITY)
+    public void setReticleVisibility(VRTController view, boolean reticleVisibility) {
+        view.setReticleVisibility(reticleVisibility);
     }
 
     @Override
     public Map getExportedCustomDirectEventTypeConstants() {
         Map events = super.getExportedCustomDirectEventTypeConstants();
-
+        events.put(ViroEvents.ON_ANY_CLICK, MapBuilder.of("registrationName", ViroEvents.ON_ANY_CLICK));
+        events.put(ViroEvents.ON_ANY_HOVER, MapBuilder.of("registrationName", ViroEvents.ON_ANY_HOVER));
         events.put(ViroEvents.ON_CLICK, MapBuilder.of("registrationName", ViroEvents.ON_CLICK));
-        events.put(ViroEvents.ON_TOUCH, MapBuilder.of("registrationName", ViroEvents.ON_TOUCH));
-        events.put(ViroEvents.ON_SWIPE, MapBuilder.of("registrationName", ViroEvents.ON_SWIPE));
-        events.put(ViroEvents.ON_SCROLL, MapBuilder.of("registrationName", ViroEvents.ON_SCROLL));
-        events.put(ViroEvents.ON_FUSE, MapBuilder.of("registrationName", ViroEvents.ON_FUSE));
-        events.put(ViroEvents.ON_DRAG, MapBuilder.of("registrationName", ViroEvents.ON_DRAG));
+        events.put(ViroEvents.ON_HOVER, MapBuilder.of("registrationName", ViroEvents.ON_HOVER));
+        events.put(ViroEvents.ON_MOVE, MapBuilder.of("registrationName", ViroEvents.ON_MOVE));
+        events.put(ViroEvents.ON_THUMBSTICK, MapBuilder.of("registrationName", ViroEvents.ON_THUMBSTICK));
+        events.put(ViroEvents.ON_TRIGGER, MapBuilder.of("registrationName", ViroEvents.ON_TRIGGER));
         events.put(ViroEvents.ON_CONTROLLER_STATUS, MapBuilder.of("registrationName", ViroEvents.ON_CONTROLLER_STATUS));
-
         return events;
     }
 }

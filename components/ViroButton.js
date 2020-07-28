@@ -119,30 +119,13 @@ var BTN_TYPE_CLICKED = 'clicked';
   	height: PropTypes.number,
   	width: PropTypes.number,
     style: stylePropType,
-    dragType: PropTypes.oneOf(["FixedDistance", "FixedDistanceOrigin", "FixedToWorld", "FixedToPlane"]),
-    dragPlane: PropTypes.shape({
-      planePoint : PropTypes.arrayOf(PropTypes.number),
-      planeNormal : PropTypes.arrayOf(PropTypes.number),
-      maxDistance : PropTypes.number
-    }),
 
     ignoreEventHandling: PropTypes.bool,
     onHover: PropTypes.func,
+    onAnyHover: PropTypes.func,
     onClick: PropTypes.func,
-    onClickState: PropTypes.func,
-    onTouch: PropTypes.func,
-    onScroll: PropTypes.func,
-    onSwipe: PropTypes.func,
-    onDrag: PropTypes.func,
-    onPinch: PropTypes.func,
-    onRotate: PropTypes.func,
-    onFuse: PropTypes.oneOfType([
-      PropTypes.shape({
-        callback: PropTypes.func.isRequired,
-        timeToFuse: PropTypes.number
-      }),
-      PropTypes.func
-    ]),
+    onAnyClick: PropTypes.func,
+    onAnyClicked: PropTypes.func,
     physicsBody: PropTypes.shape({
       type: PropTypes.oneOf(['Dynamic','Kinematic','Static']).isRequired,
       mass: PropTypes.number,
@@ -248,23 +231,17 @@ var BTN_TYPE_CLICKED = 'clicked';
             physicsBody={this.props.physicsBody}
             position={this.props.position}
             onTransformUpdate={this.props.onTransformUpdate}
-            onClickState={this.props.onClickState}
-            onTouch={this.props.onTouch}
-            onScroll={this.props.onScroll}
-            onSwipe={this.props.onSwipe}
-            onHover={this._onButtonHover}
-            onClick={this._onButtonClicked}
-            onDrag={this.props.onDrag}
-            onPinch={this.props.onPinch}
-            onRotate={this.props.onRotate}
+            onHover={this.props.onHover}
+            onAnyHover={this._onButtonAnyHover}
+            onClick={this.props.onClick}
+            onAnyClick={this.props.onAnyClick}
+            onAnyClicked={this._onButtonAnyClicked}
             onCollision={this.props.onCollision}
             viroTag={this.props.viroTag}
-            onFuse={this.props.onFuse}
             animation={this.props.animation}
             onAnimationStartViro={this._onAnimationStart}
             onAnimationFinishViro={this._onAnimationFinish}
-            ignoreEventHandling={this.props.ignoreEventHandling}
-            dragType={this.props.dragType} >
+            ignoreEventHandling={this.props.ignoreEventHandling}>
 
             <ViroImage
                 source={this.props.source}
@@ -317,27 +294,30 @@ var BTN_TYPE_CLICKED = 'clicked';
     );
   },
 
-  _onButtonHover: function(isHovering, source) {
+  _onButtonAnyHover: function(isHovering, position, source) {
     if (isHovering) {
+        console.log("Molly Hovering");
         this.setState({
             buttonType: BTN_TYPE_HOVER
         });
-        if (this.props.onHover) {
-          this.props.onHover(isHovering, source);
+        if (this.props.onAnyHover) {
+          this.props.onAnyHover(isHovering, position, source);
         }
     } else {
+      console.log("Molly Hovering STOPED")
+
       this.setState({
         buttonType: BTN_TYPE_NORMAL
       });
     }
   },
 
-  _onButtonClicked: function(source) {
+  _onButtonAnyClicked: function(position, source) {
     this.setState({
       buttonType: BTN_TYPE_CLICKED
     });
-    if (this.props.onClick) {
-      this.props.onClick(source);
+    if (this.props.onAnyClicked) {
+      this.props.onAnyClicked(position, source);
     }
   },
 

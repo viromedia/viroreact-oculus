@@ -21,8 +21,6 @@
 
 package com.viromedia.bridge.component.node;
 
-import android.provider.MediaStore;
-
 import com.facebook.react.bridge.Dynamic;
 import com.facebook.react.bridge.DynamicFromMap;
 import com.facebook.react.bridge.JavaOnlyMap;
@@ -106,64 +104,14 @@ public abstract class VRTNodeManager<T extends VRTNode> extends VRTViroViewGroup
         view.setRenderingOrder(renderingOrder);
     }
 
-    @ReactProp(name = "canHover", defaultBoolean = VRTNode.DEFAULT_CAN_HOVER)
-    public void setCanHover(VRTNode view, boolean canHover) {
-        view.setCanHover(canHover);
+    @ReactProp(name = "enabledClick", defaultBoolean = VRTNode.DEFAULT_ENABLED_CLICK)
+    public void setEnabledClick(VRTNode view, boolean clickEnabled) {
+        view.setClickEnabled(clickEnabled);
     }
 
-    @ReactProp(name = "canClick", defaultBoolean = VRTNode.DEFAULT_CAN_CLICK)
-    public void setCanClick(VRTNode view, boolean canClick) {
-        view.setCanClick(canClick);
-    }
-
-    @ReactProp(name = "canTouch", defaultBoolean = VRTNode.DEFAULT_CAN_TOUCH)
-    public void setCanTouch(VRTNode view, boolean canTouch) {
-        view.setCanTouch(canTouch);
-    }
-
-    @ReactProp(name = "canScroll", defaultBoolean = VRTNode.DEFAULT_CAN_SCROLL)
-    public void setCanScroll(VRTNode view, boolean canScroll) {
-        view.setCanScroll(canScroll);
-    }
-
-    @ReactProp(name = "canSwipe", defaultBoolean = VRTNode.DEFAULT_CAN_SWIPE)
-    public void setCanSwipe(VRTNode view, boolean canSwipe) {
-        view.setCanSwipe(canSwipe);
-    }
-
-    @ReactProp(name = "canDrag", defaultBoolean = VRTNode.DEFAULT_CAN_DRAG)
-    public void setCanDrag(VRTNode view, boolean canDrag) {
-        view.setCanDrag(canDrag);
-    }
-
-    @ReactProp(name = "canFuse", defaultBoolean = VRTNode.DEFAULT_CAN_FUSE)
-    public void setCanFuse(VRTNode view, boolean canFuse) {
-        view.setCanFuse(canFuse);
-    }
-
-    @ReactProp(name = "canPinch", defaultBoolean = VRTNode.DEFAULT_CAN_PINCH)
-    public void setCanPinch(VRTNode view, boolean canPinch) {
-        view.setCanPinch(canPinch);
-    }
-
-    @ReactProp(name = "canRotate", defaultBoolean = VRTNode.DEFAULT_CAN_ROTATE)
-    public void setCanRotate(VRTNode view, boolean canRotate) {
-        view.setCanRotate(canRotate);
-    }
-
-    @ReactProp(name = "timeToFuse", defaultFloat = VRTNode.DEFAULT_TIME_TO_FUSE_MILLIS)
-    public void setTimeToFuse(VRTNode view, float durationMillis) {
-        view.setTimeToFuse(durationMillis);
-    }
-
-    @ReactProp(name = "dragType")
-    public void setDragType(VRTNode view, String dragType) {
-        view.setDragType(dragType);
-    }
-
-    @ReactProp(name = "dragPlane")
-    public void setDragPlane(VRTNode view, ReadableMap dragPlane) {
-        view.setDragPlane(dragPlane);
+    @ReactProp(name = "enabledHover", defaultBoolean = VRTNode.DEFAULT_ENABLED_HOVER)
+    public void setEnabledHover(VRTNode view, boolean hoverEnabled) {
+        view.setHoverEnabled(hoverEnabled);
     }
 
     @ReactProp(name = "animation")
@@ -304,16 +252,10 @@ public abstract class VRTNodeManager<T extends VRTNode> extends VRTViroViewGroup
     @Override
     public Map getExportedCustomDirectEventTypeConstants() {
         Map events = super.getExportedCustomDirectEventTypeConstants();
-
-        events.put(ViroEvents.ON_HOVER, MapBuilder.of("registrationName", ViroEvents.ON_HOVER));
+        events.put(ViroEvents.ON_ANY_CLICK, MapBuilder.of("registrationName", ViroEvents.ON_ANY_CLICK));
+        events.put(ViroEvents.ON_ANY_HOVER, MapBuilder.of("registrationName", ViroEvents.ON_ANY_HOVER));
         events.put(ViroEvents.ON_CLICK, MapBuilder.of("registrationName", ViroEvents.ON_CLICK));
-        events.put(ViroEvents.ON_TOUCH, MapBuilder.of("registrationName", ViroEvents.ON_TOUCH));
-        events.put(ViroEvents.ON_SWIPE, MapBuilder.of("registrationName", ViroEvents.ON_SWIPE));
-        events.put(ViroEvents.ON_SCROLL, MapBuilder.of("registrationName", ViroEvents.ON_SCROLL));
-        events.put(ViroEvents.ON_FUSE, MapBuilder.of("registrationName", ViroEvents.ON_FUSE));
-        events.put(ViroEvents.ON_PINCH, MapBuilder.of("registrationName", ViroEvents.ON_PINCH));
-        events.put(ViroEvents.ON_ROTATE, MapBuilder.of("registrationName", ViroEvents.ON_ROTATE));
-        events.put(ViroEvents.ON_DRAG, MapBuilder.of("registrationName", ViroEvents.ON_DRAG));
+        events.put(ViroEvents.ON_HOVER, MapBuilder.of("registrationName", ViroEvents.ON_HOVER));
         events.put(ViroEvents.ON_COLLIDED, MapBuilder.of("registrationName", ViroEvents.ON_COLLIDED));
         events.put(ViroEvents.ON_TRANSFORM_DELEGATE, MapBuilder.of("registrationName", ViroEvents.ON_TRANSFORM_DELEGATE));
         events.put(ViroEvents.ON_ANIMATION_START, MapBuilder.of("registrationName", ViroEvents.ON_ANIMATION_START));
@@ -327,7 +269,7 @@ public abstract class VRTNodeManager<T extends VRTNode> extends VRTViroViewGroup
         view.setPhysicsBody(map);
     }
 
-    @ReactProp(name = "canCollide", defaultBoolean = VRTNode.DEFAULT_CAN_FUSE)
+    @ReactProp(name = "canCollide", defaultBoolean = false)
     public void setCanCollide(VRTNode view, boolean canCollide) {
         view.setCanCollide(canCollide);
     }

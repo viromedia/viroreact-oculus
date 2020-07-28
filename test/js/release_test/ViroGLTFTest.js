@@ -59,26 +59,26 @@ var Viro3DObjectTest = createReactClass({
 
   getLights(hasPBR){
     var views = [];
-    if (hasPBR){
+    /*if (hasPBR){
       views.push((
         <ViroNode>
-        <ViroAmbientLight intensity={500} color="#ffffff"/>
-        <ViroOmniLight intensity={300} position={[-0.25, 0.5, -3]} color="#ffffff" attenuationStartDistance={40} attenuationEndDistance={50}/>
-        <ViroOmniLight intensity={300} position={[0.25, 0, -3]} color="#ffffff" attenuationStartDistance={40} attenuationEndDistance={50}/>
-        <ViroOmniLight intensity={300} position={[-0.25, 0, 0]} color="#ffffff" attenuationStartDistance={40} attenuationEndDistance={50}/>
-        <ViroOmniLight intensity={300} position={[0.25, 0.5, 0]} color="#ffffff" attenuationStartDistance={40} attenuationEndDistance={50}/>
+        <ViroOmniLight intensity={300} position={[-4.25, 0.5, -3]} color="#ffffff" attenuationStartDistance={40} attenuationEndDistance={50}/>
+        <ViroOmniLight intensity={300} position={[4.25, 0, -3]} color="#ffffff" attenuationStartDistance={40} attenuationEndDistance={50}/>
+        <ViroOmniLight intensity={300} position={[-4.25, 0, 0]} color="#ffffff" attenuationStartDistance={40} attenuationEndDistance={50}/>
+        <ViroOmniLight intensity={300} position={[4.25, 0.5, 0]} color="#ffffff" attenuationStartDistance={40} attenuationEndDistance={50}/>
         </ViroNode>
       ));
     } else {
       views.push((<ViroLightingEnvironment source={require('./res/ibl_newport_loft.hdr')}/>));
-    }
+    }*/
+    views.push((<ViroLightingEnvironment source={require('./res/ibl_newport_loft.hdr')}/>));
     return views;
 
   },
 
   render: function() {
     return (
-     <ViroScene onClick={this._onSceneClick}>
+     <ViroScene onAnyClicked={this._onSceneClick}>
       <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
       <Viro360Image source={require('./res/ibl_newport_loft.hdr')} isHdr={true} />
 

@@ -29,7 +29,8 @@ import {
   ViroButton,
   ViroSpinner,
   ViroAnimations,
-  ViroDirectionalLight
+  ViroDirectionalLight,
+  ViroOmniLight
 } from 'react-viro';
 
 var createReactClass = require('create-react-class');
@@ -65,8 +66,11 @@ var GroupTestBasicAnimation = createReactClass({
     return (
             <ViroScene>
             <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
+            <ViroOmniLight position={[0, 0, 0]}
+                           color={"#FFFFFF"}
+                           attenuationStartDistance={30}
+                           attenuationEndDistance={40}/>
 
-            <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
 
                 <ViroNode position={[0.8 , 0, -3.5]}>
 
@@ -75,7 +79,7 @@ var GroupTestBasicAnimation = createReactClass({
                               position={[-3.2, 2.5, -4.5]}
                               materials={["heart"]}
                               type="OBJ"
-                              onClick={this._elementClick(10)}
+                              onAnyClicked={this._elementClick(10)}
                               animation={{name:"testLoopRotate",
                                           loop:this.state.willLoop,
                                           run:this.state.runAnimation }} />
@@ -90,7 +94,7 @@ var GroupTestBasicAnimation = createReactClass({
                       height={1}
                       width={1}
                       length={1}
-                       onClick={this._elementClick(0)}
+                       onAnyClicked={this._elementClick(0)}
                        animation={{name:"testLoopMove",
                                    loop:this.state.willLoop,
                                    run:this.state.runAnimation }}/>
@@ -101,7 +105,7 @@ var GroupTestBasicAnimation = createReactClass({
                       source={LocalButtonImage}
                       hoverSource={LocalButtonImage}
                       clickSource={LocalButtonImage}
-                      onClick={this._elementClick(1)}
+                      onAnyClicked={this._elementClick(1)}
                       animation={{name:"testLoopScale",
                                   loop:this.state.willLoop,
                                   run:this.state.runAnimation }}
@@ -113,7 +117,7 @@ var GroupTestBasicAnimation = createReactClass({
                       materials={["redColor"]}
                       width={3}
                       height={2}
-                      onClick={this._elementClick(2)}
+                      onAnyClicked={this._elementClick(2)}
                       animation={{name:"testLoopOpacity",
                                   loop:this.state.willLoop,
                                   run:this.state.runAnimation }}/>
@@ -124,7 +128,7 @@ var GroupTestBasicAnimation = createReactClass({
                       format="RGBA8" mipmap={true}
                       position={[-2, 0, 0]}
                       scale={[0.5, 0.5, 0.1]}
-                      onClick={this._elementClick(3)}
+                      onAnyClicked={this._elementClick(3)}
                       animation={{name:"testLoopRotate",
                                   loop:this.state.willLoop,
                                   run:this.state.runAnimation }}
@@ -135,7 +139,7 @@ var GroupTestBasicAnimation = createReactClass({
                   <ViroNode
                     position={[-1, 0, 0]}
                     scale={[0.5, 0.5, 0.1]}
-                    onClick={this._elementClick(4)}
+                    onAnyClicked={this._elementClick(4)}
                     rotation={[0,0,0]}
                           animation={{name:"testLoopMove",
                                       loop:this.state.willLoop,
@@ -151,7 +155,7 @@ var GroupTestBasicAnimation = createReactClass({
                       widthSegmentCount={5}
                       heightSegmentCount={5}
                       radius={1}
-                      onClick={this._elementClick(5)}
+                      onAnyClicked={this._elementClick(5)}
                       materials={["redColor"]}
                       animation={{name:"testLoopScale",
                                   loop:this.state.willLoop,
@@ -163,7 +167,7 @@ var GroupTestBasicAnimation = createReactClass({
                   <ViroSpinner
                       position={[1, 0, 0]}
                       scale={[0.3, 0.3, 0.1]}
-                      onClick={this._elementClick(6)}
+                      onAnyClicked={this._elementClick(6)}
                       animation={{name:"testLoopOpacity",
                                   loop:this.state.willLoop,
                                   run:this.state.runAnimation }}/>
@@ -174,7 +178,7 @@ var GroupTestBasicAnimation = createReactClass({
                       scale={[0.5, 0.5, 0.1]}
                       materials={["redColor"]}
                       width={1}
-                      onClick={this._elementClick(7)}
+                      onAnyClicked={this._elementClick(7)}
                       height={1}
                       animation={{name:"testLoopRotate",
                                   loop:this.state.willLoop,
@@ -185,7 +189,7 @@ var GroupTestBasicAnimation = createReactClass({
                       position={[-1, -1, 0]}
                       scale={[0.5 , 0.5, 0.1]}
                       style={styles.baseTextTwo}
-                      onClick={this._elementClick(8)}
+                      onAnyClicked={this._elementClick(8)}
                       text="This is a Viro Text"
                       animation={{name:"testLoopMove",
                                   loop:this.state.willLoop,
@@ -196,7 +200,7 @@ var GroupTestBasicAnimation = createReactClass({
                       position={[0 , -1,0]}
                       scale={[0.1, 0.1, 0.1]}
                       height={4} width={4}
-                      onClick={this._elementClick(9)}
+                      onAnyClicked={this._elementClick(9)}
                       source={{"uri":"https://s3-us-west-2.amazonaws.com/viro/Climber1Top.mp4"}}
                       animation={{name:"testLoopScale",
                                   loop:this.state.willLoop,
@@ -208,7 +212,7 @@ var GroupTestBasicAnimation = createReactClass({
                       scale={[1, 1, 0.1]}
                       style={styles.baseTextTwo}
                       text={this.state.playText}
-                      onClick={this._togglePlay}/>
+                      onAnyClicked={this._togglePlay}/>
 
                  <ViroText
                       visible={this.state.isPlayVisible}
@@ -216,7 +220,7 @@ var GroupTestBasicAnimation = createReactClass({
                        scale={[1, 1, 0.1]}
                        style={styles.baseTextTwo}
                        text={this.state.loopText}
-                       onClick={this._toggleLoop}/>
+                       onAnyClicked={this._toggleLoop}/>
                 </ViroNode>
             </ViroScene>
 

@@ -60,14 +60,14 @@ var GroupTestDragEvents = createReactClass({
         currentDragType:"FixedDistance"
     };
   },
-onHover(objectTag){return (source, isHovering)  => {
-                         console.log("GroupTest: " + objectTag+ " onHover: " + isHovering);
+onAnyHover(objectTag){return (source, isHovering)  => {
+                         console.log("GroupTest: " + objectTag+ " onAnyHover: " + isHovering);
                        }},
-onClick(objectTag){return (source, objectTag) => {
-                         console.log("GroupTest: " + objectTag+ " onClick");
+onAnyClicked(objectTag){return (source, objectTag) => {
+                         console.log("GroupTest: " + objectTag+ " onAnyClicked");
                        }},
-onClickState(objectTag){return (source, state, objectTag) => {
-                              console.log("GroupTest: " + objectTag+ " onClickState: " + state);
+onAnyClickedState(objectTag){return (source, state, objectTag) => {
+                              console.log("GroupTest: " + objectTag+ " onAnyClickedState: " + state);
                             }},
 onTouch(objectTag){return (source, touchState, touchPos, objectTag) => {
                          console.log("GroupTest: " + objectTag+ " onTouch touchState " + touchState + ",  touchpos: " + touchPos[0] +"," + touchPos[1]);
@@ -86,12 +86,12 @@ onDrag(objectTag){return (dragtoPos, source) => {
     return (
                 <ViroScene>
 
-                <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+                <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onAnyClicked={this._showNext} />
                 <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
 
 
                 <ViroText width={2} height={1} position={[0.8, -1.75, -3.5]}
-                          text={"Toggle DragType" + this.state.currentDragType} onClick={this._toggleDragType} />
+                          text={"Toggle DragType" + this.state.currentDragType} onAnyClicked={this._toggleDragType} />
 
                 <ViroNode position={[0.8 , 0, -3.5]} >
 

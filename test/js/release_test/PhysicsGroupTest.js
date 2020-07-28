@@ -108,26 +108,26 @@ var GroupTestBasicPhysics = createReactClass({
                   <ViroText fontSize={35}  style={styles.centeredText}
                     position={[0,2, 0]} width={4} height ={2} maxLines={3}
                     color={this.state.physicsEnabled ? '#0000ff' : '#ffffff'}
-                    text={"Toggle PhysicsBody"} onClick={this.togglePhysicsBody(1)}/>
+                    text={"Toggle PhysicsBody"} onAnyClicked={this.togglePhysicsBody(1)}/>
 
                   <ViroText fontSize={35}  style={styles.centeredText}
                       position={[0,1, 0]} width={4} height ={2} maxLines={3}
                       color={this.state.gravityEnabled ? '#0000ff' : '#ffffff'}
-                      text={"Toggle Gravity"} onClick={this.togglePhysicsBody(2)}/>
+                      text={"Toggle Gravity"} onAnyClicked={this.togglePhysicsBody(2)}/>
 
                   <ViroText fontSize={35}  style={styles.centeredText}
                       position={[0,0, 0]} width={4} height ={2} maxLines={3}
                       color={this.state.drawBounds ? '#0000ff' : '#ffffff'}
-                      text={"Toggle Collision Lines"} onClick={this.togglePhysicsBody(3)}/>
+                      text={"Toggle Collision Lines"} onAnyClicked={this.togglePhysicsBody(3)}/>
 
                   <ViroText fontSize={35}  style={styles.centeredText}
                       position={[0,-1, 0]} width={4} height ={2} maxLines={3}
                       color={this.state.toggleDraggable ? '#0000ff' : '#ffffff'}
-                      text={"Toggle Interactivity"} onClick={this.togglePhysicsBody(4)}/>
+                      text={"Toggle Interactivity"} onAnyClicked={this.togglePhysicsBody(4)}/>
 
                   <ViroText fontSize={35}  style={styles.centeredText}
                       position={[0,-2, 0]} width={4} height ={2} maxLines={3}
-                      text={"Hard Reset."} onClick={this.onReset}/>
+                      text={"Hard Reset."} onAnyClicked={this.onReset}/>
                 </ViroNode>
 
                 <ViroBox

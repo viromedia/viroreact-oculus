@@ -360,7 +360,7 @@ var createReactClass = require('create-react-class');
         ));
     },
 
-   onClicky(){
+   onAnyClickedy(){
      var finalNum = this.state.num + 3;
      if (finalNum>40){
        finalNum = 3;
@@ -374,7 +374,7 @@ var createReactClass = require('create-react-class');
       <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
       <ViroText style={styles.baseTextTwo}  position={[0,-1.5, -3]} width={4} height ={4}
              text={"Toggle " + this.state.apply}
-             onClick={this.onClicky}/>
+             onAnyClicked={this.onAnyClickedy}/>
 
              <ViroNode position={[0,0,0]}>
              {this.getCircleFireworks()}

@@ -29,7 +29,8 @@ import {
   ViroButton,
   ViroSpinner,
   ViroDirectionalLight,
-  ViroPolygon
+  ViroPolygon,
+  ViroOmniLight
 } from 'react-viro';
 
 var createReactClass = require('create-react-class');
@@ -72,10 +73,12 @@ var GroupTestBasicProps = createReactClass({
 
   render: function() {
     return (
-            <ViroScene onClick={this.sceneClick}>
+            <ViroScene onAnyClicked={this.sceneClick}>
             <ReleaseMenu sceneNavigator={this.props.sceneNavigator}/>
-
-            <ViroImage source={require('./res/poi_dot.png')} position={[-1, 0, 0]} transformBehaviors={["billboard"]} onClick={this._showNext} />
+            <ViroOmniLight position={[0, 0, 0]}
+                           color={"#FFFFFF"}
+                           attenuationStartDistance={30}
+                           attenuationEndDistance={40}/>
 
 
                 <ViroNode position={[0.8 , 0, -3.5]}>
@@ -84,7 +87,7 @@ var GroupTestBasicProps = createReactClass({
                          position={[-3.2 + this.state.offsetData[10].translate, 2.5, -4.5]}
                           rotation={[0,this.state.offsetData[10].rotate,0]}
                           type="OBJ"
-                          materials={["heart"]} onClick={this._elementClick(10)} visible={this.state.offsetData[10].isVisible}/>
+                          materials={["heart"]} onAnyClicked={this._elementClick(10)} visible={this.state.offsetData[10].isVisible}/>
 
                   <ViroBox
                       position={[-1 + this.state.offsetData[0].translate, 1, 0]} opacity={this.state.offsetData[0].opacity}
@@ -94,7 +97,7 @@ var GroupTestBasicProps = createReactClass({
                       height={1}
                       width={1}
                       length={1}
-                       onClick={this._elementClick(0)} visible={this.state.offsetData[0].isVisible}/>
+                       onAnyClicked={this._elementClick(0)} visible={this.state.offsetData[0].isVisible}/>
 
                   <ViroButton
                       position={[0 + this.state.offsetData[1].translate, 1, 0]} opacity={this.state.offsetData[1].opacity}
@@ -103,7 +106,7 @@ var GroupTestBasicProps = createReactClass({
                       source={LocalButtonImage}
                       hoverSource={LocalButtonImage}
                       clickSource={LocalButtonImage}
-                       onClick={this._elementClick(1)} visible={this.state.offsetData[1].isVisible}/>
+                       onAnyClicked={this._elementClick(1)} visible={this.state.offsetData[1].isVisible}/>
 
                   <ViroFlexView
                       position={[1 + this.state.offsetData[2].translate, 1, 0]} opacity={this.state.offsetData[2].opacity}
@@ -112,7 +115,7 @@ var GroupTestBasicProps = createReactClass({
                       materials={["redColor"]}
                       width={3}
                       height={2}
-                      onClick={this._elementClick(2)} visible={this.state.offsetData[2].isVisible}/>
+                      onAnyClicked={this._elementClick(2)} visible={this.state.offsetData[2].isVisible}/>
 
                   <ViroImage
                       width={1} height={1}
@@ -120,14 +123,14 @@ var GroupTestBasicProps = createReactClass({
                       position={[-2 + this.state.offsetData[3].translate, 0, 0]} opacity={this.state.offsetData[3].opacity}
                       scale={[0.5* this.state.offsetData[3].scale, 0.5* this.state.offsetData[3].scale, 0.1]}
                       rotation={[0,this.state.offsetData[3].rotate,0]}
-                      onClick={this._elementClick(3)}
+                      onAnyClicked={this._elementClick(3)}
                       source={{uri: "https://upload.wikimedia.org/wikipedia/commons/7/74/Earth_poster_large.jpg"}}
                       visible={this.state.offsetData[3].isVisible}/>
 
                   <ViroNode
                     position={[-1 + this.state.offsetData[4].translate, 0, 0]} opacity={this.state.offsetData[4].opacity}
                     scale={[0.5* this.state.offsetData[4].scale, 0.5* this.state.offsetData[4].scale, 0.1]}
-                    onClick={this._elementClick(4)}
+                    onAnyClicked={this._elementClick(4)}
                     rotation={[0,this.state.offsetData[4].rotate,0]} visible={this.state.offsetData[4].isVisible}>
 
                     <ViroText
@@ -143,14 +146,14 @@ var GroupTestBasicProps = createReactClass({
                       widthSegmentCount={5}
                       heightSegmentCount={5}
                       radius={1}
-                      onClick={this._elementClick(5)}
+                      onAnyClicked={this._elementClick(5)}
                       materials={["redColor"]} visible={this.state.offsetData[5].isVisible}/>
 
                   <ViroSpinner
                       position={[1 + this.state.offsetData[6].translate, 0, 0]} opacity={this.state.offsetData[6].opacity}
                       scale={[0.3* this.state.offsetData[6].scale, 0.3* this.state.offsetData[6].scale, 0.1]}
                       rotation={[0,this.state.offsetData[6].rotate,0]}
-                      onClick={this._elementClick(6)} visible={this.state.offsetData[6].isVisible}/>
+                      onAnyClicked={this._elementClick(6)} visible={this.state.offsetData[6].isVisible}/>
 
                   <ViroQuad
                       position={[-2 + this.state.offsetData[7].translate, -1, 0]} opacity={this.state.offsetData[7].opacity}
@@ -158,7 +161,7 @@ var GroupTestBasicProps = createReactClass({
                       rotation={[0,this.state.offsetData[7].rotate,0]}
                       materials={["redColor"]}
                       width={1}
-                      onClick={this._elementClick(7)}
+                      onAnyClicked={this._elementClick(7)}
                       height={1} visible={this.state.offsetData[7].isVisible}/>
 
 
@@ -170,7 +173,7 @@ Note: Re-enable opacity for text once VIRO-885 is fixed
                        scale={[0.5 * this.state.offsetData[8].scale, 0.5 * this.state.offsetData[8].scale, 0.1]}
                        rotation={[0,this.state.offsetData[8].rotate,0]}
                       style={styles.baseTextTwo}
-                      onClick={this._elementClick(8)}
+                      onAnyClicked={this._elementClick(8)}
                       opacity={this.state.offsetData[8].opacity}
                       visible={this.state.offsetData[8].isVisible}
                       text="This is a Viro Text"  />
@@ -181,7 +184,7 @@ Note: Re-enable opacity for text once VIRO-885 is fixed
                       scale={[0.1 * this.state.offsetData[9].scale, 0.1 * this.state.offsetData[9].scale, 0.1]}
                       rotation={[0,this.state.offsetData[9].rotate,0]}
                       height={4} width={4}
-                      onClick={this._elementClick(9)}
+                      onAnyClicked={this._elementClick(9)}
                       source={{"uri":"https://s3-us-west-2.amazonaws.com/viro/Climber1Top.mp4"}} />
 
                   <ViroPolygon
@@ -190,7 +193,7 @@ Note: Re-enable opacity for text once VIRO-885 is fixed
                       position={[1.0+ this.state.offsetData[11].translate , -1,0]}
                       scale={[0.1 * this.state.offsetData[11].scale * 2.5, 0.1 * this.state.offsetData[11].scale * 2.5, 0.1 * 2.5]}
                       rotation={[0,this.state.offsetData[11].rotate,0]}
-                      onClick={this._elementClick(11)}
+                      onAnyClicked={this._elementClick(11)}
                       materials={"blue_plane"}/>
 
                  <ViroText
@@ -198,35 +201,35 @@ Note: Re-enable opacity for text once VIRO-885 is fixed
                       scale={[1, 1, 0.1]}
                       style={styles.baseTextTwo}
                       text="Toogle Position"
-                      onClick={this._togglePosition}/>
+                      onAnyClicked={this._togglePosition}/>
 
                  <ViroText
                        position={[0 , -2, 0]}
                        scale={[1, 1, 0.1]}
                        style={styles.baseTextTwo}
                        text="Toggle Scale"
-                       onClick={this._toggleScale}/>
+                       onAnyClicked={this._toggleScale}/>
 
                  <ViroText
                        position={[1.5 , -2, 0]}
                        scale={[1, 1, 0.1]}
                        style={styles.baseTextTwo}
                        text="Toggle Rotation"
-                       onClick={this._toggleRotation}/>
+                       onAnyClicked={this._toggleRotation}/>
 
                   <ViroText
                        position={[-1.5 , -3, 0]}
                        scale={[1, 1, 0.1]}
                        style={styles.baseTextTwo}
                        text="Toggle Visible"
-                       onClick={this._toggleVisibility}/>
+                       onAnyClicked={this._toggleVisibility}/>
 
                   <ViroText
                        position={[0 , -3, 0]}
                        scale={[1, 1, 0.1]}
                        style={styles.baseTextTwo}
                        text="Toggle Opacity"
-                       onClick={this._toggleOpacity}/>
+                       onAnyClicked={this._toggleOpacity}/>
                 </ViroNode>
             </ViroScene>
 
@@ -251,7 +254,10 @@ Note: Re-enable opacity for text once VIRO-885 is fixed
 
   _elementClick(item){
         return () => {
+            console.log("Daniel element click item : " + item + " with current toggle: " + this.state.currentToggle);
               var currentOffsetData = this.state.offsetData[item];
+              console.log("Daniel element click currentOffsetData : " + currentOffsetData);
+
               if (this.state.currentToggle == 1){
                 currentOffsetData.translate = currentOffsetData.translate == 0.1 ? 0 : 0.1;
               } else if (this.state.currentToggle == 2){
@@ -314,6 +320,7 @@ Note: Re-enable opacity for text once VIRO-885 is fixed
     },
 
     sceneClick(){
+      console.log("Daniel Scene click");
         if (this.state.currentInvisibleView == -1){
             return;
         }

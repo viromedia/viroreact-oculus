@@ -374,7 +374,7 @@ FlatListItemSeparator = () => {
     return (
       <View style={localStyles.viroContainer} >
         <ViroVRSceneNavigator {...this.state.sharedProps}
-                    initialScene={{scene: require('./js/release_test/ViroBoxTest')}}
+                    initialScene={{scene: require('./js/release_test/ViroFlexViewLayoutTest')}}
                     vrModeEnabled={true}
                     showMenu={true}
                     onExitViro={()=>{this.setState({navigatorType : UNSET, vrMode : UNSET})}}/>

@@ -149,24 +149,24 @@ var PhysicsRayTest = createReactClass({
                  <ViroText fontSize={35}  style={styles.centeredText}
                    position={[0,3, 0]} width={4} height ={2} maxLines={3}
                    color={this.state.toggleBounce ? '#0000ff' : '#ffffff'}
-                   text={"Release Blue Box " } onClick={this.toggleProperty(1)}
+                   text={"Release Blue Box " } onAnyClicked={this.toggleProperty(1)}
                    />
                   <ViroText fontSize={35}  style={styles.centeredText}
                     position={[0,2, 0]} width={4} height ={2} maxLines={3}
-                    text={"Restitution: " + this.state.restitution} onClick={this.toggleBounce}
+                    text={"Restitution: " + this.state.restitution} onAnyClicked={this.toggleBounce}
                     />
                   <ViroText fontSize={35}  style={styles.centeredText}
                         position={[0,1, 0]} width={4} height ={2} maxLines={3}
                         color={this.state.toggleFriction ? '#0000ff' : '#ffffff'}
-                        text={"Push Green Box "} onClick={this.toggleProperty(2)}
+                        text={"Push Green Box "} onAnyClicked={this.toggleProperty(2)}
                         />
                   <ViroText fontSize={35}  style={styles.centeredText}
                       position={[0,0, 0]} width={4} height ={2} maxLines={3}
-                      text={"Friction: " + this.state.friction} onClick={this.toggleFriction}
+                      text={"Friction: " + this.state.friction} onAnyClicked={this.toggleFriction}
                       />
                       <ViroText fontSize={35}  style={styles.centeredText}
                           position={[0,-1, 0]} width={4} height ={2} maxLines={3}
-                          text={"Hard Reset."} onClick={this.onReset}/>
+                          text={"Hard Reset."} onAnyClicked={this.onReset}/>
                 </ViroNode>
 
                 <ViroNode position={[-3 ,-2, -7]}>

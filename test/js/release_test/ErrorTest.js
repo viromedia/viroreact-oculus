@@ -24,8 +24,6 @@ import {
   ViroUtils,
   ViroText,
   ViroSound,
-  ViroSoundField,
-  ViroSpatialSound,
   ViroQuad,
   ViroSkyBox,
   Viro3DObject,
@@ -118,7 +116,7 @@ var LeakTest1 = createReactClass({
             fontFamily={'Arial'}
             text={"Toggle Error State"}
             textLineBreakMode='Justify'
-            onClick={this._toggleErrorState}
+            onAnyClicked={this._toggleErrorState}
           />
 
       </ViroScene>

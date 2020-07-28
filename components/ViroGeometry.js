@@ -34,7 +34,7 @@ var ViroGeometry = createReactClass({
       PropTypes.arrayOf(PropTypes.string),
       PropTypes.string
     ]),
-    
+
     animation: PropTypes.shape({
       name: PropTypes.string,
       delay: PropTypes.number,
@@ -51,30 +51,12 @@ var ViroGeometry = createReactClass({
     lightReceivingBitMask : PropTypes.number,
     shadowCastingBitMask : PropTypes.number,
     ignoreEventHandling: PropTypes.bool,
-    dragType: PropTypes.oneOf(["FixedDistance", "FixedDistanceOrigin", "FixedToWorld", "FixedToPlane"]),
-    dragPlane: PropTypes.shape({
-      planePoint : PropTypes.arrayOf(PropTypes.number),
-      planeNormal : PropTypes.arrayOf(PropTypes.number),
-      maxDistance : PropTypes.number
-    }),
-
     onTransformUpdate: PropTypes.func,
     onHover: PropTypes.func,
+    onAnyHover: PropTypes.func,
     onClick: PropTypes.func,
-    onClickState: PropTypes.func,
-    onTouch: PropTypes.func,
-    onScroll: PropTypes.func,
-    onSwipe: PropTypes.func,
-    onDrag: PropTypes.func,
-    onPinch: PropTypes.func,
-    onRotate: PropTypes.func,
-    onFuse: PropTypes.oneOfType([
-      PropTypes.shape({
-        callback: PropTypes.func.isRequired,
-        timeToFuse: PropTypes.number
-      }),
-      PropTypes.func,
-    ]),
+    onAnyClick: PropTypes.func,
+    onAnyClicked: PropTypes.func,
 
     /**
      * Enables high accuracy event collision checks for this object.
@@ -121,54 +103,27 @@ var ViroGeometry = createReactClass({
   },
 
   _onHover: function(event: Event) {
-    this.props.onHover && this.props.onHover(event.nativeEvent.isHovering, event.nativeEvent.position, event.nativeEvent.source);
+    this.props.onHover && this.props.onHover(event.nativeEvent);
+  },
+
+  _onAnyHover: function(event: Event) {
+    this.props.onAnyHover && this.props.onAnyHover(event.nativeEvent.isHovering, event.nativeEvent.position, event.nativeEvent.source);
   },
 
   _onClick: function(event: Event) {
-    this.props.onClick && this.props.onClick(event.nativeEvent.position, event.nativeEvent.source);
+    this.props.onClick && this.props.onClick(event.nativeEvent);
   },
 
-  _onClickState: function(event: Event) {
-    this.props.onClickState && this.props.onClickState(event.nativeEvent.clickState, event.nativeEvent.position, event.nativeEvent.source);
+  _onAnyClick: function(event: Event) {
+    this.props.onAnyClick && this.props.onAnyClick(event.nativeEvent.clickState, event.nativeEvent.position, event.nativeEvent.source);
     let CLICKED = 3; // Value representation of Clicked ClickState within EventDelegateJni.
     if (event.nativeEvent.clickState == CLICKED){
-      this._onClick(event)
+          this._onAnyClicked(event)
     }
   },
 
-  _onTouch: function(event: Event) {
-    this.props.onTouch && this.props.onTouch(event.nativeEvent.touchState, event.nativeEvent.touchPos, event.nativeEvent.source);
-  },
-
-  _onScroll: function(event: Event) {
-    this.props.onScroll && this.props.onScroll(event.nativeEvent.scrollPos, event.nativeEvent.source);
-  },
-
-  _onSwipe: function(event: Event) {
-    this.props.onSwipe && this.props.onSwipe(event.nativeEvent.swipeState, event.nativeEvent.source);
-  },
-
-  _onPinch: function(event: Event) {
-    this.props.onPinch && this.props.onPinch(event.nativeEvent.pinchState, event.nativeEvent.scaleFactor, event.nativeEvent.source);
-  },
-
-  _onRotate: function(event: Event) {
-    this.props.onRotate && this.props.onRotate(event.nativeEvent.rotateState, event.nativeEvent.rotationFactor, event.nativeEvent.source);
-  },
-
-  _onDrag: function(event: Event) {
-    this.props.onDrag
-      && this.props.onDrag(event.nativeEvent.dragToPos, event.nativeEvent.source);
-  },
-
-  _onFuse: function(event: Event){
-    if (this.props.onFuse){
-      if (typeof this.props.onFuse === 'function'){
-        this.props.onFuse(event.nativeEvent.source);
-      } else if (this.props.onFuse != undefined && this.props.onFuse.callback != undefined){
-        this.props.onFuse.callback(event.nativeEvent.source);
-      }
-    }
+  _onAnyClicked: function(event: Event) {
+    this.props.onAnyClicked && this.props.onAnyClicked(event.nativeEvent.position, event.nativeEvent.source);
   },
 
   _onAnimationStart: function(event: Event) {
@@ -228,11 +183,6 @@ var ViroGeometry = createReactClass({
     let transformBehaviors = typeof this.props.transformBehaviors === 'string' ?
         new Array(this.props.transformBehaviors) : this.props.transformBehaviors;
 
-    let timeToFuse = undefined;
-    if (this.props.onFuse != undefined && typeof this.props.onFuse === 'object'){
-      timeToFuse = this.props.onFuse.timeToFuse;
-    }
-
     let transformDelegate = this.props.onTransformUpdate != undefined ? this._onNativeTransformUpdate : undefined;
 
     let highAccuracyEvents = this.props.highAccuracyEvents;
@@ -244,35 +194,25 @@ var ViroGeometry = createReactClass({
     return (
       <VRTGeometry
         {...this.props}
+        enabledClick={this.props.onClick != undefined ||
+                      this.props.onAnyClick != undefined ||
+                      this.props.onAnyClicked != undefined}
+        enabledHover={this.props.onHover != undefined ||
+                      this.props.onAnyHover != undefined}
+        onClickViro={this._onClick}
+        onAnyClickViro={this._onAnyClick}
+        onHoverViro={this._onHover}
+        onAnyHoverViro={this._onAnyHover}
         ref={ component => {this._component = component; }}
         highAccuracyEvents={highAccuracyEvents}
         transformBehaviors={transformBehaviors}
         onNativeTransformDelegateViro={transformDelegate}
         hasTransformDelegate={this.props.onTransformUpdate != undefined}
         materials={materials}
-        canHover={this.props.onHover != undefined}
-        canClick={this.props.onClick != undefined || this.props.onClickState != undefined}
-        canTouch={this.props.onTouch != undefined}
-        canScroll={this.props.onScroll != undefined}
-        canSwipe={this.props.onSwipe != undefined}
-        canDrag={this.props.onDrag != undefined}
-        canPinch={this.props.onPinch != undefined}
-        canRotate={this.props.onRotate != undefined}
-        canFuse={this.props.onFuse != undefined}
-        onHoverViro={this._onHover}
-        onClickViro={this._onClickState}
-        onTouchViro={this._onTouch}
-        onScrollViro={this._onScroll}
-        onSwipeViro={this._onSwipe}
-        onDragViro={this._onDrag}
-        onPinchViro={this._onPinch}
-        onRotateViro={this._onRotate}
-        onFuseViro={this._onFuse}
         onAnimationStartViro={this._onAnimationStart}
         onAnimationFinishViro={this._onAnimationFinish}
         canCollide={this.props.onCollision != undefined}
-        onCollisionViro={this._onCollision}
-        timeToFuse={timeToFuse}/>
+        onCollisionViro={this._onCollision}/>
     );
   }
 });
@@ -280,25 +220,12 @@ var ViroGeometry = createReactClass({
 var VRTGeometry = requireNativeComponent(
   'VRTGeometry', ViroGeometry, {
     nativeOnly: {
-      canHover: true,
-      canClick: true,
-      canTouch: true,
-      canScroll: true,
-      canSwipe: true,
-      canDrag: true,
-      canPinch: true,
-      canRotate: true,
-      canFuse: true,
-      onHoverViro:true,
+      enabledClick:true,
+      enabledHover:true,
       onClickViro:true,
-      onTouchViro:true,
-      onScrollViro:true,
-      onSwipeViro:true,
-      onDragViro:true,
-      onPinchViro:true,
-      onRotateViro:true,
-      onFuseViro:true,
-      timeToFuse:true,
+      onAnyClickViro:true,
+      onHoverViro:true,
+      onAnyHoverViro:true,
       canCollide:true,
       onCollisionViro:true,
       onNativeTransformDelegateViro:true,
