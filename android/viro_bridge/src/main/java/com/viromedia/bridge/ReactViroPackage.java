@@ -38,9 +38,7 @@ import com.viromedia.bridge.component.VRTLightingEnvironmentManager;
 import com.viromedia.bridge.component.VRTMaterialVideoManager;
 import com.viromedia.bridge.component.VRTOmniLightManager;
 import com.viromedia.bridge.component.VRTSkyBoxManager;
-import com.viromedia.bridge.component.VRTSoundFieldManager;
 import com.viromedia.bridge.component.VRTSoundManager;
-import com.viromedia.bridge.component.VRTSpatialSoundManager;
 import com.viromedia.bridge.component.VRTSpotLightManager;
 import com.viromedia.bridge.component.VRTVRSceneNavigatorManager;
 import com.viromedia.bridge.component.node.VRTARImageMarkerManager;
@@ -155,8 +153,6 @@ public class ReactViroPackage implements ReactPackage {
                 new VRTSpotLightManager(reactContext),
                 new VRTOmniLightManager(reactContext),
                 new VRTSoundManager(reactContext),
-                new VRTSoundFieldManager(reactContext),
-                new VRTSpatialSoundManager(reactContext),
                 new VRTOmniLightManager(reactContext),
                 new VRTTextManager(reactContext),
                 new VRT3DObjectManager(reactContext),
