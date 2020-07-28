@@ -111,7 +111,7 @@ android {
         // force all libs to use armeabi-v7a
         // Tracking here: https://github.com/facebook/react-native/issues/2814
         ndk {
-            abiFilters "armeabi-v7a", "x86", "arm64-v8a"
+            abiFilters "armeabi-v7a", "arm64-v8a"
         }
         multiDexEnabled true
         resValue "string", "build_config_package", "com.virosample"
@@ -121,7 +121,7 @@ android {
             reset()
             enable enableSeparateBuildPerCPUArchitecture
             universalApk false  // If true, also generate a universal APK
-            include "armeabi-v7a", "arm64-v8a", "x86"
+            include "armeabi-v7a", "arm64-v8a"
         }
     }
     buildTypes {
