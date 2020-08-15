@@ -117,9 +117,6 @@ public class ReactViroPackage implements ReactPackage {
                 new NodeModule(reactContext),
                 new SceneModule(reactContext),
                 new VRTImageModule(reactContext),
-                new ARSceneModule(reactContext),
-                new ARSceneNavigatorModule(reactContext),
-                new ARTrackingTargetsModule(reactContext),
                 new VRT3DSceneNavigatorModule(reactContext)
         );
     }
@@ -162,13 +159,7 @@ public class ReactViroPackage implements ReactPackage {
                 new VRTPortalSceneManager(reactContext),
                 new VRTPortalManager(reactContext),
                 new VRTLightingEnvironmentManager(reactContext),
-                new VRTMaterialVideoManager(reactContext),
-                // AR Components
-                new VRTARSceneNavigatorManager(reactContext),
-                new VRTARSceneManager(reactContext),
-                new VRTARPlaneManager(reactContext),
-                new VRTARImageMarkerManager(reactContext),
-                new VRTARObjectMarkerManager(reactContext)
+                new VRTMaterialVideoManager(reactContext)
         );
     }
 }
