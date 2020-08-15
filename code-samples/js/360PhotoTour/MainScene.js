@@ -57,7 +57,7 @@ export default class MainScene extends Component {
 
         <ViroImage
           position={[0, 0, -5]} source={weworkImage} scale={[.1, .1, .1]}
-          opacity={0.0} onClick={this._onTitleClicked}
+          opacity={0.0} onAnyClicked={this._onTitleClicked}
           animation={{
             name : "showTitleAnimation",
             run : this.state.runShowTitleAnimation,

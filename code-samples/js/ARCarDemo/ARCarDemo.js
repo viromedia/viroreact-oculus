@@ -46,35 +46,35 @@ var ARCarDemo = createReactClass({
             <ViroSphere materials={["white_sphere"]}
               heightSegmentCount={20} widthSegmentCount={20} radius={.03}
               position={[-.2, .25, 0]}
-              onClick={this._selectWhite}
+              onAnyClicked={this._selectWhite}
               animation={{name:"tapAnimation", run:this.state.tapWhite, onFinish:this._animateFinished}}
               shadowCastingBitMask={0} />
 
             <ViroSphere materials={["blue_sphere"]}
               heightSegmentCount={20} widthSegmentCount={20} radius={.03}
               position={[-.1, .25, 0]}
-              onClick={this._selectBlue}
+              onAnyClicked={this._selectBlue}
               animation={{name:"tapAnimation", run:this.state.tapBlue, onFinish:this._animateFinished}}
               shadowCastingBitMask={0} />
 
             <ViroSphere materials={["grey_sphere"]}
               heightSegmentCount={20} widthSegmentCount={20} radius={.03}
               position={[0, .25, 0]}
-              onClick={this._selectGrey}
+              onAnyClicked={this._selectGrey}
               animation={{name:"tapAnimation", run:this.state.tapGrey, onFinish:this._animateFinished}}
               shadowCastingBitMask={0} />
 
             <ViroSphere materials={["red_sphere"]}
               heightSegmentCount={20} widthSegmentCount={20} radius={.03}
               position={[.1, .25, 0]}
-              onClick={this._selectRed}
+              onAnyClicked={this._selectRed}
               animation={{name:"tapAnimation", run:this.state.tapRed, onFinish:this._animateFinished}}
               shadowCastingBitMask={0} />
 
             <ViroSphere materials={["yellow_sphere"]}
               heightSegmentCount={20} widthSegmentCount={20} radius={.03}
               position={[.2, .25, 0]}
-              onClick={this._selectYellow}
+              onAnyClicked={this._selectYellow}
               animation={{name:"tapAnimation", run:this.state.tapYellow, onFinish:this._animateFinished}}
               shadowCastingBitMask={0}/>
           </ViroNode>
@@ -86,7 +86,7 @@ var ARCarDemo = createReactClass({
                         ]}
             type="OBJ"
             materials={this.state.texture}
-            onClick={this._toggleButtons}
+            onAnyClicked={this._toggleButtons}
             animation={{name:"scaleCar", run:this.state.animateCar,}} />
 
           <ViroSpotLight

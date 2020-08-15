@@ -106,7 +106,7 @@ var BasicARPhysicsSample = createReactClass({
                       type="VRX"
                       physicsBody={this.ballProperties}
                       viroTag="BallTag"
-                      onClick={this.state.controllerConfig == CONTROLLER_PUSH ? this.onItemPushImpulse("BallTag") : undefined}
+                      onAnyClicked={this.state.controllerConfig == CONTROLLER_PUSH ? this.onItemPushImpulse("BallTag") : undefined}
                       onDrag={this.state.controllerConfig == CONTROLLER_GRIP ? ()=>{} : undefined}/>
 
         {/* Render cube object in the scene, if any.*/}
@@ -114,7 +114,7 @@ var BasicARPhysicsSample = createReactClass({
 
         {/* Quad representing the ground. */}
         <ViroQuad position={[0,0,0]} scale={[6.0, 8.0, 1.0]} rotation={[-90, 0, 0]} physicsBody={{ type:'Static', restitution:0.75 }}
-          onClickState={this.state.controllerConfig == CONTROLLER_PULL ? this.onItemPullForce("Surface") : undefined}
+          onAnyClickedState={this.state.controllerConfig == CONTROLLER_PULL ? this.onItemPullForce("Surface") : undefined}
           ref={(component)=>{this.floorSurface = component}} onCollision={this._onFloorCollide} materials={'ground'}/>
       </ViroNode>
     );
@@ -123,19 +123,19 @@ var BasicARPhysicsSample = createReactClass({
   _getHUDControl(){
     return (
       <ViroNode position={[0, 1.5, -7.75]} transformBehaviors={["billboardX", "billboardY"]}>
-        <ViroFlexView style={{flexDirection: 'column'}} width={1} height={0.8} materials="hud_text_bg" position={[-1.5,0,0]} onClick={this._resetScene}>
+        <ViroFlexView style={{flexDirection: 'column'}} width={1} height={0.8} materials="hud_text_bg" position={[-1.5,0,0]} onAnyClicked={this._resetScene}>
           <ViroText style={styles.hud_text}  text={ "Reset Scene"} />
         </ViroFlexView>
 
-        <ViroFlexView style={{flexDirection: 'column'}} width={1} height={0.8} materials="hud_text_bg" position={[0,0,0]} onClick={this._toggleControllerInteraction}>
+        <ViroFlexView style={{flexDirection: 'column'}} width={1} height={0.8} materials="hud_text_bg" position={[0,0,0]} onAnyClicked={this._toggleControllerInteraction}>
           <ViroText style={styles.hud_text}  text={this._getControllerTextMode()} />
         </ViroFlexView>
 
-        <ViroFlexView style={{flexDirection: 'column'}} width={1} height={0.8} materials="hud_text_bg" position={[1.5,0,0]} onClick={this._toggleCollisionBox}>
+        <ViroFlexView style={{flexDirection: 'column'}} width={1} height={0.8} materials="hud_text_bg" position={[1.5,0,0]} onAnyClicked={this._toggleCollisionBox}>
           <ViroText style={styles.hud_text}  text={"Toggle Phyz boxes"} />
         </ViroFlexView>
 
-        <ViroFlexView style={{flexDirection: 'column'}} width={1} height={0.8} materials="hud_text_bg" position={[3,0,0]} onClick={this._addCube}>
+        <ViroFlexView style={{flexDirection: 'column'}} width={1} height={0.8} materials="hud_text_bg" position={[3,0,0]} onAnyClicked={this._addCube}>
           <ViroText style={styles.hud_text}  text={"Add Cube"} />
         </ViroFlexView>
       </ViroNode>
@@ -180,7 +180,7 @@ var BasicARPhysicsSample = createReactClass({
   },
 
   /*
-   Push against the ball with an impulse force, at the onClicked location, and
+   Push against the ball with an impulse force, at the onAnyClickeded location, and
    with a force direction originating from the controller (controller forward).
    */
   onItemPushImpulse(itemTag){
@@ -238,7 +238,7 @@ var BasicARPhysicsSample = createReactClass({
                         physicsBody={{type:'Dynamic', mass:25, enabled:true, useGravity:true, restitution:0.35, friction:0.75}}
                         materials="cube_color"
                         key={cubeKey}
-                        onClick={this.state.controllerConfig == CONTROLLER_PUSH ? this.onItemPushImpulse(cubeKey) : undefined}
+                        onAnyClicked={this.state.controllerConfig == CONTROLLER_PUSH ? this.onItemPushImpulse(cubeKey) : undefined}
                         onDrag={this.state.controllerConfig == CONTROLLER_GRIP ? ()=>{} : undefined}
                         />));
     }

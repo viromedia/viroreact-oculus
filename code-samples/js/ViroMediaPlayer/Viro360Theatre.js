@@ -52,7 +52,7 @@ var Viro360Theatre = createReactClass({
    */
   render: function() {
     return (
-        <ViroScene onClick={this._onVideoTapped} reticleEnabled={this.state.videoControlsAnimation=="fadeIn"}>
+        <ViroScene onAnyClicked={this._onVideoTapped} reticleEnabled={this.state.videoControlsAnimation=="fadeIn"}>
           <Viro360Video ref={VIDEO_REF} source={videos[this.state.videoIndex]} volume={1.0}
             loop={this.state.loopVideo} paused={this.state.videoPaused} />
 
@@ -97,7 +97,7 @@ var Viro360Theatre = createReactClass({
           source={require("./res/previous.png")}
           hoverSource={require("./res/previous_hover.png")}
           clickSource={require("./res/previous_hover.png")}
-          onClick={this._playPreviousVideo} />
+          onAnyClicked={this._playPreviousVideo} />
 
         {this._renderPlayControl()}
 
@@ -109,7 +109,7 @@ var Viro360Theatre = createReactClass({
           source={require("./res/skip.png")}
           hoverSource={require("./res/skip_hover.png")}
           clickSource={require("./res/skip_hover.png")}
-          onClick={this._playNextVideo} />
+          onAnyClicked={this._playNextVideo} />
 
         <ViroButton
           position={[-0.3, -0.4 ,-2]}
@@ -119,7 +119,7 @@ var Viro360Theatre = createReactClass({
           source={require("./res/icon_2D.png")}
           hoverSource={require("./res/icon_2D_hover.png")}
           clickSource={require("./res/icon_2D_hover.png")}
-          onClick={this._launchTheatreScene} />
+          onAnyClicked={this._launchTheatreScene} />
 
         <ViroButton
           position={[0.3, -0.4 ,-2]}
@@ -149,7 +149,7 @@ var Viro360Theatre = createReactClass({
               hoverSource={require("./res/play_hover.png")}
               clickSource={require("./res/play_hover.png")}
               transformBehaviors={["billboard"]}
-              onClick={this._togglePauseVideo}/>
+              onAnyClicked={this._togglePauseVideo}/>
       );
     } else {
       return (
@@ -162,7 +162,7 @@ var Viro360Theatre = createReactClass({
               hoverSource={require("./res/pause_hover.png")}
               clickSource={require("./res/pause_hover.png")}
               transformBehaviors={["billboard"]}
-              onClick={this._togglePauseVideo}/>
+              onAnyClicked={this._togglePauseVideo}/>
       );
     }
   },

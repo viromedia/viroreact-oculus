@@ -101,7 +101,7 @@ export default class OfficeTourSplashScene extends Component {
           position={[0, -3.5, 0]}
           rotation={[-90, 0, 0]}
           source={backImage}
-          onClick={this._onBackClick}/>
+          onAnyClicked={this._onBackClick}/>
       </ViroNode>
     );
   }

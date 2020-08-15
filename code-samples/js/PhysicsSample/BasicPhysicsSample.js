@@ -70,7 +70,7 @@ var BasicPhysicsSample = createReactClass({
            height={1} width={50} length={50}
            viroTag="Ground"
            onCollision={this.onGroundCollide}
-           onClick={this.spawnBox}
+           onAnyClicked={this.spawnBox}
        />
 
        <ViroBox
@@ -84,7 +84,7 @@ var BasicPhysicsSample = createReactClass({
          }}
          viroTag="Box"
          onCollision={this.onBoxCollide}
-         onClick={this.onBoxClicked}
+         onAnyClicked={this.onBoxClicked}
          onDrag ={this.onDragg}
          />
 
@@ -101,7 +101,7 @@ var BasicPhysicsSample = createReactClass({
   },
 
   /*
-   Push against the box with an impulse force, at the onClicked location, and
+   Push against the box with an impulse force, at the onAnyClickeded location, and
    with a force direction originating from the controller (controller forward).
    */
   onBoxClicked(clickedPos, source){

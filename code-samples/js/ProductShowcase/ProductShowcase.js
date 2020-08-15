@@ -216,7 +216,7 @@ var ProductShowcase = createReactClass({
     })
 
     return (
-      <ViroNode key="obj" rotation={product.objectRotation} scale={scale} position={position} onClick={this._onClickModel}
+      <ViroNode key="obj" rotation={product.objectRotation} scale={scale} position={position} onAnyClicked={this._onAnyClickedModel}
         animation={{name : this.state.objectAnimation, run : this.state.runObjectAnimation, loop : true}} >
         {objects}
       </ViroNode>
@@ -236,7 +236,7 @@ var ProductShowcase = createReactClass({
 
     return (
       <ViroVideo position={[3.8, -1.1, -7]} rotation={[0, -40, 0]} paused={this.state.videoPaused} loop={true} height={2} width={4}
-          onClick={this._onClickVideo} source={product.productVideo}
+          onAnyClicked={this._onAnyClickedVideo} source={product.productVideo}
           animation={{name : this.state.mainAnimation, run : this.state.runAnimation, loop : false}} />
     );
   },
@@ -265,7 +265,7 @@ var ProductShowcase = createReactClass({
   _getSingleNavButton(forward, index, centered) {
     var position = [(centered ? 0 : (forward ? 2 : -2)), -3, -7];
     return (
-      <ViroNode key={forward ? "forwardBtn" : "backBtn"} position={position} onClick={this._prepareSwitchProduct(index)}
+      <ViroNode key={forward ? "forwardBtn" : "backBtn"} position={position} onAnyClicked={this._prepareSwitchProduct(index)}
         transformBehaviors="billboard" animation={{ name : this.state.mainAnimation, run : this.state.runAnimation, loop : false }} >
         <ViroImage source={products[index].previewImage} width={2.8} height={.7}/>
         <ViroText text={products[index].productTitleText} width={2} height={.7} style={styles.navButtonText}
@@ -274,7 +274,7 @@ var ProductShowcase = createReactClass({
     );
   },
   /*
-   * This function returns an anonymous function that serves as the onClick listener of the
+   * This function returns an anonymous function that serves as the onAnyClicked listener of the
    * Nav Buttons at the bottom left/right that allow the user to switch items. The returned
    * function makes all the UI components fade out in preparation for switching the product
    * information. It works in tandem with the _switchProduct() function.
@@ -309,13 +309,13 @@ var ProductShowcase = createReactClass({
     };
   },
   /*
-   * This function is the onClick listener for the product model.
+   * This function is the onAnyClicked listener for the product model.
    *
    * Upon clicking the model, if the info cards are visible, then we hide them and make the model scale up and rotate
    * for the user to get a better view of the model. Else, we stop the rotation, scale down and make the info cards
    * reappear.
    */
-  _onClickModel() {
+  _onAnyClickedModel() {
     this.setState({
       hideInfoCards: !this.state.hideInfoCards,
       // if current state is to hide cards, then we want to show them
@@ -328,9 +328,9 @@ var ProductShowcase = createReactClass({
     });
   },
   /*
-   * This function is the onClick listener of the ViroVideo component and pauses the video when clicked.
+   * This function is the onAnyClicked listener of the ViroVideo component and pauses the video when clicked.
    */
-  _onClickVideo() {
+  _onAnyClickedVideo() {
     this.setState({
       videoPaused: !this.state.videoPaused,
     });

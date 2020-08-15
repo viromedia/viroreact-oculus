@@ -106,7 +106,7 @@ android {
         versionCode 1
         versionName "1.0"
         ndk {
-            abiFilters "armeabi-v7a", "x86"
+            abiFilters "armeabi-v7a", "arm64-v8a"
         }
     }
     splits {
@@ -114,18 +114,10 @@ android {
             reset()
             enable enableSeparateBuildPerCPUArchitecture
             universalApk false  // If true, also generate a universal APK
-            include "armeabi-v7a", "x86"
+            include "armeabi-v7a", "arm64-v8a"
         }
     }
     productFlavors {
-        ar {
-            resValue 'string', 'app_name', 'ViroSample-ar'
-            buildConfigField 'String', 'VR_PLATFORM', '"GVR"' //default to GVR
-        }
-        gvr {
-            resValue 'string', 'app_name', 'ViroSample-gvr'
-            buildConfigField 'String', 'VR_PLATFORM', '"GVR"'
-        }
         ovr {
             resValue 'string', 'app_name', 'ViroSample-ovr'
             applicationIdSuffix '.ovr'

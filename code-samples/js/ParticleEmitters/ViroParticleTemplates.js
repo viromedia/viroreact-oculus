@@ -42,7 +42,7 @@ var ViroParticleTemplates = createReactClass({
 
   render: function() {
     return (
-     <ViroScene onClick={this.clickedScene}>
+     <ViroScene onAnyClicked={this.clickedScene}>
         {this.getEffect()}
      </ViroScene>
     );

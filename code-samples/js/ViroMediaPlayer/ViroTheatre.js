@@ -55,7 +55,7 @@ var ViroTheatre = createReactClass({
    */
   render: function() {
     return (
-        <ViroScene onClick={this._onVideoTapped} reticleEnabled={this.state.videoControlsAnimation=="fadeIn"}>
+        <ViroScene onAnyClicked={this._onVideoTapped} reticleEnabled={this.state.videoControlsAnimation=="fadeIn"}>
           <Viro360Image source={require('./res/dark_theatre.jpg')} />
           <ViroVideo ref={VIDEO_REF} source={videos[this.state.videoIndex]} volume={1.0}
             position={[0, 3.9, -45]} scale={[44, 22, 1]} loop={this.state.loopVideo}
@@ -101,7 +101,7 @@ var ViroTheatre = createReactClass({
             source={require("./res/previous.png")}
             hoverSource={require("./res/previous_hover.png")}
             clickSource={require("./res/previous_hover.png")}
-            onClick={this._playPreviousVideo} />
+            onAnyClicked={this._playPreviousVideo} />
 
           {this._renderPlayControl()}
 
@@ -113,7 +113,7 @@ var ViroTheatre = createReactClass({
             source={require("./res/skip.png")}
             hoverSource={require("./res/skip_hover.png")}
             clickSource={require("./res/skip_hover.png")}
-            onClick={this._playNextVideo} />
+            onAnyClicked={this._playNextVideo} />
 
           <ViroButton
             position={[-0.3, -0.4 ,-2]}
@@ -132,7 +132,7 @@ var ViroTheatre = createReactClass({
             source={require("./res/icon_360.png")}
             hoverSource={require("./res/icon_360_hover.png")}
             clickSource={require("./res/icon_360_hover.png")}
-            onClick={this._launchTheatreScene} />
+            onAnyClicked={this._launchTheatreScene} />
 
         </ViroNode>
     );
@@ -152,7 +152,7 @@ var ViroTheatre = createReactClass({
               source={require("./res/play.png")}
               hoverSource={require("./res/play_hover.png")}
               clickSource={require("./res/play_hover.png")}
-              onClick={this._togglePauseVideo}/>
+              onAnyClicked={this._togglePauseVideo}/>
       );
     } else {
       return (
@@ -164,7 +164,7 @@ var ViroTheatre = createReactClass({
               source={require("./res/pause.png")}
               hoverSource={require("./res/pause_hover.png")}
               clickSource={require("./res/pause_hover.png")}
-              onClick={this._togglePauseVideo}/>
+              onAnyClicked={this._togglePauseVideo}/>
       );
     }
   },

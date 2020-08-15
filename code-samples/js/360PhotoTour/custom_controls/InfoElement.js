@@ -75,7 +75,7 @@ export default class InfoElement extends Component {
      */
     render() {
       return (
-        <ViroNode onClick={this._onCardClick} {...this.props}>
+        <ViroNode onAnyClicked={this._onCardClick} {...this.props}>
           {/* Info Card */}
           <ViroImage
             transformBehaviors={["billboard"]}
@@ -108,7 +108,7 @@ export default class InfoElement extends Component {
     }
 
     /**
-     * Attached callback to the onClick event of this control. We then
+     * Attached callback to the onAnyClicked event of this control. We then
      * animate in / out either the Icon or Content card correspondingly.
      */
     _onCardClick() {
