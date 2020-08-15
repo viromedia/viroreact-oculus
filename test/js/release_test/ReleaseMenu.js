@@ -16,7 +16,7 @@ import {
 import PropTypes from 'prop-types';
 
 import {
-  ViroSceneNavigator,
+   
   ViroScene,
   ViroText,
   ViroBox,

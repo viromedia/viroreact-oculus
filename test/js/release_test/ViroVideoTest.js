@@ -12,7 +12,7 @@ import {
   ViroScene,
   ViroVideo,
   ViroOmniLight,
-  ViroSceneNavigator,
+   
   Materials,
   ViroText,
   ViroUtils,

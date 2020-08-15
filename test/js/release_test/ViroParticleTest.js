@@ -14,7 +14,7 @@ import {
 
 
  import {
-   ViroSceneNavigator,
+    
    ViroScene,
    ViroARScene,
    ViroBox,

@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 
 import {
-  ViroSceneNavigator,
+   
   ViroScene,
   ViroMaterials,
   ViroNode,

@@ -19,7 +19,7 @@ import {
 } from 'react-native';
 
 import {
-  ViroSceneNavigator,
+   
 } from 'react-viro';
 
 var createReactClass = require('create-react-class');

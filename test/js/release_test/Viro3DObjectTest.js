@@ -14,7 +14,7 @@ import {
 
 import {
   ViroAnimatedComponent,
-  ViroSceneNavigator,
+   
   ViroScene,
   ViroBox,
   ViroMaterials,
