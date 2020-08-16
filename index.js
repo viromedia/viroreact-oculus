@@ -7,7 +7,6 @@
 
 const ReactViro = {
   // Components
-  get ViroSceneNavigator() { return require('./components/ViroSceneNavigator');},
   get ViroScene() { return require('./components/ViroScene'); },
   get ViroBox() { return require('./components/ViroBox'); },
   get ViroMaterials() { return require('./components/Material/ViroMaterials'); },
@@ -47,17 +46,7 @@ const ReactViro = {
   get ViroConstants() { return require('./components/ViroConstants'); },
   get ViroParticleEmitter() { return require('./components/ViroParticleEmitter'); },
   get ViroLightingEnvironment() { return require('./components/ViroLightingEnvironment'); },
-  get Viro3DSceneNavigator() { return require('./components/Viro3DSceneNavigator'); },
   get ViroVRSceneNavigator() { return require('./components/ViroVRSceneNavigator'); },
-  // AR Components
-  get ViroARSceneNavigator() { return require('./components/AR/ViroARSceneNavigator'); },
-  get ViroARScene() { return require('./components/AR/ViroARScene'); },
-  get ViroARPlane() { return require('./components/AR/ViroARPlane'); },
-  get ViroARPlaneSelector() { return require('./components/AR/ViroARPlaneSelector'); },
-  get ViroARTrackingTargets() { return require('./components/AR/ViroARTrackingTargets'); },
-  get ViroARImageMarker() { return require('./components/AR/ViroARImageMarker'); },
-  get ViroARObjectMarker() { return require('./components/AR/ViroARObjectMarker'); },
-  get ViroARCamera() { return require('./components/AR/ViroARCamera'); },
 }
 
 module.exports = ReactViro;
