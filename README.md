@@ -17,7 +17,7 @@ To report Oculus-Quest specific bugs/issues with Viro, please file new issues on
 3. Go into the code-samples directory.
 4. Run `npm install` from the test directory of this project. This should pull down all the dependencies for a default viro workspace.
 
-4A. NOTE: This will be installing a pre-built version of the viro framework. In particular (as shown in the package.json file within code samples), it is targeting the .TGZ prebuilt viro package. This .tgz file represents the Viro React platform (see instructions below on how to rebuild it if needed), in particular, the  `npm install ../react-viro-2.17.0.tgz`.
+4A. NOTE: This will be installing a pre-built version of the viro framework. In particular (as shown in the package.json file within code samples), it is targeting the .TGZ prebuilt viro package. This .tgz file represents the Viro React platform (see instructions below on how to rebuild it if needed), in particular   `../react-viro-2.17.0.tgz`.
 
 4B. *Important* if re-installing the viro frame work for the second time, ensure that you remove the previously installed viro package. Do this from within the sample code directory: `rm -rf node_modules/react-viro/`
 
