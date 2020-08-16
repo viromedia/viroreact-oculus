@@ -60,7 +60,9 @@ To report Oculus-Quest specific bugs/issues with Viro, please file new issues on
 
 `adb shell input text "RR"`
 
-2) There is currently a known crasher within ViroReact. This oculus sporadically only after compilation / start. Tracked here:
+2) If after loading in debug you see a blank screen on Android, try starting the project again. This is a known Android React cache issue.
+
+3) There is currently a known crasher within ViroReact. This oculus sporadically only after compilation / start. Tracked here:
 
 ## More information
 
