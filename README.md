@@ -32,7 +32,10 @@ To report Oculus-Quest specific bugs/issues with Viro, please file new issues on
     ```
     react-native run-android --variant=ovrDebug
     ```
-
+7. If it fails to launch, you can directly laucnth the activity via:
+    ```
+    adb shell am start -n "com.virosample.ovr/com.virosample.MainActivity"
+    ``` 
 **Changing Between Samples**
 1. Open App.js in a text editor.
 3. Modify [scene: scenes['360 Photo Tour']](https://github.com/dthian/viroreact-oculus/blob/master/code-samples/App.js#L37) to a scene defined in the `scenes` dictionary on line 23.
