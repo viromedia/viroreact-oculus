@@ -1,11 +1,11 @@
 # Viro React Oculus
 Viro React is a platform for developers to rapidly build augmented reality (AR) and virtual reality (VR) experiences. Developers write in React Native, and Viro runs their code natively across all mobile VR (including Google Daydream, Samsung Gear VR, and Google Cardboard for iOS and Android) and AR (iOS ARKit and Android ARCore) platforms. [More info here](http://docs.viromedia.com/).
 
-This project contains various sample Viro projects.
+This project contains the Viro framework specifically for the Oculus Quest.
 
 The platform is free to use with no limits on distribution.
 
-To report bugs/issues with Viro platform, please file new issues on this repository.
+To report Oculus-Quest specific bugs/issues with Viro, please file new issues on this repository.
 
 ## Instructions for running sample code as a stand alone project:
 1. Follow directions on our [Quick start guide](https://docs.viromedia.com/docs/quick-start) to setup dependencies for trying these sample projects with the Viro Media App.
@@ -26,7 +26,7 @@ To report bugs/issues with Viro platform, please file new issues on this reposit
 
 ### Changing Between Samples
 1. Open App.js in a text editor.
-3. Modify line 61: `scene: scenes['360 Photo Tour'],` to a scene defined in the `scenes` dictionary on line 30.
+3. Modify [scene: scenes['360 Photo Tour']](https://github.com/dthian/viroreact-oculus/blob/master/code-samples/App.js#L37) to a scene defined in the `scenes` dictionary on line 23.
 3. Reload/restart the application.
 
 ## Instructions for building the Viro React platform:
