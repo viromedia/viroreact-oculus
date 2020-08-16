@@ -32,6 +32,11 @@ To report Oculus-Quest specific bugs/issues with Viro, please file new issues on
     ```
     react-native run-android --variant=ovrDebug
     ```
+    
+**NOTE:** 
+- If loading in debug don't forget to tcp reverse, as required by React Native. You can also reload by emulating the "RR" keys:
+`adb reverse tcp:8081 tcp:8081`
+`adb shell input text "RR"`
 
 **Changing Between Samples**
 1. Open App.js in a text editor.
