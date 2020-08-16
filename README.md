@@ -11,13 +11,6 @@ The platform is free to use with no limits on distribution.
 
 To report Oculus-Quest specific bugs/issues with Viro, please file new issues on this repository.
 
-    
-**NOTE:** 
-If loading in debug don't forget to tcp reverse, as required by React Native. You can also reload by emulating the "RR" keys:
-`adb reverse tcp:8081 tcp:8081`
-
-`adb shell input text "RR"`
-
 ## Instructions for running sample code as a stand alone project:
 1. Follow directions on our [Quick start guide](https://docs.viromedia.com/docs/quick-start) to setup dependencies for trying these sample projects with the Viro Media App.
 2. Clone the repo into your workspace with git: `git clone https://github.com/viromedia/viro.git`.
@@ -59,6 +52,15 @@ If loading in debug don't forget to tcp reverse, as required by React Native. Yo
 4. Sync the gradle project.
 5. Build the release test onto the device (press the Green triangle button within Android studio).
 6. Don't forget to run npm start within the test project to ensure the package manager is running.
+
+## Known Issues:
+1) If loading in debug don't forget to tcp reverse, as required by React Native. You can also reload by emulating the "RR" keys:
+
+`adb reverse tcp:8081 tcp:8081`
+
+`adb shell input text "RR"`
+
+2) There is currently a known crasher within ViroReact. This oculus sporadically only after compilation / start. Tracked here:
 
 ## More information
 
