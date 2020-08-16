@@ -32,7 +32,7 @@ To report Oculus-Quest specific bugs/issues with Viro, please file new issues on
     ```
     react-native run-android --variant=ovrDebug
     ```
-7. If it fails to launch, you can directly laucnth the activity via:
+7. If it fails to launch, you can directly launch the activity via:
     ```
     adb shell am start -n "com.virosample.ovr/com.virosample.MainActivity"
     ``` 
