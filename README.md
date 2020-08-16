@@ -1,3 +1,7 @@
+<p align="center">
+<img src="https://github.com/dthian/viroreact-oculus/blob/master/Logo.png">
+</p>
+
 # Viro React Oculus
 Viro React is a platform for developers to rapidly build augmented reality (AR) and virtual reality (VR) experiences. Developers write in React Native, and Viro runs their code natively across all mobile VR (including Google Daydream, Samsung Gear VR, and Google Cardboard for iOS and Android) and AR (iOS ARKit and Android ARCore) platforms. [More info here](http://docs.viromedia.com/).
 
