@@ -7,8 +7,6 @@ The platform is free to use with no limits on distribution.
 
 To report bugs/issues with Viro platform, please file new issues on this repository.
 
-![Viro Bridge CI Pipeline](https://github.com/dthian/viro/workflows/Viro%20Bridge%20CI%20Pipeline/badge.svg)
-
 ## Instructions for running sample code as a stand alone project:
 1. Follow directions on our [Quick start guide](https://docs.viromedia.com/docs/quick-start) to setup dependencies for trying these sample projects with the Viro Media App.
 2. Clone the repo into your workspace with git: `git clone https://github.com/viromedia/viro.git`.
