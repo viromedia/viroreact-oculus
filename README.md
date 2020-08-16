@@ -27,26 +27,30 @@ To report Oculus-Quest specific bugs/issues with Viro, please file new issues on
     ```
     Build and launch android app by executing the following from the root of the project
     ```
-    react-native run-android --variant=gvrDebug
+    react-native run-android --variant=ovrDebug
     ```
 ### Changing Between Samples
 1. Open App.js in a text editor.
 3. Modify [scene: scenes['360 Photo Tour']](https://github.com/dthian/viroreact-oculus/blob/master/code-samples/App.js#L37) to a scene defined in the `scenes` dictionary on line 23.
 3. Reload/restart the application.
 
-## Instructions for building the Viro React platform:
-1. Under the viro directory, run `./prepareRelease.sh`.
-2. Your android bridge should now be built under release.
-3. You should see a new file created at android/react_viro/react_viro-release.aar
-4. To build android release tests:
+## Instructions for rebuilding the Viro React platform:
+1. (Step 1 is Optional) Follow these intstructions if you have re-built the renderer for viro react, in particular, you should have the file "viro_renderer-release.aar". Copy and replace this file from viro/android/viro_renderer/viro_renderer-release.aar to viroreact-oculus/android/viro_renderer/viro_renderer-release.aar.
+2. Under the viro directory, run `./prepareRelease.sh`.
+3. Your android bridge should now be built under release. You should see the .tgz file in the main directory. Something like `../react-viro-2.17.0.tgz`.
+4. This .tgz is the new library that all your code samples / tests / etc will be using.
+
+## Instructions for rebuilding the Release Tests:
+1. To build android release tests:
    ```
    $ cd test/android
-   $ ./gradlew assembleGvrRelease
+   $ ./gradlew assembleOvrRelease
    ```
-5. Install app-gvr-release.apk from `test/android/app/build/output/gvr/app-gvr-release.apk` onto your plugged in Android device.
+2. Install app-gvr-release.apk from `test/android/app/build/output/gvr/app-ovr-release.apk` onto your plugged in Android device.
 
 ### Bundling and using built Android bridge into a single npm tar package:
 1. The `./prepareRelease.sh` you ran above builds android react bridge and bundles both iOS and Android bridge into a `react-viro-*.tgz` file. * for current version from `package.json` file.
+
 
 ## More information
 
