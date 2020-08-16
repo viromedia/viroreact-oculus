@@ -16,8 +16,11 @@ To report Oculus-Quest specific bugs/issues with Viro, please file new issues on
 2. Clone the repo into your workspace with git: `git clone https://github.com/viromedia/viro.git`.
 3. Go into the code-samples directory.
 4. Run `npm install` from the test directory of this project. This should pull down all the dependencies for a default viro workspace.
+
 4A. NOTE: This will be installing a pre-built version of the viro framework. In particular (as shown in the package.json file within code samples), it is targeting the .TGZ prebuilt viro package. This .tgz file represents the Viro React platform (see instructions below on how to rebuild it if needed), in particular, the  `npm install ../react-viro-2.17.0.tgz`.
+
 4B. *Important* if re-installing the viro frame work for the second time, ensure that you remove the previously installed viro package. Do this from within the sample code directory: `rm -rf node_modules/react-viro/`
+
 5. For Android, make sure you have downloaded and installed Android Studio from [here](https://developer.android.com/studio/install) to get required SDK and platform-tools for building android apps
     Make sure you have the required environment variables set - `$ANDROID_HOME`, and added `platform-tools` to `$PATH` variable. If not,
     ```
