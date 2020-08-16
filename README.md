@@ -11,6 +11,13 @@ The platform is free to use with no limits on distribution.
 
 To report Oculus-Quest specific bugs/issues with Viro, please file new issues on this repository.
 
+    
+**NOTE:** 
+If loading in debug don't forget to tcp reverse, as required by React Native. You can also reload by emulating the "RR" keys:
+`adb reverse tcp:8081 tcp:8081`
+
+`adb shell input text "RR"`
+
 ## Instructions for running sample code as a stand alone project:
 1. Follow directions on our [Quick start guide](https://docs.viromedia.com/docs/quick-start) to setup dependencies for trying these sample projects with the Viro Media App.
 2. Clone the repo into your workspace with git: `git clone https://github.com/viromedia/viro.git`.
@@ -32,11 +39,6 @@ To report Oculus-Quest specific bugs/issues with Viro, please file new issues on
     ```
     react-native run-android --variant=ovrDebug
     ```
-    
-**NOTE:** 
-- If loading in debug don't forget to tcp reverse, as required by React Native. You can also reload by emulating the "RR" keys:
-`adb reverse tcp:8081 tcp:8081`
-`adb shell input text "RR"`
 
 **Changing Between Samples**
 1. Open App.js in a text editor.
