@@ -15,9 +15,9 @@ To report Oculus-Quest specific bugs/issues with Viro, please file new issues on
 1. Follow directions on our [Quick start guide](https://docs.viromedia.com/docs/quick-start) to setup dependencies for trying these sample projects with the Viro Media App.
 2. Clone the repo into your workspace with git: `git clone https://github.com/viromedia/viro.git`.
 3. Go into the code-samples directory.
-4. Run `npm install` from the root of this project. This should pull down all the dependencies for a default viro workspace.
-5. *Important* remove the default viro workspace (we are going to be installing our own Oculus specific one). Do this from within the sample code directory: `rm -rf node_modules/react-viro/`
-6. Now install the Oculus specific Viro framework: `npm install ../react-viro-2.17.0.tgz`. This .tgz file represents the Viro React platform (see instructions below on how to rebuild it if needed).
+4. Run `npm install` from the test directory of this project. This should pull down all the dependencies for a default viro workspace.
+4A. NOTE: This will be installing a pre-built version of the viro framework. In particular (as shown in the package.json file within code samples), it is targeting the .TGZ prebuilt viro package. This .tgz file represents the Viro React platform (see instructions below on how to rebuild it if needed), in particular, the  `npm install ../react-viro-2.17.0.tgz`.
+4B. *Important* if re-installing the viro frame work for the second time, ensure that you remove the previously installed viro package. Do this from within the sample code directory: `rm -rf node_modules/react-viro/`
 5. For Android, make sure you have downloaded and installed Android Studio from [here](https://developer.android.com/studio/install) to get required SDK and platform-tools for building android apps
     Make sure you have the required environment variables set - `$ANDROID_HOME`, and added `platform-tools` to `$PATH` variable. If not,
     ```
@@ -29,13 +29,15 @@ To report Oculus-Quest specific bugs/issues with Viro, please file new issues on
     ```
     react-native run-android --variant=ovrDebug
     ```
-### Changing Between Samples
+
+**Changing Between Samples**
 1. Open App.js in a text editor.
 3. Modify [scene: scenes['360 Photo Tour']](https://github.com/dthian/viroreact-oculus/blob/master/code-samples/App.js#L37) to a scene defined in the `scenes` dictionary on line 23.
 3. Reload/restart the application.
 
-## Instructions for rebuilding the Viro React platform:
+## Instructions for rebuilding the Viro React platform (rebuilding the .TGZ):
 1. (Step 1 is Optional) Follow these intstructions if you have re-built the renderer for viro react, in particular, you should have the file "viro_renderer-release.aar". Copy and replace this file from viro/android/viro_renderer/viro_renderer-release.aar to viroreact-oculus/android/viro_renderer/viro_renderer-release.aar.
+2. If you haven't already, run npm install within the test directory - make sure all our dependencies are pulled in.
 2. Under the viro directory, run `./prepareRelease.sh`.
 3. Your android bridge should now be built under release. You should see the .tgz file in the main directory. Something like `../react-viro-2.17.0.tgz`.
 4. This .tgz is the new library that all your code samples / tests / etc will be using.
