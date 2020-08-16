@@ -15,7 +15,9 @@ To report Oculus-Quest specific bugs/issues with Viro, please file new issues on
 1. Follow directions on our [Quick start guide](https://docs.viromedia.com/docs/quick-start) to setup dependencies for trying these sample projects with the Viro Media App.
 2. Clone the repo into your workspace with git: `git clone https://github.com/viromedia/viro.git`.
 3. Go into the code-samples directory.
-4. Run `npm install` from the root of this project.
+4. Run `npm install` from the root of this project. This should pull down all the dependencies for a default viro workspace.
+5. *Important* remove the default viro workspace (we are going to be installing our own Oculus specific one). Do this from within the sample code directory: `rm -rf node_modules/react-viro/`
+6. Now install the Oculus specific Viro framework: `npm install ../react-viro-2.17.0.tgz`. This .tgz file represents the Viro React platform (see instructions below on how to rebuild it if needed).
 5. For Android, make sure you have downloaded and installed Android Studio from [here](https://developer.android.com/studio/install) to get required SDK and platform-tools for building android apps
     Make sure you have the required environment variables set - `$ANDROID_HOME`, and added `platform-tools` to `$PATH` variable. If not,
     ```
@@ -27,7 +29,6 @@ To report Oculus-Quest specific bugs/issues with Viro, please file new issues on
     ```
     react-native run-android --variant=gvrDebug
     ```
-
 ### Changing Between Samples
 1. Open App.js in a text editor.
 3. Modify [scene: scenes['360 Photo Tour']](https://github.com/dthian/viroreact-oculus/blob/master/code-samples/App.js#L37) to a scene defined in the `scenes` dictionary on line 23.
