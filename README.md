@@ -15,7 +15,7 @@ To report Oculus-Quest specific bugs/issues with Viro, please file new issues on
 1. Follow directions on our [Quick start guide](https://docs.viromedia.com/docs/quick-start) to setup dependencies for trying these sample projects with the Viro Media App.
 2. Clone the repo into your workspace with git: `git clone https://github.com/viromedia/viro.git`.
 3. Go into the code-samples directory.
-4. Run `npm install` from the test directory of this project. This should pull down all the dependencies for a default viro workspace.
+4. Run `npm install` from the code samples directory of this project. This should pull down all the dependencies for a default viro workspace.
 
 4A. NOTE: This will be installing a pre-built version of the viro framework. In particular (as shown in the package.json file within code samples), it is targeting the .TGZ prebuilt viro package. This .tgz file represents the Viro React platform (see instructions below on how to rebuild it if needed), in particular   `../react-viro-2.17.0.tgz`.
 
@@ -28,7 +28,7 @@ To report Oculus-Quest specific bugs/issues with Viro, please file new issues on
     export PATH=$ANDROID_HOME/platform-tools:$PATH
     export PATH=$ANDROID_HOME/tools:$PATH
     ```
-    Build and launch android app by executing the following from the root of the project
+6. Build and launch android app by executing the following from the root of the project
     ```
     react-native run-android --variant=ovrDebug
     ```
@@ -40,22 +40,18 @@ To report Oculus-Quest specific bugs/issues with Viro, please file new issues on
 
 ## Instructions for rebuilding the Viro React platform (rebuilding the .TGZ):
 1. (Step 1 is Optional) Follow these intstructions if you have re-built the renderer for viro react, in particular, you should have the file "viro_renderer-release.aar". Copy and replace this file from viro/android/viro_renderer/viro_renderer-release.aar to viroreact-oculus/android/viro_renderer/viro_renderer-release.aar.
-2. If you haven't already, run npm install within the test directory - make sure all our dependencies are pulled in.
+2. run npm install within the test directory - make sure all our dependencies are pulled in.
 2. Under the viro directory, run `./prepareRelease.sh`.
-3. Your android bridge should now be built under release. You should see the .tgz file in the main directory. Something like `../react-viro-2.17.0.tgz`.
-4. This .tgz is the new library that all your code samples / tests / etc will be using.
+3. Your android bridge should now be built and you should see the .tgz file in the main directory. Something like `../react-viro-2.17.0.tgz`. The `./prepareRelease.sh` you ran above builds the android react bridge and bundles the Android bridge into a `react-viro-*.tgz` file. * for current version from `package.json` file.
+4. This .tgz is the new library that all your code samples will be using and refering to from it's package.json files.
 
-## Instructions for rebuilding the Release Tests:
-1. To build android release tests:
-   ```
-   $ cd test/android
-   $ ./gradlew assembleOvrRelease
-   ```
-2. Install app-gvr-release.apk from `test/android/app/build/output/gvr/app-ovr-release.apk` onto your plugged in Android device.
-
-### Bundling and using built Android bridge into a single npm tar package:
-1. The `./prepareRelease.sh` you ran above builds android react bridge and bundles both iOS and Android bridge into a `react-viro-*.tgz` file. * for current version from `package.json` file.
-
+## Instructions for rebuilding Viro Release Tests:
+1. (Step 1 is Optional) Follow these intstructions if you have re-built the renderer for viro react, in particular, you should have the file "viro_renderer-release.aar". Copy and replace this file from viro/android/viro_renderer/viro_renderer-release.aar to viroreact-oculus/android/viro_renderer/viro_renderer-release.aar.
+2. run npm install within the test directory if you haven't already - make sure all our dependencies are pulled in.
+3. Open the release tests workspace in Android Studio: viroreact-ovulus/test/android/
+4. Sync the gradle project.
+5. Build the release test onto the device (press the Green triangle button within Android studio).
+6. Don't forget to run npm start within the test project to ensure the package manager is running.
 
 ## More information
 
