@@ -1,9 +1,0 @@
-target 'ViroReact' do
-end
-
-target 'ViroReact_static_lib' do
-end
-
-
-target 'ViroReact_release_tests' do
-end
