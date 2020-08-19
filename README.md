@@ -15,7 +15,7 @@ For additional documentation, please visit [Oculus Specific Viro Documentation](
 
 ## Instructions for running sample code as a stand alone project:
 1. Follow directions on our [Quick start guide](https://docs.viromedia.com/docs/quick-start) to setup dependencies for trying these sample projects with the Viro Media App.
-2. Clone the repo into your workspace with git: `git clone https://github.com/viromedia/viro.git`.
+2. Clone the repo into your workspace with git: `git clone https://github.com/viromedia/viroreact-oculus.git`.
 3. Go into the code-samples directory.
 4. Run `npm install` from the code samples directory of this project. This should pull down all the dependencies for a default viro workspace.
 
