@@ -26,7 +26,7 @@ For additional documentation, please visit [Oculus Specific Viro Documentation](
     export PATH=$ANDROID_HOME/platform-tools:$PATH
     export PATH=$ANDROID_HOME/tools:$PATH
     ```
-6. Build and launch android app by executing the following from the root of the project. If you haven't yet, ensure that react native is set up propetly (make sure you have adb reversed with adb `reverse tcp:8081 tcp:8081.` Launching the run command below should open up a package manager (Where the code sample is served from your laptop). It would then install and run the apk file containing the code samples on your device, after which the apk app would then load the content served from the package manager.
+6. Build and launch android app by executing the following from the root of the project. If you haven't yet, ensure that react native is set up propetly (make sure you have adb reversed with `adb reverse tcp:8081 tcp:8081.` Launching the run command below should open up a package manager (Where the code sample is served from your laptop). It would then install and run the apk file containing the code samples on your device, after which the apk app would then load the content served from the package manager.
     ```
     react-native run-android --variant=ovrDebug
     ```
@@ -52,7 +52,7 @@ Note: There is a known crashing [issue](https://github.com/viromedia/viroreact-o
 ## Instructions for rebuilding Viro Release Tests:
 1. (Step 1 is Optional) Follow these intstructions if you have re-built the renderer for viro react, in particular, you should have the file "viro_renderer-release.aar". Copy and replace this file from viro/android/viro_renderer/viro_renderer-release.aar to viroreact-oculus/android/viro_renderer/viro_renderer-release.aar.
 2. run npm install within the test directory if you haven't already - make sure all our dependencies are pulled in.
-3. If you haven't yet, ensure that react native is set up propetly (make sure you have adb reversed with adb `reverse tcp:8081 tcp:8081.`)
+3. If you haven't yet, ensure that react native is set up propetly (make sure you have adb reversed with `adb reverse tcp:8081 tcp:8081.`)
 4. Then run the test like starting a code sample, but instead from within the test directory:
   ```
     react-native run-android --variant=ovrDebug
